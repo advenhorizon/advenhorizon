@@ -3,97 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avi Haddy Adven Horizon travels</title>
+    <title>AdvenHorizon Travels | מעבר לטיול הרגיל</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffffff;
+        :root {
+            --primary-blue: #16365c; /* כחול עמוק מהלוגו */
+            --accent-gold: #cfa24b;  /* זהב יוקרתי מהלוגו */
+            --light-bg: #f8f9fa;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-social-btn {
+            background-color: #1877f2;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+
+        .nav-social-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(22, 54, 92, 0.65), rgba(22, 54, 92, 0.65)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 75vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #f0f4f8;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .btn-main {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            padding: 14px 32px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(207, 162, 75, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background-color: #b3893b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(207, 162, 75, 0.6);
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--light-bg);
+            padding: 80px 20px;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-right: 5px solid var(--accent-gold);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Destinations Section */
+        .destinations {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #edf2f7;
+            padding-top: 15px;
+        }
+
+        .price {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-card {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-        }
-        .logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        h1 {
-            font-size: 28px;
-            color: #333333;
-            margin-bottom: 25px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .message-box {
-            background-color: #f4f4f4;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-            font-size: 18px;
-            color: #444444;
-            line-height: 1.6;
-            border-right: 5px solid #25D366;
-            direction: rtl;
-        }
-        .btn {
-            display: inline-block;
-            width: 250px;
-            padding: 14px;
-            margin: 8px 0;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
             text-decoration: none;
-            transition: background-color 0.3s;
-            box-sizing: border-box;
+            transition: transform 0.3s;
         }
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
         }
-        .btn-whatsapp:hover {
-            background-color: #20ba59;
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
         }
-        .btn-web {
-            background-color: white;
-            color: #333333;
-            border: 1px solid #333333;
+
+        .footer-logo {
+            height: 70px;
+            margin-bottom: 20px;
         }
-        .btn-web:hover {
-            background-color: #f7f7f7;
+
+        .footer-text {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-socials a {
+            color: var(--white);
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- תמונת הלוגו שלכם -->
-        <img src="710253020_122102817603337169_4083674205562143431_n.jpg" alt="AdvenHorizon Travels Logo" class="logo">
-        
-        <!-- השם הראשי -->
-        <h1>Avi Haddy Adven Horizon travels</h1>
-        
-        <!-- תיבת הטקסט המתוקנת -->
-        <div class="message-box">
-            שלום, הגעתם ל-AdvenHorizon Travels. נשמח לתת לכם הצעת מחיר לתכנון הטיול הבא שלכם!
+    <!-- Header / Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="logo-img">
+            </div>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">הסיפור שלנו</a></li>
+                    <li><a href="#destinations">יעדים חמים</a></li>
+                </ul>
+                <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-btn" target="_blank">
+                    <i class="fab fa-facebook-f"></i> פייסבוק שלנו
+                </a>
+            </div>
         </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AdvenHorizon Travels</h1>
+        <p>BEYOND ORDINARY TRAVEL</p>
+        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" class="btn-main" target="_blank">תכננו את המסע שלכם</a>
+    </section>
+
+    <!-- About Section (The Story) -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <h2 class="section-title">הסיפור מאחורי האופק</h2>
+            <p class="section-subtitle">איך הופכים משמעת של שוטר לתשוקה של הרפתקן בעולם?</p>
+            
+            <div class="about-text">
+                נעים להכיר, AdvenHorizon Travels נולדה מתוך אהבה טהורה לטיולים, לחקירת תרבויות ולגילוי המקומות הכי נסתרים ומרהיבים על הגלובוס. לאחר שנים של שירות ביטחוני מורכב כשוטר, החלטתי לקחת את הערכים שליוו אותי – אחריות, הגנה, דיוק ותכנון קפדני – ולתרגם אותם למשימה החדשה שלי: לעזור לכם לכבוש את היעדים שתמיד חלמתם עליהם, בראש שקט ובביטחון מלא. 
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-compass"></i>
+                    <h3>המלצות ממקור ראשון</h3>
+                    <p>אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>תכנון קפדני ואחריות</h3>
+                    <p>הניסיון שלי מלמד שאין מקום לטעויות. כל פרט בטיול שלכם מתוכנן בצורה מדויקת כדי למנוע הפתעות.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>ליווי בגובה העיניים</h3>
+                    <p>כשאתם בחו"ל, אתם לא לבד. יש לכם גב ואדם שזמין עבורכם לכל שאלה או צורך שעולה בדרך.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations" id="destinations">
+        <h2 class="section-title">החופשות החמות של 2026</h2>
+        <p class="section-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
         
-        <!-- כפתורי ההפניה לוואטסאפ (החלף את ה-0500000000 במספר הטלפון האמיתי שלך במידת הצורך) -->
-        <a href="https://wa.me/972500000000?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%95%D7%9D%20%D7%9C-AdvenHorizon%20Travels.%20%D7%A0%D7%A9%D7%94%D7%9E%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" target="_blank" class="btn btn-whatsapp">פתיחת האפליקציה</a>
-        <br>
-        <a href="https://web.whatsapp.com/" target="_blank" class="btn btn-web">להמשך ב-WhatsApp Web</a>
-    </div>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">חופשות בטן-גב אקזוטיות</h3>
+                    <p class="card-text">חופים לבנים, מים צלולים וריזורטים יוקרתיים שמציעים שקט אמיתי וניתוק מהשגרה.</p>
+                    <div class="card-meta">
+                        <span class="price">החל מ-$899</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">טיולי הרפתקאות וטבע</h3>
+                    <p class="card-text">לחובבי האדרנלין: טרקים בהרים, סיורי ג'יפים ומפגש פנים אל פנים עם הטבע הפראי ביותר.</p>
+                    <div class="card-meta">
+                        <span class="price">החל מ-$1,250</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title">חופשות אורבניות באירופה</h3>
+                    <p class="card-text">תרבות, קולינריה משובחת, שופינג ואדריכלות היסטורית בערים המובילות בעולם.</p>
+                    <div class="card-meta">
+                        <span class="price">החל מ-$450</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="footer-logo">
+        <p class="footer-text">© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel</p>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank" title="פייסבוק"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C-AdvenHorizon%20Travels%20%D7%90%D7%A9%D7%9E%D7%94%20%D7%9C%D7%A7%D7%91%D7%95%D7%9C%20%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%98%D7%99%D7%95%D7%9C" target="_blank" title="וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
 
 </body>
 </html>
