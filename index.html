@@ -11,7 +11,7 @@
       gtag('config', 'G-FGY4NH0LDD');
     </script>
 
-    <!-- תגיות מיוחדות לתצוגה מקדימה של הלוגו והאתר בוואטסאפ ובמメイドה החברתית -->
+    <!-- תגיות מיוחדות לתצוגה מקדימה של הלוגו והאתר בוואטסאפ ובמדיה החברתית -->
     <meta property="og:title" content="AdvenHorizon Travels | מעבר לטיול הרגיל">
     <meta property="og:description" content="חופשות פרימיום ותכנון מסעות בהתאמה אישית מא' ועד ת' עם אבי. Beyond Ordinary Travel.">
     <meta property="og:image" content="710253020_122102817603337169_4083674208247026205_n.jpg">
@@ -70,7 +70,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px 20px; /* הותאם קלות כדי להכיל את הלוגו המוגדל */
+            padding: 5px 20px;
         }
 
         .logo-area {
@@ -79,7 +79,7 @@
         }
 
         .logo-img {
-            height: 115px; /* הגדלת הלוגו לבקשתך */
+            height: 115px;
             width: auto;
             object-fit: contain;
         }
@@ -132,7 +132,6 @@
             opacity: 0.9;
         }
 
-        /* כפתור החלפת שפה פרימיום */
         .lang-switch-btn {
             background-color: transparent;
             border: 2px solid var(--primary-blue);
@@ -223,8 +222,9 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
-        #html-tag[dir="rtl"] .about-text { text-align: right; border-right: 5px solid var(--accent-gold); border-left: none; }
-        #html-tag[dir="ltr"] .about-text { text-align: left; border-left: 5px solid var(--accent-gold); border-right: none; }
+        /* ניהול כיווניות מאובטח לעמודי אודות */
+        body[dir="rtl"] .about-text { text-align: right; border-right: 5px solid var(--accent-gold); border-left: none; }
+        body[dir="ltr"] .about-text { text-align: left; border-left: 5px solid var(--accent-gold); border-right: none; }
 
         .features-grid {
             display: grid;
@@ -258,7 +258,7 @@
             font-size: 1.25rem;
         }
 
-        /* Process Section (איך זה עובד) */
+        /* Process Section */
         .process-section {
             padding: 80px 20px;
             background-color: var(--white);
@@ -392,7 +392,7 @@
             margin-left: 15px;
         }
 
-        #html-tag[dir="ltr"] .price {
+        body[dir="ltr"] .price {
             margin-left: 0;
             margin-right: 15px;
         }
@@ -413,8 +413,8 @@
             gap: 8px;
         }
 
-        #html-tag[dir="rtl"] .fa-arrow-dir::before { content: "\f053"; }
-        #html-tag[dir="ltr"] .fa-arrow-dir::before { content: "\f054"; }
+        body[dir="rtl"] .fa-arrow-dir::before { content: "\f053"; }
+        body[dir="ltr"] .fa-arrow-dir::before { content: "\f054"; }
 
         /* Specialties Section */
         .specialties-section {
@@ -504,7 +504,7 @@
             padding-right: 24px;
         }
 
-        #html-tag[dir="ltr"] .faq-item p {
+        body[dir="ltr"] .faq-item p {
             padding-right: 0;
             padding-left: 24px;
         }
@@ -609,7 +609,7 @@
         }
     </style>
 </head>
-<body>
+<body id="body-tag" dir="rtl">
 
     <header>
         <div class="nav-container">
@@ -639,7 +639,7 @@
     <section class="hero">
         <h1 id="hero-title">AdvenHorizon Travels</h1>
         <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
-        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
+        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%9比%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
     </section>
 
     <section class="about-section" id="about">
@@ -706,7 +706,7 @@
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -718,7 +718,7 @@
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
                     <div class="card-meta">
                         <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -730,7 +730,7 @@
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
                     <div class="card-meta">
                         <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -793,11 +793,11 @@
         </div>
     </footer>
 
-    <!-- מערכת תרגום אולטרה יציבה - חסינת שגיאות סינטקס ומושלמת להרצה מקומית -->
+    <!-- מערכת תרגום אולטרה יציבה - חסינת שגיאות מטמון וסנכרון דפדפנים -->
     <script>
-        let currentLang = 'he';
+        var currentLang = 'he';
 
-        const translations = {
+        var translations = {
             he: {
                 navAbout: "הסיפור שלנו",
                 navProcess: "איך זה עובד",
@@ -835,7 +835,7 @@
                 c2Text: "מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.",
                 c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם',
                 c3Title: "חופשות אורבניות ויעדי קיץ מובילים",
-                c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנג\'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
+                c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנגלס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
                 c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות',
                 specMainTitle: "ההתמחויות המיוחדות שלנו",
                 specMainSubtitle: "כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו",
@@ -915,16 +915,19 @@
         };
 
         function toggleLanguage() {
-            const htmlTag = document.getElementById('html-tag');
+            var bodyTag = document.getElementById('body-tag');
+            var htmlTag = document.getElementById('html-tag');
             
             if (currentLang === 'he') {
                 currentLang = 'en';
                 htmlTag.setAttribute('lang', 'en');
                 htmlTag.setAttribute('dir', 'ltr');
+                bodyTag.setAttribute('dir', 'ltr');
             } else {
                 currentLang = 'he';
                 htmlTag.setAttribute('lang', 'he');
                 htmlTag.setAttribute('dir', 'rtl');
+                bodyTag.setAttribute('dir', 'rtl');
             }
 
             document.getElementById('nav-about').innerText = translations[currentLang].navAbout;
