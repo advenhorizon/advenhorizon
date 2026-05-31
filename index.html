@@ -16,6 +16,8 @@
             --light-bg: #f8f9fa;
             --text-dark: #2d3748;
             --white: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -23,6 +25,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Assistant', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -77,7 +80,7 @@
             color: var(--primary-blue);
             font-weight: 600;
             font-size: 1.1rem;
-            transition: color 0.3s;
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
@@ -95,7 +98,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
-            transition: opacity 0.3s;
+            transition: var(--transition);
         }
 
         .nav-social-btn:hover {
@@ -139,7 +142,7 @@
             font-weight: 600;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(207, 162, 75, 0.4);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .btn-main:hover {
@@ -184,6 +187,12 @@
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
 
         .feature-item i {
@@ -198,11 +207,57 @@
             font-size: 1.3rem;
         }
 
+        /* Process Section (איך זה עובד) */
+        .process-section {
+            padding: 80px 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            position: relative;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 10px rgba(22, 54, 92, 0.2);
+        }
+
+        .process-step h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            color: #64748b;
+            font-size: 1.05rem;
+        }
+
         /* Destinations Section */
         .destinations {
             max-width: 1200px;
-            margin: 80px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
         .section-title {
@@ -239,12 +294,13 @@
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
         }
 
         .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .card-img {
@@ -290,6 +346,100 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: var(--transition);
+        }
+        
+        .btn-card:hover {
+            color: #b3893b;
+            gap: 8px;
+        }
+
+        /* Specialties Section (ההתמחויות שלנו) */
+        .specialties-section {
+            background-color: var(--light-bg);
+            padding: 80px 20px;
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .specialty-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--accent-gold);
+            box-shadow: var(--card-shadow);
+        }
+
+        .specialty-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #f1f5f9;
+            color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .specialty-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .specialty-card p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section (שאלות נפוצות) */
+        .faq-section {
+            padding: 80px 20px;
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .faq-item h3 {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item p {
+            color: #4a5568;
+            font-size: 1rem;
+            padding-right: 24px;
         }
 
         /* Floating WhatsApp Button */
@@ -310,7 +460,7 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
         .whatsapp-float:hover {
@@ -323,7 +473,7 @@
             color: var(--white);
             padding: 40px 20px;
             text-align: center;
-            margin-top: 60px;
+            margin-top: 0;
         }
 
         .footer-logo {
@@ -345,7 +495,7 @@
 
         .footer-socials a {
             color: var(--white);
-            transition: color 0.3s;
+            transition: var(--transition);
             text-decoration: none;
         }
 
@@ -385,7 +535,10 @@
             <div class="nav-links-container">
                 <ul class="nav-links">
                     <li><a href="#about">הסיפור שלנו</a></li>
+                    <li><a href="#process">איך זה עובד</a></li>
                     <li><a href="#destinations">יעדים חמים</a></li>
+                    <li><a href="#specialties">התמחויות</a></li>
+                    <li><a href="#faq">שאלות נפוצות</a></li>
                 </ul>
                 <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-btn" target="_blank">
                     <i class="fa fa-facebook"></i> פייסבוק שלנו
@@ -397,7 +550,6 @@
     <section class="hero">
         <h1>AdvenHorizon Travels</h1>
         <p>BEYOND ORDINARY TRAVEL</p>
-        <!-- קישור וואטסאפ מתוקן סופית עם האות ל' -->
         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank">תכננו את המסע שלכם</a>
     </section>
 
@@ -406,8 +558,9 @@
             <h2 class="section-title">הסיפור מאחורי האופק</h2>
             <p class="section-subtitle">איך הופכים משמעת של שוטר לתשוקה של הרפתקן בעולם?</p>
             
+            <!-- אזור הסיפור עם הוספת השם אבי -->
             <div class="about-text">
-                נעים להכיר, AdvenHorizon Travels נולדה מתוך אהבה טהורה לטיולים, לחקירת תרבויות ולגילוי המקומות הכי נסתרים ומרהיבים על הגלובוס. לאחר שנים של שירות ביטחוני מורכב כשוטר, החלטתי לקחת את הערכים שליוו אותי – אחריות, הגנה, דיוק ותכנון קפדני – ולתרגם אותם למשימה החדשה שלי: לעזור לכם לכבוש את היעדים שתמיד חלמתם עליהם, בראש שקט ובביטחון מלא. 
+                נעים להכיר, אני אבי. AdvenHorizon Travels נולדה מתוך אהבה טהורה לטיולים, לחקירת תרבויות ולגילוי המקומות הכי נסתרים ומרהיבים על הגלובוס. לאחר שנים של שירות ביטחוני מורכב כשוטר, החלטתי לקחת את הערכים שליוו אותי – אחריות, הגנה, דיוק ותכנון קפדני – ולתרגם אותם למשימה החדשה שלי: לעזור לכם לכבוש את היעדים שתמיד חלמתם עליהם, בראש שקט ובביטחון מלא. 
             </div>
 
             <div class="features-grid">
@@ -430,6 +583,30 @@
         </div>
     </section>
 
+    <!-- HOW IT WORKS -->
+    <section class="process-section" id="process">
+        <h2 class="section-title">איך זה עובד?</h2>
+        <p class="section-subtitle">הדרך שלכם לחופשה מושלמת ללא דאגות</p>
+        
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>שיחת אפיון והיכרות</h3>
+                <p>נבין יחד את אופי המטיילים, התקציב, הסגנון המועדף והחלומות שלכם לגבי היעד.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>בניית מסלול והזמנת הכל עבורכם</h3>
+                <p>אני בונה את המסלול היומי המלא ומבצע עבורכם את כל ההזמנות הנדרשות - מטיסות ומלונות ועד לוגיסטיקה קטנה.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>יוצאים לדרך בראש שקט</h3>
+                <p>אתם מקבלים תיק טיול מוכן וסגור לחלוטין, ונהנים מליווי וזמינות שלי לכל שאלה או צורך שעולה במהלך השהות בחו"ל.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="destinations" id="destinations">
         <h2 class="section-title">החופשות החמות של 2026</h2>
         <p class="section-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
@@ -442,7 +619,6 @@
                     <p class="card-text">חופים לבנים, מים צלולים וריזורטים יוקרתיים שמציעים שקט אמיתי וניתוק מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price">החל מ-$899</span>
-                        <!-- קישור וואטסאפ מתוקן סופית עם האות ל' -->
                         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-chevron-left"></i></a>
                     </div>
                 </div>
@@ -455,7 +631,6 @@
                     <p class="card-text">לחובבי האדרנלין: טרקים בהרים, סיורי ג'יפים ומפגש פנים אל פנים עם הטבע הפראי ביותר.</p>
                     <div class="card-meta">
                         <span class="price">החל מ-$1,250</span>
-                        <!-- קישור וואטסאפ מתוקן סופית עם האות ל' -->
                         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-chevron-left"></i></a>
                     </div>
                 </div>
@@ -468,7 +643,6 @@
                     <p class="card-text">תרבות, קולינריה משובחת, שופינג ואדריכלות היסטורית בערים המובילות בעולם.</p>
                     <div class="card-meta">
                         <span class="price">החל מ-$450</span>
-                        <!-- קישור וואטסאפ מתוקן סופית עם האות ל' -->
                         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-chevron-left"></i></a>
                     </div>
                 </div>
@@ -476,7 +650,51 @@
         </div>
     </section>
 
-    <!-- כפתור וואטסאפ צף מתוקן סופית עם האות ל' -->
+    <!-- SPECIALTIES -->
+    <section class="specialties-section" id="specialties">
+        <h2 class="section-title">ההתמחויות המיוחדות שלנו</h2>
+        <p class="section-subtitle">כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו</p>
+        
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="specialty-icon"><i class="fa fa-users"></i></div>
+                <h3>טיולי משפחות מורכבים</h3>
+                <p>תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.</p>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-icon"><i class="fa fa-heart"></i></div>
+                <h3>ירחי דבש וטיולים זוגיים</h3>
+                <p>חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
+            </div>
+            <div class="specialty-card">
+                <div class="specialty-icon"><i class="fa fa-car"></i></div>
+                <h3>טיולי דרכים (Road Trips)</h3>
+                <p>Beni'at masluley nehigah geografiyim mekifim, sgirat nekudot atzira, melonot baderech venihul male shel hazmanat harechev hamat'im lachem behu"l.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <h2 class="section-title">שאלות נפוצות</h2>
+        <p class="section-subtitle">כל מה שחשוב לדעת לפני שיוצאים לדרך</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?</h3>
+                <p>השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?</h3>
+                <p>בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?</h3>
+                <p>על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.</p>
+            </div>
+        </div>
+    </section>
+
     <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank">
         <i class="fa fa-whatsapp"></i>
     </a>
@@ -486,7 +704,6 @@
         <p class="footer-text">© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel</p>
         <div class="footer-socials">
             <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank" title="פייסבוק"><i class="fa fa-facebook"></i></a>
-            <!-- קישור וואטסאפ מתוקן סופית עם האות ל' בפוטר -->
             <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" target="_blank" title="וואטסאפ"><i class="fa fa-whatsapp"></i></a>
         </div>
     </footer>
