@@ -22,7 +22,8 @@
     <title>AdvenHorizon Travels | מעבר לטיול הרגיל</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- טעינת הפונטים המשודרגים והיוקרתיים: Heebo ו-Rubik -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Rubik:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <style>
@@ -40,7 +41,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Assistant', sans-serif;
+            /* שינוי הפונט הכללי באתר ל-Heebo */
+            font-family: 'Heebo', sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -48,6 +50,11 @@
             background-color: var(--white);
             color: var(--text-dark);
             line-height: 1.6;
+        }
+
+        /* הגדרת פונט Rubik עבור הכותרות כדי לתת מראה בוטיק ייחודי */
+        h1, h2, h3, .section-title {
+            font-family: 'Rubik', sans-serif;
         }
 
         /* Header & Navigation */
@@ -95,7 +102,7 @@
             text-decoration: none;
             color: var(--primary-blue);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: var(--transition);
         }
 
@@ -142,7 +149,8 @@
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.4rem;
             margin-bottom: 30px;
             color: #f0f4f8;
             font-weight: 300;
@@ -154,7 +162,7 @@
             color: var(--white);
             padding: 14px 32px;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(207, 162, 75, 0.4);
@@ -180,7 +188,7 @@
         }
 
         .about-text {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #4a5568;
             max-width: 800px;
             margin: 0 auto 40px;
@@ -189,6 +197,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             border-right: 5px solid var(--accent-gold);
+            text-align: right;
         }
 
         .features-grid {
@@ -220,7 +229,7 @@
         .feature-item h3 {
             color: var(--primary-blue);
             margin-bottom: 10px;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
         }
 
         /* Process Section (איך זה עובד) */
@@ -252,7 +261,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin: 0 auto 20px;
             box-shadow: 0 4px 10px rgba(22, 54, 92, 0.2);
@@ -260,13 +269,13 @@
 
         .process-step h3 {
             color: var(--primary-blue);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 12px;
         }
 
         .process-step p {
             color: #64748b;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         /* Destinations Section */
@@ -279,7 +288,7 @@
         .section-title {
             text-align: center;
             color: var(--primary-blue);
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 15px;
             position: relative;
         }
@@ -297,7 +306,7 @@
             text-align: center;
             color: #718096;
             margin-bottom: 50px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .grid {
@@ -331,13 +340,13 @@
 
         .card-title {
             color: var(--primary-blue);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
         }
 
         .card-text {
             color: #4a5568;
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 20px;
         }
 
@@ -352,7 +361,7 @@
         .price {
             color: var(--primary-blue);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         .btn-card {
@@ -415,13 +424,13 @@
 
         .specialty-card h3 {
             color: var(--primary-blue);
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             margin-bottom: 12px;
         }
 
         .specialty-card p {
             color: #4a5568;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         /* FAQ Section (שאלות נפוצות) */
@@ -445,7 +454,7 @@
 
         .faq-item h3 {
             color: var(--primary-blue);
-            font-size: 1.15rem;
+            font-size: 1.1;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -454,7 +463,7 @@
 
         .faq-item p {
             color: #4a5568;
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding-right: 24px;
         }
 
@@ -500,6 +509,7 @@
         .footer-text {
             margin-bottom: 20px;
             opacity: 0.8;
+            font-size: 0.95rem;
         }
 
         .footer-socials {
@@ -556,8 +566,9 @@
                     <li><a href="#specialties">התמחויות</a></li>
                     <li><a href="#faq">שאלות נפוצות</a></li>
                 </ul>
+                <!-- תיקון מוחלט של כפתור הפייסבוק למעלה -->
                 <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-btn" target="_blank">
-                    <i class="fa fa-facebook"></i> פייסבוק שלנו
+                    <i class="fa fa-facebook"></i> הפייסבוק שלנו
                 </a>
             </div>
         </div>
@@ -575,7 +586,7 @@
             <p class="section-subtitle">איך הופכים משמעת של שוטר לתשוקה של הרפתקן בעולם?</p>
             
             <div class="about-text">
-                נעים להכיר, אני אבי. AdvenHorizon Travels נולדה מתוך אהבה טהורה לטיולים, לחקירת תרבויות ולגילוי המקומות הכי נסתרים ומרהיבים על הגלובוס. לאחר שנים של שירות ביטחוני מורכב כשוטר, החלטתי לקחת את הערכים שליוו אותי – אחריות, הגנה, דיוק ותכנון קפדני – ולתרגם אותם למשימה החדשה שלי: לעזור לכם לכבוש את היעדים שתמיד חלמתם עליהם, בראש שקט ובביטחון מלא. 
+                נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כשוטר, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.
             </div>
 
             <div class="features-grid">
@@ -679,7 +690,7 @@
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-heart"></i></div>
                 <h3>ירחי דבש וטיולים זוגיים</h3>
-                <p>חופשות רומנטיות WITH דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
+                <p>חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
             </div>
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-car"></i></div>
