@@ -6,10 +6,10 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-FGY4NH0LDD');
     </script>
 
+    <meta name="description" content="AdvenHorizon Travels - תכנון חופשות פרימיום, טיולי משפחות, ירח דבש וטיולי עומק בהתאמה אישית עם אבי. בואו לתכנן את המסע הבא שלכם בראש שקט.">
     <meta property="og:title" content="AdvenHorizon Travels | מעבר לטיול הרגיל">
     <meta property="og:description" content="חופשות פרימיום ותכנון מסעות בהתאמה אישית מא' ועד ת' עם אבי. Beyond Ordinary Travel.">
     <meta property="og:image" content="710253020_122102817603337169_4083674208247026205_n.jpg">
@@ -52,13 +52,19 @@
             font-family: 'Rubik', sans-serif;
         }
 
-        /* Header & Navigation */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
+            position: relative; /* ברירת מחדל למובייל - לא זז עם הגלילה */
             top: 0;
             z-index: 1000;
+        }
+
+        /* רק ממחשבים וטאבלטים גדולים התפריט יישאר דבוק למעלה */
+        @media (min-width: 993px) {
+            header {
+                position: sticky;
+            }
         }
 
         .nav-container {
@@ -129,7 +135,6 @@
             opacity: 0.9;
         }
 
-        /* כפתור החלפת שפה פרימיום */
         .lang-switch-btn {
             background-color: transparent;
             border: 2px solid var(--primary-blue);
@@ -150,7 +155,6 @@
             color: var(--white);
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(22, 54, 92, 0.65), rgba(22, 54, 92, 0.65)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             height: 75vh;
@@ -197,7 +201,6 @@
             box-shadow: 0 6px 20px rgba(207, 162, 75, 0.6);
         }
 
-        /* About Section */
         .about-section {
             background-color: var(--light-bg);
             padding: 80px 20px;
@@ -207,6 +210,30 @@
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
+        }
+
+        .about-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .about-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+        }
+
+        .about-subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
         }
 
         .about-text {
@@ -255,7 +282,6 @@
             font-size: 1.25rem;
         }
 
-        /* Process Section (איך זה עובד) */
         .process-section {
             padding: 80px 20px;
             background-color: var(--white);
@@ -301,7 +327,6 @@
             font-size: 1rem;
         }
 
-        /* Destinations Section */
         .destinations {
             max-width: 1200px;
             margin: 0 auto;
@@ -413,7 +438,6 @@
         body[dir="rtl"] .fa-arrow-dir::before { content: "\f053"; }
         body[dir="ltr"] .fa-arrow-dir::before { content: "\f054"; }
 
-        /* Specialties Section */
         .specialties-section {
             background-color: var(--light-bg);
             padding: 80px 20px;
@@ -467,7 +491,6 @@
             font-size: 0.95rem;
         }
 
-        /* FAQ Section */
         .faq-section {
             padding: 80px 20px;
             background-color: var(--white);
@@ -506,7 +529,6 @@
             padding-left: 24px;
         }
 
-        /* Floating WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -531,7 +553,6 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
         footer {
             background-color: var(--primary-blue);
             color: var(--white);
@@ -570,39 +591,15 @@
             color: var(--accent-gold);
         }
 
-        /* Responsiveness */
         @media (max-width: 992px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            .logo-img {
-                height: 95px;
-            }
-            .nav-links-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .card-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
+            .nav-container { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .logo-img { height: 95px; }
+            .nav-links-container { flex-direction: column; gap: 15px; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 2.3rem; }
+            .hero p { font-size: 1.1rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
         }
     </style>
 </head>
@@ -641,11 +638,11 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            <h2 class="section-title" id="about-title">הסיפור מאחורי האופק</h2>
-            <p class="section-subtitle" id="about-subtitle">איך הופכים משמעת של שוטר לתשוקה של הרפתקן בעולם?</p>
+            <h2 class="about-title" id="about-title">הסיפור מאחורי האופק</h2>
+            <p class="about-subtitle" id="about-subtitle">איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?</p>
             
             <div class="about-text" id="about-content">
-                נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כשוטר, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.
+                נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.
             </div>
 
             <div class="features-grid">
@@ -703,7 +700,7 @@
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -715,7 +712,7 @@
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
                     <div class="card-meta">
                         <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -727,7 +724,7 @@
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
                     <div class="card-meta">
                         <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -768,7 +765,7 @@
             </div>
             <div class="faq-item">
                 <h3 id="faq2-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?</h3>
-                <p id="faq2-a">בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוвода.</p>
+                <p id="faq2-a">בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.</p>
             </div>
             <div class="faq-item">
                 <h3 id="faq3-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?</h3>
@@ -795,217 +792,142 @@
 
         var translations = {
             he: {
-                navAbout: "הסיפור שלנו",
-                navProcess: "איך זה עובד",
-                navDestinations: "יעדים חמים",
-                navSpecialties: "התמחויות",
-                navFaq: "שאלות נפוצות",
-                btnFacebook: '<i class="fa fa-facebook"></i> הפייסבוק שלנו',
-                langBtn: '<i class="fa fa-globe"></i> English',
-                heroTitle: "AdvenHorizon Travels",
-                heroSubtitle: "BEYOND ORDINARY TRAVEL",
-                heroBtn: "תכננו את המסע שלכם",
-                aboutTitle: "הסיפור מאחורי האופק",
-                aboutSubtitle: "איך הופכים משמעת של שוטר לתשוקה של הרפתקן בעולם?",
-                aboutContent: "נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כשוטר, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.",
-                f1Title: "המלצות ממקור ראשון",
-                f1Desc: "אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.",
-                f2Title: "תכנון קפדני ואחריות",
-                f2Desc: "הניסיון שלי מלמד שאין מקום לטעויות. כל פרט בטיול שלכם מתוכנן בצורה מדויקת כדי למנוע הפתעות.",
-                f3Title: "ליווי בגובה העיניים",
-                f3Desc: "כשאתם בחו"ל, אתם לא לבד. יש לכם גב ואדם שזמין עבורכם לכל שאלה או צורך שעולה בדרך.",
-                procTitle: "איך זה עובד?",
-                procSubtitle: "הדרך שלכם לחופשה מושלמת ללא דאגות",
-                step1Title: "שיחת אפיון והיכרות",
-                step1Desc: "נבין יחד את אופי המטיילים, התקציב, הסגנון המועדף והחלומות שלכם לגבי היעד.",
-                step2Title: "בניית מסלול והזמנת הכל עבורכם",
-                step2Desc: "אני בונה את המסלול היומי המלא ומבצע עבורכם את כל ההזמנות הנדרשות - מטיסות ומלונות ועד לוגיסטיקה קטנה.",
-                step3Title: "יוצאים לדרך בראש שקט",
-                step3Desc: "אתם מקבלים תיק טיול מוכן וסגור לחלוטין, ונהנים מליווי וזמינות שלי לכל שאלה או צורך שעולה במהלך השהות בחו"ל.",
-                destTitle: "החופשות החמות של 2026",
-                destSubtitle: "אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת",
-                c1Title: "חופשות בטן-גב אקזוטיות",
-                c1Text: "חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.",
-                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה',
-                c2Title: "טיולי הרפתקאות, תרבות וטבע",
-                c2Text: "מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.",
-                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם',
-                c3Title: "חופשות אורבניות ויעדי קיץ מובילים",
-                c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנגלס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
-                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות',
-                specMainTitle: "ההתמחויות המיוחדות שלנו",
-                specMainSubtitle: "כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו",
-                spec1Title: "טיולי משפחות מורכבים",
-                spec1Text: "תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.",
-                spec2Title: "ירחי דבש וטיולים זוגיים",
-                spec2Text: "חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.",
-                spec3Title: "טיולי דרכים (Road Trips)",
-                spec3Text: "בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.",
-                faqMainTitle: "שאלות נפוצות",
-                faqMainSubtitle: "כל מה שחשוב לדעת לפני שיוצאים לדרך",
-                faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?',
-                faq1A: "השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.",
-                faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?',
-                faq2A: "בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.",
-                faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?',
-                faq3A: "על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.",
-                footerCopy: "© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel"
+                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navFaq: 'שאלות נפוצות',
+                btnFacebook: '<i class="fa fa-facebook"></i> הפייסבוק שלנו', langBtn: '<i class="fa fa-globe"></i> English',
+                heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
+                aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
+                aboutContent: 'נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.',
+                f1Title: 'המלצות ממקור ראשון', f1Desc: 'אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.',
+                f2Title: 'תכנון קפדני ואחריות', f2Desc: 'הניסיון שלי מלמד שאין מקום לטעויות. כל פרט בטיול שלכם מתוכנן בצורה מדויקת כדי למנוע הפתעות.',
+                f3Title: 'ליווי בגובה העיניים', f3Desc: 'כשאתם בחו"ל, אתם לא לבד. יש לכם גב ואדם שזמין עבורכם לכל שאלה או צורך שעולה בדרך.',
+                procTitle: 'איך זה עובד?', procSubtitle: 'הדרך שלכם לחופשה מושלמת ללא דאגות',
+                step1Title: 'שיחת אפיון והיכרות', step1Desc: 'נבין יחד את אופי המטיילים, התקציב, הסגנון המועדף והחלומות שלכם לגבי היעד.',
+                step2Title: 'בניית מסלול והזמנת הכל עבורכם', step2Desc: 'אני בונה את המסלול היומי המלא ומבצע עבורכם את כל ההזמנות הנדרשות - מטיסות ומלונות ועד לוגיסטיקה קטנה.',
+                step3Title: 'יוצאים לדרך בראש שקט', step3Desc: 'אתם מקבלים תיק טיול מוכן וסגור לחלוטין, ונהנים מליווי וזמינות שלי לכל שאלה או צורך שעולה במהלך השהות בחו"ל.',
+                destTitle: 'החופשות החמות של 2026', destSubtitle: 'אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת',
+                c1Title: 'חופשות בטן-גב אקזוטיות', c1Text: 'חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.',
+                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה', c1Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
+                c2Title: 'טיולי הרפתקאות, תרבות וטבע', c2Text: 'מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.',
+                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם', c2Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
+                c3Title: 'חופשות אורבניות ויעדי קיץ מובילים', c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
+                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות', c3Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
+                specMainTitle: 'ההתמחויות המיוחדות שלנו', specMainSubtitle: 'כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו',
+                spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
+                spec2Title: 'ירחי דבש וטיולים זוגיים', spec2Text: 'חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.',
+                spec3Title: 'טיולי דרכים (Road Trips)', spec3Text: 'בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.',
+                faqMainTitle: 'שאלות נפוצות', faqMainSubtitle: 'כל מה שחשוב לדעת לפני שיוצאים לדרך',
+                faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?', faq1A: 'השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.',
+                faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?', faq2A: "בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.",
+                faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?', faq3A: 'על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.',
+                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             },
             en: {
-                navAbout: "Our Story",
-                navProcess: "How It Works",
-                navDestinations: "Top Destinations",
-                navSpecialties: "Our Specialties",
-                navFaq: "FAQ",
-                btnFacebook: '<i class="fa fa-facebook"></i> Our Facebook',
-                langBtn: '<i class="fa fa-globe"></i> עברית',
-                heroTitle: "AdvenHorizon Travels",
-                heroSubtitle: "BEYOND ORDINARY TRAVEL",
-                heroBtn: "Plan Your Journey",
-                aboutTitle: "The Story Behind The Horizon",
-                aboutSubtitle: "How police-discipline transforms into a passion for global adventures?",
-                aboutContent: "Nice to meet you, I am Avi. AdvenHorizon Travels was born out of a deep love for traveling, exploring new cultures, and discovering the most hidden and spectacular spots on the globe. After years of demanding service as a police officer, I decided to take the core values that guided me – ultimate responsibility, precision, strategic planning, and attention to detail – and translate them into my new mission: to manage, plan, and secure your dream vacation with complete peace of mind and total safety.",
-                f1Title: "First-Hand Recommendations",
-                f1Desc: "I do not just sell hotels from a catalog. Every destination is curated from real experience, passion, and true love for the field.",
-                f2Title: "Rigorous Planning & Safety",
-                f2Desc: "My background has taught me there is no room for mistakes. Every aspect of your trip is calculated to prevent any surprises.",
-                f3Title: "Personal Support & Guidance",
-                f3Desc: "When you are abroad, you are never alone. You have reliable backing and a dedicated expert available for any question or need.",
-                procTitle: "How It Works",
-                procSubtitle: "Your pathway to a perfect, worry-free vacation",
-                step1Title: "Discovery & Profiling Call",
-                step1Desc: "We sync together to thoroughly understand the travelers style, budget, preferred pace, and ultimate destination dreams.",
-                step2Title: "Tailor-Made Itinerary & Full Booking",
-                step2Desc: "I construct your complete day-by-day route and handle all necessary reservations - from flights and premium hotels to small logistics.",
-                step3Title: "Travel with Total Peace of Mind",
-                step3Desc: "You receive a complete, fully-arranged travel package and enjoy my personal backing and availability for any need during your stay.",
-                destTitle: "Trending Destinations 2026",
-                destSubtitle: "We have gathered the most fascinating getaways for an unforgettable experience",
-                c1Title: "Exotic Tropical Getaways",
-                c1Text: "Pristine white beaches and luxury resorts in Thailand, Laos, the Maldives, and Zanzibar, offering pure tranquility and an absolute escape.",
-                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Full Premium Custom Experience',
-                c2Title: "Adventure, Culture & Nature Expeditions",
-                c2Text: "Deep cultural journeys into the breathtaking landscapes of Vietnam or magical Japan, blending ancient traditions with futuristic progress.",
-                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> A Bespoke Expedition Crafted For You',
-                c3Title: "Urban Escapes & Top Summer Destinations",
-                c3Text: "Culture, high-end shopping, and fine dining in New York, Los Angeles, and London, alongside sun-drenched European getaways in Greece, Italy, and Spain.",
-                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Luxury Boutique Care Without Worries',
-                specMainTitle: "Our Exclusive Specialties",
-                specMainSubtitle: "Because every style of travel deserves its own unique execution",
-                spec1Title: "Complex Family Vacations",
-                spec1Text: "Designing balanced itineraries suitable for both children and adults, with flawless matching of family-focused boutique hotels and attractions.",
-                spec2Title: "Honeymoons & Romantic Escapes",
-                spec2Text: "Romantic getaways with an emphasis on premium resorts, unique culinary experiences, and unforgettable moments tailored precisely for the two of you.",
-                spec3Title: "Bespoke Road Trips",
-                spec3Text: "Building comprehensive geographic driving routes, locking in scenic stops, hand-picked hotels on the way, and full management of your ideal car rental abroad.",
-                faqMainTitle: "Frequently Asked Questions",
-                faqMainSubtitle: "Everything you need to know before embarking on your journey",
-                faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> What exactly does your vacation service include?',
-                faq1A: "Our service is a comprehensive All-In-One solution. We define your dream together, build a detailed day-by-day itinerary, secure all flights, hotels, and attractions for you, and provide personal support throughout your entire stay abroad.",
-                faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> Are you the ones who actually process the bookings?',
-                faq2A: "Absolutely yes. We handle and execute every single reservation from A to Z. You receive a complete travel package with all vouchers, tickets, and confirmations, so all you have to do is pack your bags.",
-                faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> How far in advance should we contact you to book a trip?',
-                faq3A: "In order to guarantee the best flight routes, highly-requested boutique hotels, and optimal pricing, it is highly recommended to contact us about 3 to 5 months before your planned departure.",
-                footerCopy: "© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel"
+                navAbout: 'Our Story', navProcess: 'How It Works', navDestinations: 'Top Destinations', navSpecialties: 'Our Specialties', navFaq: 'FAQ',
+                btnFacebook: '<i class="fa fa-facebook"></i> Our Facebook', langBtn: '<i class="fa fa-globe"></i> עברית',
+                heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
+                aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
+                aboutContent: 'Nice to meet you, I am Avi. AdvenHorizon Travels was born out of a deep love for traveling, exploring new cultures, and discovering the most hidden and spectacular spots on the globe. After years of demanding and complex security service as a police investigator and intelligence officer, I decided to take the core values that guided me – ultimate responsibility, precision, strategic planning, and attention to detail – and translate them into my new mission: to manage, plan, and secure your dream vacation with complete peace of mind and total safety.',
+                f1Title: 'First-Hand Recommendations', f1Desc: 'I do not just sell hotels from a catalog. Every destination is curated from real experience, passion, and true love for the field.',
+                f2Title: 'Rigorous Planning & Safety', f2Desc: 'My background has taught me there is no room for mistakes. Every aspect of your trip is calculated to prevent any surprises.',
+                f3Title: 'Personal Support & Guidance', f3Desc: 'When you are abroad, you are never alone. You have reliable backing and a dedicated expert available for any question or need.',
+                procTitle: 'How It Works', procSubtitle: 'Your pathway to a perfect, worry-free vacation',
+                step1Title: 'Discovery & Profiling Call', step1Desc: 'We sync together to thoroughly understand the travelers style, budget, preferred pace, and ultimate destination dreams.',
+                step2Title: 'Tailor-Made Itinerary & Full Booking', step2Desc: 'I construct your complete day-by-day route and handle all necessary reservations - from flights and premium hotels to small logistics.',
+                step3Title: 'Travel with Total Peace of Mind', step3Desc: 'You receive a complete, fully-arranged travel package and enjoy my personal backing and availability for any need during your stay.',
+                destTitle: 'Trending Destinations 2026', destSubtitle: 'We have gathered the most fascinating getaways for an unforgettable experience',
+                c1Title: 'Exotic Tropical Getaways', c1Text: 'Pristine white beaches and luxury resorts in Thailand, Laos, the Maldives, and Zanzibar, offering pure tranquility and an absolute escape.',
+                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Full Premium Custom Experience', c1Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
+                c2Title: 'Adventure, Culture & Nature Expeditions', c2Text: 'Deep cultural journeys into the breathtaking landscapes of Vietnam or magical Japan, blending ancient traditions with futuristic progress.',
+                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> A Bespoke Expedition Crafted For You', c2Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
+                c3Title: 'Urban Escapes & Top Summer Destinations', c3Text: 'Culture, high-end shopping, and fine dining in New York, Los Angeles, and London, alongside sun-drenched European getaways in Greece, Italy, and Spain.',
+                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Luxury Boutique Care Without Worries', c3Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
+                specMainTitle: 'Our Exclusive Specialties', specMainSubtitle: 'Because every style of travel deserves its own unique execution',
+                spec1Title: 'Complex Family Vacations', spec1Text: 'Designing balanced itineraries suitable for both children and adults, with flawless matching of family-focused boutique hotels and attractions.',
+                spec2Title: 'Honeymoons & Romantic Escapes', spec2Text: 'Romantic getaways with an emphasis on premium resorts, unique culinary experiences, and unforgettable moments tailored precisely for the two of you.',
+                spec3Title: 'Bespoke Road Trips', spec3Text: 'Building comprehensive geographic driving routes, locking in scenic stops, hand-picked hotels on the way, and full management of your ideal car rental abroad.',
+                faqMainTitle: 'Frequently Asked Questions', faqMainSubtitle: 'Everything you need to know before embarking on your journey',
+                faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> What exactly does your vacation service include?', faq1A: 'Our service is a comprehensive All-In-One solution. We define your dream together, build a detailed day-by-day itinerary, secure all flights, hotels, and attractions for you, and provide personal support throughout your entire stay abroad.',
+                faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> Are you the ones who actually process the bookings?', faq2A: 'Absolutely yes. We handle and execute every single reservation from A to Z. You receive a complete travel package with all vouchers, tickets, and confirmations, so all you have to do is pack your bags.',
+                faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> How far in advance should we contact you to book a trip?', faq3A: 'In order to guarantee the best flight routes, highly-requested boutique hotels, and optimal pricing, it is highly recommended to contact us about 3 to 5 months before your planned departure.',
+                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             }
         };
 
-        function setText(id, value, html = false) {
-            const el = document.getElementById(id);
+        function setText(id, value, html) {
+            var el = document.getElementById(id);
             if (!el) return;
-
-            if (html) {
-                el.innerHTML = value;
-            } else {
-                el.textContent = value;
-            }
+            if (html) { el.innerHTML = value; } else { el.textContent = value; }
         }
 
         function toggleLanguage() {
-            currentLang = currentLang === 'he' ? 'en' : 'he';
-
-            const html = document.documentElement;
-            const body = document.body;
-            const t = translations[currentLang];
+            currentLang = (currentLang === 'he') ? 'en' : 'he';
+            
+            var html = document.documentElement;
+            var body = document.body;
+            var t = translations[currentLang];
 
             html.lang = currentLang;
-            html.dir = currentLang === 'he' ? 'rtl' : 'ltr';
-            body.dir = currentLang === 'he' ? 'rtl' : 'ltr';
+            html.dir = (currentLang === 'he') ? 'rtl' : 'ltr';
+            body.dir = (currentLang === 'he') ? 'rtl' : 'ltr';
 
-            setText("nav-about", t.navAbout);
-            setText("nav-process", t.navProcess);
-            setText("nav-destinations", t.navDestinations);
-            setText("nav-specialties", t.navSpecialties);
-            setText("nav-faq", t.navFaq);
-
-            setText("btn-facebook", t.btnFacebook, true);
-            setText("lang-btn", t.langBtn, true);
-
-            setText("hero-title", t.heroTitle);
-            setText("hero-subtitle", t.heroSubtitle);
-            setText("hero-btn", t.heroBtn);
-
-            setText("about-title", t.aboutTitle);
-            setText("about-subtitle", t.aboutSubtitle);
-            setText("about-content", t.aboutContent);
-
-            setText("f1-title", t.f1Title);
-            setText("f1-desc", t.f1Desc);
-            setText("f2-title", t.f2Title);
-            setText("f2-desc", t.f2Desc);
-            setText("f3-title", t.f3Title);
-            setText("f3-desc", t.f3Desc);
-
-            setText("proc-title", t.procTitle);
-            setText("proc-subtitle", t.procSubtitle);
-
-            setText("step1-title", t.step1Title);
-            setText("step1-desc", t.step1Desc);
-            setText("step2-title", t.step2Title);
-            setText("step2-desc", t.step2Desc);
-            setText("step3-title", t.step3Title);
-            setText("step3-desc", t.step3Desc);
-
-            setText("dest-title", t.destTitle);
-            setText("dest-subtitle", t.destSubtitle);
-
-            setText("c1-title", t.c1Title);
-            setText("c1-text", t.c1Text);
-            setText("c1-tag", t.c1Tag, true);
-
-            setText("c2-title", t.c2Title);
-            setText("c2-text", t.c2Text);
-            setText("c2-tag", t.c2Tag, true);
-
-            setText("c3-title", t.c3Title);
-            setText("c3-text", t.c3Text);
-            setText("c3-tag", t.c3Tag, true);
-
-            setText("spec-main-title", t.specMainTitle);
-            setText("spec-main-subtitle", t.specMainSubtitle);
-
-            setText("spec1-title", t.spec1Title);
-            setText("spec1-text", t.spec1Text);
-
-            setText("spec2-title", t.spec2Title);
-            setText("spec2-text", t.spec2Text);
-
-            setText("spec3-title", t.spec3Title);
-            setText("spec3-text", t.spec3Text);
-
-            setText("faq-main-title", t.faqMainTitle);
-            setText("faq-main-subtitle", t.faqMainSubtitle);
-
-            setText("faq1-q", t.faq1Q, true);
-            setText("faq1-a", t.faq1A);
-
-            setText("faq2-q", t.faq2Q, true);
-            setText("faq2-a", t.faq2A);
-
-            setText("faq3-q", t.faq3Q, true);
-            setText("faq3-a", t.faq3A);
-
-            setText("footer-copy", t.footerCopy);
+            setText('nav-about', t.navAbout);
+            setText('nav-process', t.navProcess);
+            setText('nav-destinations', t.navDestinations);
+            setText('nav-specialties', t.navSpecialties);
+            setText('nav-faq', t.navFaq);
+            setText('btn-facebook', t.btnFacebook, true);
+            setText('lang-btn', t.langBtn, true);
+            setText('hero-title', t.heroTitle);
+            setText('hero-subtitle', t.heroSubtitle);
+            setText('hero-btn', t.heroBtn);
+            setText('about-title', t.aboutTitle);
+            setText('about-subtitle', t.aboutSubtitle);
+            setText('about-content', t.aboutContent);
+            setText('f1-title', t.f1Title);
+            setText('f1-desc', t.f1Desc);
+            setText('f2-title', t.f2Title);
+            setText('f2-desc', t.f2Desc);
+            setText('f3-title', t.f3Title);
+            setText('f3-desc', t.f3Desc);
+            setText('proc-title', t.procTitle);
+            setText('proc-subtitle', t.procSubtitle);
+            setText('step1-title', t.step1Title);
+            setText('step1-desc', t.step1Desc);
+            setText('step2-title', t.step2Title);
+            setText('step2-desc', t.step2Desc);
+            setText('step3-title', t.step3Title);
+            setText('step3-desc', t.step3Desc);
+            setText('dest-title', t.destTitle);
+            setText('dest-subtitle', t.destSubtitle);
+            setText('c1-title', t.c1Title);
+            setText('c1-text', t.c1Text);
+            setText('c1-tag', t.c1Tag, true);
+            setText('c1-btn', t.c1Btn, true);
+            setText('c2-title', t.c2Title);
+            setText('c2-text', t.c2Text);
+            setText('c2-tag', t.c2Tag, true);
+            setText('c2-btn', t.c2Btn, true);
+            setText('c3-title', t.c3Title);
+            setText('c3-text', t.c3Text);
+            setText('c3-tag', t.c3Tag, true);
+            setText('c3-btn', t.c3Btn, true);
+            setText('spec-main-title', t.specMainTitle);
+            setText('spec-main-subtitle', t.specMainSubtitle);
+            setText('spec1-title', t.spec1Title);
+            setText('spec1-text', t.spec1Text);
+            setText('spec2-title', t.spec2Title);
+            setText('spec2-text', t.spec2Text);
+            setText('spec3-title', t.spec3Title);
+            setText('spec3-text', t.spec3Text);
+            setText('faq-main-title', t.faqMainTitle);
+            setText('faq-main-subtitle', t.faqMainSubtitle);
+            setText('faq1-q', t.faq1Q, true);
+            setText('faq1-a', t.faq1A);
+            setText('faq2-q', t.faq2Q, true);
+            setText('faq2-a', t.faq2A);
+            setText('faq3-q', t.faq3Q, true);
+            setText('faq3-a', t.faq3A);
+            setText('footer-copy', t.footerCopy);
         }
     </script>
 </body>
