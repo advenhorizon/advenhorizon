@@ -70,7 +70,9 @@
         body.accessible-contrast .specialty-card,
         body.accessible-contrast header,
         body.accessible-contrast .about-text,
-        body.accessible-contrast .policy-container {
+        body.accessible-contrast .policy-container,
+        body.accessible-contrast .deal-section,
+        body.accessible-contrast .deal-container {
             background-color: #111111 !important;
             color: #ffffff !important;
             border-color: #ffffff !important;
@@ -182,7 +184,7 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.9 Theme;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -239,6 +241,325 @@
             background-color: #b3893b;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(207, 162, 75, 0.6);
+        }
+
+        /* סקשן מבצע סוכות */
+        .deal-section {
+            padding: 60px 20px;
+            background-color: var(--white);
+        }
+
+        .deal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #16365c 0%, #0d233e 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(22, 54, 92, 0.15);
+            color: var(--white);
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+        }
+
+        .deal-info {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        body[dir="rtl"] .deal-info { text-align: right; }
+        body[dir="ltr"] .deal-info { text-align: left; }
+
+        .deal-badge {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            padding: 6px 16px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            align-self: flex-start;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(207, 162, 75, 0.3);
+        }
+
+        .deal-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .deal-hotel {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .deal-hotel i {
+            margin-left: 5px;
+        }
+        body[dir="ltr"] .deal-hotel i { margin-left: 0; margin-right: 5px; }
+
+        .deal-details {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        .deal-details p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .deal-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-right: 4px solid var(--accent-gold);
+            width: fit-content;
+        }
+        body[dir="ltr"] .deal-price-box { border-right: none; border-left: 4px solid var(--accent-gold); }
+
+        .deal-current-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .deal-old-price {
+            font-size: 1.3rem;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .btn-deal {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(207, 162, 75, 0.3);
+        }
+
+        .btn-deal:hover {
+            background-color: #b3893b;
+            transform: translateY(-2px);
+        }
+
+        /* מבנה הסליידר */
+        .deal-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: #0d233e;
+        }
+
+        .deal-slider-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .deal-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* חצי הניווט */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(22, 54, 92, 0.7);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .slider-arrow:hover {
+            background: var(--accent-gold);
+            color: var(--white);
+        }
+
+        /* ב-RTL: prev = ימין (◀ מצביע ימינה), next = שמאל (▶ מצביע שמאלה) */
+        /* ב-LTR: prev = שמאל (◀ מצביע שמאלה), next = ימין (▶ מצביע ימינה) */
+        .arrow-prev { right: 15px; }
+        .arrow-next { left: 15px; }
+
+        /* נקודות אינדיקציה */
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        /* פופ-אפ טופס מיקונוס */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 23, 38, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 20px;
+            position: relative;
+        }
+        body[dir="rtl"] .modal-header { text-align: right; }
+        body[dir="ltr"] .modal-header { text-align: left; }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .modal-header p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        body[dir="rtl"] .modal-close { left: 20px; }
+        body[dir="ltr"] .modal-close { right: 20px; }
+
+        .modal-close:hover { opacity: 1; }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        body[dir="rtl"] .form-group { text-align: right; }
+        body[dir="ltr"] .form-group { text-align: left; }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(207, 162, 75, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-gold);
         }
 
         .about-section {
@@ -611,10 +932,13 @@
             padding-left: 24px;
         }
 
+        /* ========================================================
+           תיקון 1: כפתור וואצאפ - מיקום דינמי לפי כיוון השפה
+           ב-RTL: ימין | ב-LTR: שמאל – לא מתנגש עם כפתור הנגישות
+           ======================================================== */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
-            left: 30px;
             background-color: #25d366;
             color: white;
             width: 60px;
@@ -622,7 +946,7 @@
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.399);
             z-index: 999;
             display: flex;
             align-items: center;
@@ -631,18 +955,23 @@
             transition: var(--transition);
         }
 
+        /* ב-RTL האתר בעברית: וואצאפ בשמאל, נגישות בימין */
+        body[dir="rtl"] .whatsapp-float { left: 30px; right: auto; }
+        /* ב-LTR האתר באנגלית: וואצאפ בימין, נגישות בשמאל */
+        body[dir="ltr"] .whatsapp-float { right: 30px; left: auto; }
+
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
 
-        /* רכיב נגישות מעודכן */
+        /* רכיב נגישות צף */
         .accessibility-wrapper {
             position: fixed;
             bottom: 30px;
             z-index: 1001;
         }
         
-        /* מיקום דינמי לפי כיווניות הדף הנוכחי */
+        /* ב-RTL: נגישות בימין | ב-LTR: נגישות בשמאל */
         body[dir="rtl"] .accessibility-wrapper { right: 30px; left: auto; }
         body[dir="ltr"] .accessibility-wrapper { left: 30px; right: auto; }
 
@@ -681,7 +1010,6 @@
             border: 1px solid #edf2f7;
         }
         
-        /* תיקון היסטרי של הצמדת תיבת התפריט לכפתור בשני המצבים */
         body[dir="rtl"] .accessibility-menu { right: 0; left: auto; }
         body[dir="ltr"] .accessibility-menu { left: 0; right: auto; }
 
@@ -811,12 +1139,16 @@
             .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
             .hero h1 { font-size: 2.3rem; }
             .hero p { font-size: 1.1rem; }
+            .deal-container { grid-template-columns: 1fr; }
+            .deal-slider-wrapper { min-height: 320px; }
+            .deal-info { padding: 30px; }
             .grid { grid-template-columns: 1fr; }
             .card-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
             body[dir="rtl"] .accessibility-wrapper { right: 20px; left: auto; }
             body[dir="ltr"] .accessibility-wrapper { left: 20px; right: auto; }
             .accessibility-btn { width: 50px; height: 50px; font-size: 20px; }
-            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 24px; }
+            body[dir="rtl"] .whatsapp-float { bottom: 20px; left: 20px; right: auto; width: 50px; height: 50px; font-size: 24px; }
+            body[dir="ltr"] .whatsapp-float { bottom: 20px; right: 20px; left: auto; width: 50px; height: 50px; font-size: 24px; }
             .cookie-bar { flex-direction: column; gap: 15px; text-align: center; }
             .cookie-text { max-width: 100%; text-align: center; }
             .policy-container { padding: 20px; }
@@ -855,6 +1187,65 @@
         <h1 id="hero-title">AdvenHorizon Travels</h1>
         <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
+    </section>
+
+    <section class="deal-section" id="holiday-deal">
+        <div class="deal-container">
+            <div class="deal-info">
+                <span class="deal-badge" id="deal-badge-txt">מבצע חגיגי לזמן מוגבל</span>
+                <h2 id="deal-main-title">חול המועד סוכות במיקונוס</h2>
+                <div class="deal-hotel" id="deal-hotel-name"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort & Thalasso Spa</div>
+                <div class="deal-details">
+                    <p id="deal-p1"><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.9.2026 - 01.10.2026</p>
+                    <p id="deal-p2"><i class="fa fa-map-marker" style="color: var(--accent-gold);"></i> <strong>יעד:</strong> מיקונוס, יוון (מלון 5 כוכבים פרימיום)</p>
+                    <p id="deal-p3"><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> חופשת יוקרה אקסקלוסיבית בתנאי ריזורט מושלמים</p>
+                </div>
+                <div class="deal-price-box">
+                    <span class="deal-current-price" id="deal-curr-price">$1,132</span>
+                    <span class="deal-old-price" id="deal-prev-price">$1,182</span>
+                    <span style="font-size: 0.9rem; opacity: 0.7; margin-right: 5px;" id="deal-per-person">לאדם בחדר זוגי</span>
+                </div>
+                <button class="btn-deal" id="deal-btn" onclick="openLeadModal()">לבדיקת זמינות והרשמה</button>
+            </div>
+            
+            <div class="deal-slider-wrapper">
+                <!-- ========================================================
+                     תיקון 2: חצי הסליידר
+                     ב-RTL (עברית): arrow-prev בימין = ▶ (קדימה לימין = תמונה קודמת)
+                                    arrow-next בשמאל = ◀ (קדימה לשמאל = תמונה הבאה)
+                     ב-LTR (אנגלית): arrow-prev בשמאל = ◀ | arrow-next בימין = ▶
+                     הכיוונים מתעדכנים דרך updateSliderDirection() בהחלפת שפה
+                     ======================================================== -->
+                <button class="slider-arrow arrow-prev" id="arrowPrev" onclick="moveSlide(-1)" aria-label="Previous Slide">▶</button>
+                <button class="slider-arrow arrow-next" id="arrowNext" onclick="moveSlide(1)" aria-label="Next Slide">◀</button>
+                
+                <div class="deal-slider-container" id="dealSlider">
+                    <div class="deal-slide" style="background-image: url('734424860.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('734425461.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('734424826.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('734424853.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('129557766.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('88601132.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('88600959.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('88601215.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('88600950.jpg');"></div>
+                    <div class="deal-slide" style="background-image: url('129560364.jpg');"></div>
+                </div>
+
+                <div class="slider-dots" id="sliderDots">
+                    <div class="slider-dot active" onclick="currentSlide(0)"></div>
+                    <div class="slider-dot" onclick="currentSlide(1)"></div>
+                    <div class="slider-dot" onclick="currentSlide(2)"></div>
+                    <div class="slider-dot" onclick="currentSlide(3)"></div>
+                    <div class="slider-dot" onclick="currentSlide(4)"></div>
+                    <div class="slider-dot" onclick="currentSlide(5)"></div>
+                    <div class="slider-dot" onclick="currentSlide(6)"></div>
+                    <div class="slider-dot" onclick="currentSlide(7)"></div>
+                    <div class="slider-dot" onclick="currentSlide(8)"></div>
+                    <div class="slider-dot" onclick="currentSlide(9)"></div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="about-section" id="about">
@@ -965,7 +1356,7 @@
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-heart"></i></div>
                 <h3 id="spec2-title">ירחי דבש וטיולים זוגיים</h3>
-                <p id="spec2-text">חופשות רומנטיות WITH דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
+                <p id="spec2-text">חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
             </div>
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-car"></i></div>
@@ -975,7 +1366,6 @@
         </div>
     </section>
 
-    <!-- POLICY SECTION (מדיניות ביטולים) -->
     <section class="policy-section" id="policy">
         <div class="policy-container">
             <h2 class="section-title" id="policy-main-title">מדיניות ביטולים ותנאי שירות</h2>
@@ -1018,12 +1408,43 @@
         </div>
     </section>
 
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeLeadModal()">×</button>
+                <h3 id="modal-title-txt">בדיקת זמינות - חבילת מיקונוס</h3>
+                <p id="modal-subtitle-txt">השאירו פרטים ואחזור אליכם עם הצעה מלאה</p>
+            </div>
+            <div class="modal-body">
+                <form id="dealForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="fname" id="lbl-fname">שם פרטי</label>
+                        <input type="text" id="fname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname" id="lbl-lname">שם משפחה</label>
+                        <input type="text" id="lname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" id="lbl-phone">מספר טלפון</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" id="lbl-email">כתובת אימייל</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <button type="submit" class="btn-submit" id="btn-submit-txt">אני מעוניין/ת, דברו איתי</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
         <i class="fa fa-whatsapp"></i>
     </a>
 
-    <!-- Accessibility element -->
+    <!-- רכיב נגישות צף -->
     <div class="accessibility-wrapper">
         <button class="accessibility-btn" id="accBtn" onclick="toggleAccMenu()" aria-label="Accessibility Menu">
             <i class="fa fa-universal-access"></i>
@@ -1056,12 +1477,22 @@
 
     <script>
         var currentLang = 'he';
+        var currentSlideIndex = 0;
+        const totalSlides = 10;
 
         var translations = {
             he: {
                 navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 btnFacebook: '<i class="fa fa-facebook"></i> הפייסבוק שלנו', langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
+                dealBadgeTxt: 'מבצע חגיגי לזמן מוגבל', dealMainTitle: 'חול המועד סוכות במיקונוס',
+                dealHotelName: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort & Thalasso Spa',
+                dealP1: '<i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.9.2026 - 01.10.2026',
+                dealP2: '<i class="fa fa-map-marker" style="color: var(--accent-gold);"></i> <strong>יעד:</strong> מיקונוס, יוון (מלון 5 כוכבים פרימיום)',
+                dealP3: '<i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> חופשת יוקרה אקסקלוסיבית בתנאי ריזורט מושלמים',
+                dealPerPerson: 'לאדם בחדר זוגי', dealBtn: 'לבדיקת זמינות והרשמה',
+                modalTitleTxt: 'בדיקת זמינות - חבילת מיקונוס', modalSubtitleTxt: 'השאירו פרטים ואחזור אליכם עם הצעה מלאה',
+                lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
                 aboutContent: 'נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.',
                 f1Title: 'המלצות ממקור ראשון', f1Desc: 'אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.',
@@ -1079,7 +1510,7 @@
                 c3Title: 'חופשות אורבניות ויעדי קיץ מובילים', c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
                 c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות', c3Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
                 specMainTitle: 'ההתמחויות המיוחדות שלנו', specMainSubtitle: 'כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו',
-                spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, WITH התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
+                spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
                 spec2Title: 'ירחי דבש וטיולים זוגיים', spec2Text: 'חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.',
                 spec3Title: 'טיולי דרכים (Road Trips)', spec3Text: 'בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.',
                 policyMainTitle: 'מדיניות ביטולים ותנאי שירות', policyMainSubtitle: 'חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה',
@@ -1101,6 +1532,14 @@
                 navAbout: 'Our Story', navProcess: 'How It Works', navDestinations: 'Top Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 btnFacebook: '<i class="fa fa-facebook"></i> Our Facebook', langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
+                dealBadgeTxt: 'Limited Time Holiday Special', dealMainTitle: 'Sukkot Holidays in Mykonos',
+                dealHotelName: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort & Thalasso Spa',
+                dealP1: '<i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026',
+                dealP2: '<i class="fa fa-map-marker" style="color: var(--accent-gold);"></i> <strong>Destination:</strong> Mykonos, Greece (5-Star Premium Luxury)',
+                dealP3: '<i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> Exclusive premium vacation in a spectacular Aegean resort setting',
+                dealPerPerson: 'per person in double room', dealBtn: 'Check Availability & Book',
+                modalTitleTxt: 'Check Availability - Mykonos Package', modalSubtitleTxt: 'Leave your details and I will get back to you with a complete offer',
+                lblFname: 'First Name', lblLname: 'Last Name', lblPhone: 'Phone Number', lblEmail: 'Email Address', btnSubmitTxt: "I am interested, let's talk",
                 aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
                 aboutContent: 'Nice to meet you, I am Avi. AdvenHorizon Travels was born out of a deep love for traveling, exploring new cultures, and discovering the most hidden and spectacular spots on the globe. After years of demanding and complex security service as a police investigator and intelligence officer, I decided to take the core values that guided me – ultimate responsibility, precision, strategic planning, and attention to detail – and translate them into my new mission: to manage, plan, and secure your dream vacation with complete peace of mind and total safety.',
                 f1Title: 'First-Hand Recommendations', f1Desc: 'I do not just sell hotels from a catalog. Every destination is curated from real experience, passion, and true love for the field.',
@@ -1127,7 +1566,7 @@
                 pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Cancellations & Changes with International Providers',
                 pol2Desc: 'After the period stipulated by local consumer law has passed, all cancellation, amendment, or rebooking conditions for flights, lodging, cars, and attractions are fully subject to the strict policies of the active providers (airlines, resorts, and ground operators). We always explicitly transparentize these details before finalized booking.',
                 pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> Critical Recommendation: Comprehensive Travel Insurance',
-                pol3Desc: 'Since bespoke planning and long-haul expeditions involve advance commitments, we highly mandate and advise all travelers to purchase premium international travel insurance including robust medical and baggage extensions immediately upon confirmation. A dedicated trip cancellation cancellation-for-any-reason policy is recommended.',
+                pol3Desc: 'Since bespoke planning and long-haul expeditions involve advance commitments, we highly mandate and advise all travelers to purchase premium international travel insurance including robust medical and baggage extensions immediately upon confirmation. A dedicated trip cancellation-for-any-reason policy is recommended.',
                 faqMainTitle: 'Frequently Asked Questions', faqMainSubtitle: 'Everything you need to know before embarking on your journey',
                 faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> What exactly does your vacation service include?', faq1A: 'Our service is a comprehensive All-In-One solution. We define your dream together, build a detailed day-by-day itinerary, secure all flights, hotels, and attractions for you, and provide personal support throughout your entire stay abroad.',
                 faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> Are you the ones who actually process the bookings?', faq2A: 'Absolutely yes. We handle and execute every single reservation from A to Z. You receive a complete travel package with all vouchers, tickets, and confirmations, so all you have to do is pack your bags.',
@@ -1166,6 +1605,21 @@
             setText('hero-title', t.heroTitle);
             setText('hero-subtitle', t.heroSubtitle);
             setText('hero-btn', t.heroBtn);
+            setText('deal-badge-txt', t.dealBadgeTxt);
+            setText('deal-main-title', t.dealMainTitle);
+            setText('deal-hotel-name', t.dealHotelName, true);
+            setText('deal-p1', t.dealP1, true);
+            setText('deal-p2', t.dealP2, true);
+            setText('deal-p3', t.dealP3, true);
+            setText('deal-per-person', t.dealPerPerson);
+            setText('deal-btn', t.dealBtn);
+            setText('modal-title-txt', t.modalTitleTxt);
+            setText('modal-subtitle-txt', t.modalSubtitleTxt);
+            setText('lbl-fname', t.lblFname);
+            setText('lbl-lname', t.lblLname);
+            setText('lbl-phone', t.lblPhone);
+            setText('lbl-email', t.lblEmail);
+            setText('btn-submit-txt', t.btnSubmitTxt);
             setText('about-title', t.aboutTitle);
             setText('about-subtitle', t.aboutSubtitle);
             setText('about-content', t.aboutContent);
@@ -1205,7 +1659,6 @@
             setText('spec2-text', t.spec2Text);
             setText('spec3-title', t.spec3Title);
             setText('spec3-text', t.spec3Text);
-            
             setText('policy-main-title', t.policyMainTitle);
             setText('policy-main-subtitle', t.policyMainSubtitle);
             setText('pol1-title', t.pol1Title, true);
@@ -1214,7 +1667,6 @@
             setText('pol2-desc', t.pol2Desc);
             setText('pol3-title', t.pol3Title, true);
             setText('pol3-desc', t.pol3Desc);
-
             setText('acc-menu-title', t.accMenuTitle);
             setText('acc-opt-text', t.accOptText, true);
             setText('acc-opt-contrast', t.accOptContrast, true);
@@ -1222,7 +1674,6 @@
             setText('acc-opt-reset', t.accOptReset, true);
             setText('cookie-msg', t.cookieMsg);
             setText('cookie-btn-txt', t.cookieBtnTxt);
-
             setText('faq-main-title', t.faqMainTitle);
             setText('faq-main-subtitle', t.faqMainSubtitle);
             setText('faq1-q', t.faq1Q, true);
@@ -1232,11 +1683,87 @@
             setText('faq3-q', t.faq3Q, true);
             setText('faq3-a', t.faq3A);
             setText('footer-copy', t.footerCopy);
+            
+            updateSliderDirection();
+        }
+
+        function updateSlider() {
+            const slider = document.getElementById('dealSlider');
+            // ב-RTL הסליידר זז חיובית (ימינה), ב-LTR שלילית (שמאלה)
+            if (document.documentElement.dir === 'rtl') {
+                slider.style.transform = `translateX(${currentSlideIndex * 100}%)`;
+            } else {
+                slider.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            }
+            
+            const dots = document.querySelectorAll('.slider-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            // direction: -1 = prev, +1 = next
+            // ב-RTL prev = ימינה (index קטן) = direction -1 → index--
+            // ב-LTR prev = שמאלה (index קטן) = direction -1 → index--
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            updateSlider();
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            updateSlider();
+        }
+
+        function updateSliderDirection() {
+            currentSlideIndex = 0;
+            const prevBtn = document.getElementById('arrowPrev');
+            const nextBtn = document.getElementById('arrowNext');
+            
+            if (document.documentElement.dir === 'rtl') {
+                // RTL: prev בימין מצביע ימינה (▶), next בשמאל מצביע שמאלה (◀)
+                prevBtn.textContent = '▶';
+                nextBtn.textContent = '◀';
+            } else {
+                // LTR: prev בשמאל מצביע שמאלה (◀), next בימין מצביע ימינה (▶)
+                prevBtn.textContent = '◀';
+                nextBtn.textContent = '▶';
+            }
+            
+            updateSlider();
+        }
+
+        function openLeadModal() {
+            document.getElementById('leadModal').classList.add('active');
+        }
+
+        function closeLeadModal() {
+            document.getElementById('leadModal').classList.remove('active');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            var firstName = document.getElementById('fname').value;
+            var lastName = document.getElementById('lname').value;
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
+            var message = "שלום אבי, בקשת בדיקת זמינות חדשה הוגשה מהאתר:\n\n" +
+                          "👤 שם מלא: " + firstName + " " + lastName + "\n" +
+                          "📞 טלפון: " + phone + "\n" +
+                          "📧 מייל: " + email + "\n\n" +
+                          "🏨 עבור חבילת סוכות: Royal Myconian Resort (מיקונוס)\n" +
+                          "🗓 תאריכים: 27.9.2026 - 01.10.2026\n" +
+                          "💰 מחיר מבצע: $1,132 לאדם";
+            var encodedMessage = encodeURIComponent(message);
+            window.open("https://wa.me/972506275616?text=" + encodedMessage, "_blank");
+            closeLeadModal();
+            document.getElementById('dealForm').reset();
         }
 
         function toggleAccMenu() {
-            var menu = document.getElementById('accMenu');
-            menu.classList.toggle('active');
+            document.getElementById('accMenu').classList.toggle('active');
         }
 
         function accessibleAction(type) {
@@ -1257,6 +1784,8 @@
                     document.getElementById('cookieBar').classList.add('show');
                 }, 1500);
             }
+            // אתחול חצי הסליידר בעברית
+            updateSliderDirection();
         });
 
         function acceptCookies() {
@@ -1267,8 +1796,12 @@
         window.addEventListener('click', function(e){   
             var menu = document.getElementById('accMenu');
             var btn = document.getElementById('accBtn');
+            var modal = document.getElementById('leadModal');
             if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)){
                 menu.classList.remove('active');
+            }
+            if (e.target === modal) {
+                closeLeadModal();
             }
         });
     </script>
