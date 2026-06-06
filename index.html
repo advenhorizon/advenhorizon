@@ -46,6 +46,47 @@
             background-color: var(--white);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* הגדרות נגישות */
+        body.accessible-large-text { font-size: 1.15rem; }
+        body.accessible-large-text p { font-size: 1.1rem; }
+        body.accessible-large-text h1 { font-size: 4rem; }
+        body.accessible-large-text h2 { font-size: 2.8rem; }
+        body.accessible-large-text h3 { font-size: 1.6rem; }
+        
+        body.accessible-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.accessible-contrast .about-section, 
+        body.accessible-contrast .specialties-section,
+        body.accessible-contrast .faq-section,
+        body.accessible-contrast .policy-section,
+        body.accessible-contrast .faq-item,
+        body.accessible-contrast .card,
+        body.accessible-contrast .feature-item,
+        body.accessible-contrast .specialty-card,
+        body.accessible-contrast header,
+        body.accessible-contrast .about-text,
+        body.accessible-contrast .policy-container {
+            background-color: #111111 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+        body.accessible-contrast a, 
+        body.accessible-contrast h1, 
+        body.accessible-contrast h2, 
+        body.accessible-contrast h3,
+        body.accessible-contrast i {
+            color: #ffff00 !important;
+        }
+
+        body.accessible-links a {
+            text-decoration: underline !important;
+            font-weight: bold !important;
+            background-color: rgba(207, 162, 75, 0.2) !important;
         }
 
         h1, h2, h3, .section-title {
@@ -55,12 +96,11 @@
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: relative; /* ברירת מחדל למובייל - לא זז עם הגלילה */
+            position: relative;
             top: 0;
             z-index: 1000;
         }
 
-        /* רק ממחשבים וטאבלטים גדולים התפריט יישאר דבוק למעלה */
         @media (min-width: 993px) {
             header {
                 position: sticky;
@@ -142,7 +182,7 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.9 Theme;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -491,6 +531,48 @@
             font-size: 0.95rem;
         }
 
+        /* Policy Section */
+        .policy-section {
+            padding: 80px 20px;
+            background-color: var(--light-bg);
+        }
+
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .policy-block {
+            margin-bottom: 25px;
+        }
+
+        body[dir="rtl"] .policy-block { text-align: right; }
+        body[dir="ltr"] .policy-block { text-align: left; }
+
+        .policy-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-block h3 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .policy-block p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+        body[dir="rtl"] .policy-block p { padding-right: 28px; padding-left: 0; }
+        body[dir="ltr"] .policy-block p { padding-left: 28px; padding-right: 0; }
+
         .faq-section {
             padding: 80px 20px;
             background-color: var(--white);
@@ -541,7 +623,7 @@
             text-align: center;
             font-size: 30px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 100;
+            z-index: 999;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -551,6 +633,137 @@
 
         .whatsapp-float:hover {
             transform: scale(1.1);
+        }
+
+        /* רכיב נגישות מעודכן */
+        .accessibility-wrapper {
+            position: fixed;
+            bottom: 30px;
+            z-index: 1001;
+        }
+        
+        /* מיקום דינמי לפי כיווניות הדף הנוכחי */
+        body[dir="rtl"] .accessibility-wrapper { right: 30px; left: auto; }
+        body[dir="ltr"] .accessibility-wrapper { left: 30px; right: auto; }
+
+        .accessibility-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .accessibility-btn:hover {
+            background-color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .accessibility-menu {
+            position: absolute;
+            bottom: 75px;
+            background: var(--white);
+            width: 260px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid #edf2f7;
+        }
+        
+        /* תיקון היסטרי של הצמדת תיבת התפריט לכפתור בשני המצבים */
+        body[dir="rtl"] .accessibility-menu { right: 0; left: auto; }
+        body[dir="ltr"] .accessibility-menu { left: 0; right: auto; }
+
+        .accessibility-menu.active {
+            display: flex;
+        }
+
+        .accessibility-menu h4 {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 8px;
+        }
+        body[dir="rtl"] .accessibility-menu h4 { text-align: right; }
+        body[dir="ltr"] .accessibility-menu h4 { text-align: left; }
+
+        .acc-option {
+            background: var(--light-bg);
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        body[dir="rtl"] .acc-option { text-align: right; }
+        body[dir="ltr"] .acc-option { text-align: left; }
+
+        .acc-option:hover {
+            background: #e2e8f0;
+            color: var(--primary-blue);
+        }
+
+        /* רכיב קוקיז */
+        .cookie-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1a202c;
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1002;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .cookie-bar.show {
+            transform: translateY(0);
+        }
+
+        .cookie-text {
+            font-size: 0.95rem;
+            max-width: 75%;
+        }
+        body[dir="rtl"] .cookie-text { text-align: right; }
+        body[dir="ltr"] .cookie-text { text-align: left; }
+
+        .cookie-btn {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .cookie-btn:hover {
+            background-color: #b3893b;
         }
 
         footer {
@@ -600,6 +813,13 @@
             .hero p { font-size: 1.1rem; }
             .grid { grid-template-columns: 1fr; }
             .card-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
+            body[dir="rtl"] .accessibility-wrapper { right: 20px; left: auto; }
+            body[dir="ltr"] .accessibility-wrapper { left: 20px; right: auto; }
+            .accessibility-btn { width: 50px; height: 50px; font-size: 20px; }
+            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 24px; }
+            .cookie-bar { flex-direction: column; gap: 15px; text-align: center; }
+            .cookie-text { max-width: 100%; text-align: center; }
+            .policy-container { padding: 20px; }
         }
     </style>
 </head>
@@ -616,6 +836,7 @@
                     <li><a href="#process" id="nav-process">איך זה עובד</a></li>
                     <li><a href="#destinations" id="nav-destinations">יעדים חמים</a></li>
                     <li><a href="#specialties" id="nav-specialties">התמחויות</a></li>
+                    <li><a href="#policy" id="nav-policy">מדיניות ביטולים</a></li>
                     <li><a href="#faq" id="nav-faq">שאלות נפוצות</a></li>
                 </ul>
                 <div class="nav-right-side">
@@ -744,12 +965,35 @@
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-heart"></i></div>
                 <h3 id="spec2-title">ירחי דבש וטיולים זוגיים</h3>
-                <p id="spec2-text">חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
+                <p id="spec2-text">חופשות רומנטיות WITH דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.</p>
             </div>
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-car"></i></div>
                 <h3 id="spec3-title">טיולי דרכים (Road Trips)</h3>
                 <p id="spec3-text">בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POLICY SECTION (מדיניות ביטולים) -->
+    <section class="policy-section" id="policy">
+        <div class="policy-container">
+            <h2 class="section-title" id="policy-main-title">מדיניות ביטולים ותנאי שירות</h2>
+            <p class="section-subtitle" id="policy-main-subtitle">חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה</p>
+            
+            <div class="policy-block">
+                <h3 id="pol1-title"><i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> כללי ביטול עסקה (חוק הגנת הצרכן)</h3>
+                <p id="pol1-desc">בהתאם לחוק הגנת הצרכן הישראלי, ניתן לבטל עסקת שירותי תיירות בתוך 14 ימים מיום עשיית העסקה, ובלבד שהביטול ייעשה לפחות 7 ימי עבודה קודם למועד מתן השירות. דמי הביטול במסגרת זו יהיו בגובה 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).</p>
+            </div>
+
+            <div class="policy-block">
+                <h3 id="pol2-title"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> ביטולים ושינויים מול ספקי תיירות בחו"ל</h3>
+                <p id="pol2-desc">לאחר חלוף תקופת הזמן הקבועה בחוק הגנת הצרכן, תנאי הביטול, השינוי או השחזור של טיסות, מלונות, רכבים ואטרקציות יהיו כפופים לחלוטין למדיניות של ספקי השירות בפועל (חברות התעופה, הריזורטים וסוכני השטח). אנו ב-AdvenHorizon Travels נשקף לכם את תנאי הביטול של כל נכס תיירותי עוד במעמד ההזמנה.</p>
+            </div>
+
+            <div class="policy-block">
+                <h3 id="pol3-title"><i class="fa fa-shield" style="color: var(--accent-gold);"></i> המלצה חמה: ביטוח נסיעות וביטוח ביטול</h3>
+                <p id="pol3-desc">מאחר וחופשות פרימיום ותכנון מסלולים מורכבים כרוכים בעלויות מראש, אנו מחייבים וממליצים לכל לקוחותינו לרכוש ביטוח נסיעות מקיף לחו"ל הכולל הרחבה רפואית והרחבת כבודה, מיד עם סגירת הטיול. כמו כן, מומלץ לשקול פוליסת ביטוח ייעודית לביטול טיסה מכל סיבה שהיא.</p>
             </div>
         </div>
     </section>
@@ -774,9 +1018,32 @@
         </div>
     </section>
 
-    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
         <i class="fa fa-whatsapp"></i>
     </a>
+
+    <!-- Accessibility element -->
+    <div class="accessibility-wrapper">
+        <button class="accessibility-btn" id="accBtn" onclick="toggleAccMenu()" aria-label="Accessibility Menu">
+            <i class="fa fa-universal-access"></i>
+        </button>
+        <div class="accessibility-menu" id="accMenu">
+            <h4 id="acc-menu-title">תפריט נגישות</h4>
+            <button class="acc-option" id="acc-opt-text" onclick="accessibleAction('text')"><i class="fa fa-text-height"></i> הגדלת גופן</button>
+            <button class="acc-option" id="acc-opt-contrast" onclick="accessibleAction('contrast')"><i class="fa fa-adjust"></i> ניגודיות גבוהה</button>
+            <button class="acc-option" id="acc-opt-links" onclick="accessibleAction('links')"><i class="fa fa-link"></i> הדגשת קישורים</button>
+            <button class="acc-option" id="acc-opt-reset" onclick="accessibleAction('reset')" style="background:#fed7d7; color:#c53030;"><i class="fa fa-refresh"></i> איפוס נגישות</button>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Bar -->
+    <div class="cookie-bar" id="cookieBar">
+        <div class="cookie-text" id="cookie-msg">
+            אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.
+        </div>
+        <button class="cookie-btn" id="cookie-btn-txt" onclick="acceptCookies()">מאשר/ת</button>
+    </div>
 
     <footer>
         <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="footer-logo">
@@ -792,7 +1059,7 @@
 
         var translations = {
             he: {
-                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navFaq: 'שאלות נפוצות',
+                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 btnFacebook: '<i class="fa fa-facebook"></i> הפייסבוק שלנו', langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
@@ -812,17 +1079,26 @@
                 c3Title: 'חופשות אורבניות ויעדי קיץ מובילים', c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
                 c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות', c3Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
                 specMainTitle: 'ההתמחויות המיוחדות שלנו', specMainSubtitle: 'כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו',
-                spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
+                spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, WITH התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
                 spec2Title: 'ירחי דבש וטיולים זוגיים', spec2Text: 'חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.',
                 spec3Title: 'טיולי דרכים (Road Trips)', spec3Text: 'בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.',
+                policyMainTitle: 'מדיניות ביטולים ותנאי שירות', policyMainSubtitle: 'חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה',
+                pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> כללי ביטול עסקה (חוק הגנת הצרכן)',
+                pol1Desc: 'בהתאם לחוק הגנת הצרכן הישראלי, ניתן לבטל עסקת שירותי תיירות בתוך 14 ימים מיום עשיית העסקה, ובלבד שהביטול ייעשה לפחות 7 ימי עבודה קודם למועד מתן השירות. דמי הביטול במסגרת זו יהיו בגובה 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).',
+                pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> ביטולים ושינויים מול ספקי תיירות בחו"ל',
+                pol2Desc: 'לאחר חלוף תקופת הזמן הקבועה בחוק הגנת הצרכן, תנאי הביטול, השינוי או השחזור של טיסות, מלונות, רכבים ואטרקציות יהיו כפופים לחלוטין למדיניות של ספקי השירות בפועל (חברות התעופה, הריזורטים וסוכני השטח). אנו ב-AdvenHorizon Travels נשקף לכם את תנאי הביטול של כל נכס תיירותי עוד במעמד ההזמנה.',
+                pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> המלצה חמה: ביטוח נסיעות וביטוח ביטול',
+                pol3Desc: 'מאחר וחופשות פרימיום ותכנון מסלולים מורכבים כרוכים בעלויות מראש, אנו מחייבים וממליצים לכל לקוחותינו לרכוש ביטוח נסיעות מקיף לחו"ל הכולל הרחבה רפואית והרחבת כבודה, מיד עם סגירת הטיול. כמו כן, מומלץ לשקול פוליסת ביטוח ייעודית לביטול טיסה מכל סיבה שהיא.',
                 faqMainTitle: 'שאלות נפוצות', faqMainSubtitle: 'כל מה שחשוב לדעת לפני שיוצאים לדרך',
                 faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?', faq1A: 'השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.',
                 faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?', faq2A: "בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.",
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?', faq3A: 'על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.',
+                accMenuTitle: 'תפריט נגישות', accOptText: '<i class="fa fa-text-height"></i> הגדלת גופן', accOptContrast: '<i class="fa fa-adjust"></i> ניגודיות גבוהה', accOptLinks: '<i class="fa fa-link"></i> הדגשת קישורים', accOptReset: '<i class="fa fa-refresh"></i> איפוס נגישות',
+                cookieMsg: 'אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.', cookieBtnTxt: 'מאשר/ת',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             },
             en: {
-                navAbout: 'Our Story', navProcess: 'How It Works', navDestinations: 'Top Destinations', navSpecialties: 'Our Specialties', navFaq: 'FAQ',
+                navAbout: 'Our Story', navProcess: 'How It Works', navDestinations: 'Top Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 btnFacebook: '<i class="fa fa-facebook"></i> Our Facebook', langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
@@ -845,10 +1121,19 @@
                 spec1Title: 'Complex Family Vacations', spec1Text: 'Designing balanced itineraries suitable for both children and adults, with flawless matching of family-focused boutique hotels and attractions.',
                 spec2Title: 'Honeymoons & Romantic Escapes', spec2Text: 'Romantic getaways with an emphasis on premium resorts, unique culinary experiences, and unforgettable moments tailored precisely for the two of you.',
                 spec3Title: 'Bespoke Road Trips', spec3Text: 'Building comprehensive geographic driving routes, locking in scenic stops, hand-picked hotels on the way, and full management of your ideal car rental abroad.',
+                policyMainTitle: 'Cancellation & Service Policies', policyMainSubtitle: 'It is important to us that you travel with absolute confidence, understanding the booking terms',
+                pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> Standard Cancellation Rules (Consumer Protection Law)',
+                pol1Desc: 'In accordance with the Israeli Consumer Protection Law, a tourism transaction can be canceled within 14 days from the booking date, provided that the cancellation is made at least 7 business days prior to the departure date. The cancellation fee under this framework will be 5% of the transaction value or 100 ILS (whichever is lower).',
+                pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Cancellations & Changes with International Providers',
+                pol2Desc: 'After the period stipulated by local consumer law has passed, all cancellation, amendment, or rebooking conditions for flights, lodging, cars, and attractions are fully subject to the strict policies of the active providers (airlines, resorts, and ground operators). We always explicitly transparentize these details before finalized booking.',
+                pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> Critical Recommendation: Comprehensive Travel Insurance',
+                pol3Desc: 'Since bespoke planning and long-haul expeditions involve advance commitments, we highly mandate and advise all travelers to purchase premium international travel insurance including robust medical and baggage extensions immediately upon confirmation. A dedicated trip cancellation cancellation-for-any-reason policy is recommended.',
                 faqMainTitle: 'Frequently Asked Questions', faqMainSubtitle: 'Everything you need to know before embarking on your journey',
                 faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> What exactly does your vacation service include?', faq1A: 'Our service is a comprehensive All-In-One solution. We define your dream together, build a detailed day-by-day itinerary, secure all flights, hotels, and attractions for you, and provide personal support throughout your entire stay abroad.',
                 faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> Are you the ones who actually process the bookings?', faq2A: 'Absolutely yes. We handle and execute every single reservation from A to Z. You receive a complete travel package with all vouchers, tickets, and confirmations, so all you have to do is pack your bags.',
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> How far in advance should we contact you to book a trip?', faq3A: 'In order to guarantee the best flight routes, highly-requested boutique hotels, and optimal pricing, it is highly recommended to contact us about 3 to 5 months before your planned departure.',
+                accMenuTitle: 'Accessibility Menu', accOptText: '<i class="fa fa-text-height"></i> Enlarge Text', accOptContrast: '<i class="fa fa-adjust"></i> High Contrast', accOptLinks: '<i class="fa fa-link"></i> Highlight Links', accOptReset: '<i class="fa fa-refresh"></i> Reset Accessibility',
+                cookieMsg: 'This website uses cookies to ensure you get the best experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use.', cookieBtnTxt: 'Accept',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             }
         };
@@ -874,6 +1159,7 @@
             setText('nav-process', t.navProcess);
             setText('nav-destinations', t.navDestinations);
             setText('nav-specialties', t.navSpecialties);
+            setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
             setText('btn-facebook', t.btnFacebook, true);
             setText('lang-btn', t.langBtn, true);
@@ -919,6 +1205,24 @@
             setText('spec2-text', t.spec2Text);
             setText('spec3-title', t.spec3Title);
             setText('spec3-text', t.spec3Text);
+            
+            setText('policy-main-title', t.policyMainTitle);
+            setText('policy-main-subtitle', t.policyMainSubtitle);
+            setText('pol1-title', t.pol1Title, true);
+            setText('pol1-desc', t.pol1Desc);
+            setText('pol2-title', t.pol2Title, true);
+            setText('pol2-desc', t.pol2Desc);
+            setText('pol3-title', t.pol3Title, true);
+            setText('pol3-desc', t.pol3Desc);
+
+            setText('acc-menu-title', t.accMenuTitle);
+            setText('acc-opt-text', t.accOptText, true);
+            setText('acc-opt-contrast', t.accOptContrast, true);
+            setText('acc-opt-links', t.accOptLinks, true);
+            setText('acc-opt-reset', t.accOptReset, true);
+            setText('cookie-msg', t.cookieMsg);
+            setText('cookie-btn-txt', t.cookieBtnTxt);
+
             setText('faq-main-title', t.faqMainTitle);
             setText('faq-main-subtitle', t.faqMainSubtitle);
             setText('faq1-q', t.faq1Q, true);
@@ -929,6 +1233,44 @@
             setText('faq3-a', t.faq3A);
             setText('footer-copy', t.footerCopy);
         }
+
+        function toggleAccMenu() {
+            var menu = document.getElementById('accMenu');
+            menu.classList.toggle('active');
+        }
+
+        function accessibleAction(type) {
+            if(type === 'text') {
+                document.body.classList.toggle('accessible-large-text');
+            } else if(type === 'contrast') {
+                document.body.classList.toggle('accessible-contrast');
+            } else if(type === 'links') {
+                document.body.classList.toggle('accessible-links');
+            } else if(type === 'reset') {
+                document.body.classList.remove('accessible-large-text', 'accessible-contrast', 'accessible-links');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('advenhorizon_cookies_accepted')) {
+                setTimeout(function() {
+                    document.getElementById('cookieBar').classList.add('show');
+                }, 1500);
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('advenhorizon_cookies_accepted', 'true');
+            document.getElementById('cookieBar').classList.remove('show');
+        }
+        
+        window.addEventListener('click', function(e){   
+            var menu = document.getElementById('accMenu');
+            var btn = document.getElementById('accBtn');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)){
+                menu.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
