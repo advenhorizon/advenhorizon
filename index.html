@@ -408,10 +408,13 @@
             color: var(--white);
         }
 
-        /* ב-RTL: prev = ימין (◀ מצביע ימינה), next = שמאל (▶ מצביע שמאלה) */
-        /* ב-LTR: prev = שמאל (◀ מצביע שמאלה), next = ימין (▶ מצביע ימינה) */
-        .arrow-prev { right: 15px; }
-        .arrow-next { left: 15px; }
+        /* RTL (עברית - ברירת מחדל): prev = ימין, next = שמאל */
+        .arrow-prev { right: 15px; left: auto; }
+        .arrow-next { left: 15px; right: auto; }
+
+        /* LTR (אנגלית): prev = שמאל, next = ימין */
+        body[dir="ltr"] .arrow-prev { left: 15px; right: auto; }
+        body[dir="ltr"] .arrow-next { right: 15px; left: auto; }
 
         /* נקודות אינדיקציה */
         .slider-dots {
@@ -932,10 +935,6 @@
             padding-left: 24px;
         }
 
-        /* ========================================================
-           תיקון 1: כפתור וואצאפ - מיקום דינמי לפי כיוון השפה
-           ב-RTL: ימין | ב-LTR: שמאל – לא מתנגש עם כפתור הנגישות
-           ======================================================== */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -955,9 +954,7 @@
             transition: var(--transition);
         }
 
-        /* ב-RTL האתר בעברית: וואצאפ בשמאל, נגישות בימין */
         body[dir="rtl"] .whatsapp-float { left: 30px; right: auto; }
-        /* ב-LTR האתר באנגלית: וואצאפ בימין, נגישות בשמאל */
         body[dir="ltr"] .whatsapp-float { right: 30px; left: auto; }
 
         .whatsapp-float:hover {
@@ -971,7 +968,6 @@
             z-index: 1001;
         }
         
-        /* ב-RTL: נגישות בימין | ב-LTR: נגישות בשמאל */
         body[dir="rtl"] .accessibility-wrapper { right: 30px; left: auto; }
         body[dir="ltr"] .accessibility-wrapper { left: 30px; right: auto; }
 
@@ -1061,7 +1057,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1002;
+            z-index: 102;
             box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
             transform: translateY(100%);
             transition: transform 0.4s ease;
@@ -1186,7 +1182,7 @@
     <section class="hero">
         <h1 id="hero-title">AdvenHorizon Travels</h1>
         <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
-        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
+        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
     </section>
 
     <section class="deal-section" id="holiday-deal">
@@ -1209,13 +1205,6 @@
             </div>
             
             <div class="deal-slider-wrapper">
-                <!-- ========================================================
-                     תיקון 2: חצי הסליידר
-                     ב-RTL (עברית): arrow-prev בימין = ▶ (קדימה לימין = תמונה קודמת)
-                                    arrow-next בשמאל = ◀ (קדימה לשמאל = תמונה הבאה)
-                     ב-LTR (אנגלית): arrow-prev בשמאל = ◀ | arrow-next בימין = ▶
-                     הכיוונים מתעדכנים דרך updateSliderDirection() בהחלפת שפה
-                     ======================================================== -->
                 <button class="slider-arrow arrow-prev" id="arrowPrev" onclick="moveSlide(-1)" aria-label="Previous Slide">▶</button>
                 <button class="slider-arrow arrow-next" id="arrowNext" onclick="moveSlide(1)" aria-label="Next Slide">◀</button>
                 
@@ -1254,7 +1243,7 @@
             <p class="about-subtitle" id="about-subtitle">איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?</p>
             
             <div class="about-text" id="about-content">
-                נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.
+                נעים להכיר, אני אבי. סוכנות נסיעות AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.
             </div>
 
             <div class="features-grid">
@@ -1312,7 +1301,7 @@
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1324,7 +1313,7 @@
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
                     <div class="card-meta">
                         <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1336,7 +1325,7 @@
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
                     <div class="card-meta">
                         <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1439,12 +1428,10 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
         <i class="fa fa-whatsapp"></i>
     </a>
 
-    <!-- רכיב נגישות צף -->
     <div class="accessibility-wrapper">
         <button class="accessibility-btn" id="accBtn" onclick="toggleAccMenu()" aria-label="Accessibility Menu">
             <i class="fa fa-universal-access"></i>
@@ -1458,7 +1445,6 @@
         </div>
     </div>
 
-    <!-- Cookie Consent Bar -->
     <div class="cookie-bar" id="cookieBar">
         <div class="cookie-text" id="cookie-msg">
             אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.
@@ -1471,7 +1457,7 @@
         <p class="footer-text" id="footer-copy">© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel</p>
         <div class="footer-socials">
             <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank" title="פייסבוק"><i class="fa fa-facebook"></i></a>
-            <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" target="_blank" title="וואטסאפ"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" target="_blank" title="וואטסאפ"><i class="fa fa-whatsapp"></i></a>
         </div>
     </footer>
 
@@ -1494,7 +1480,7 @@
                 modalTitleTxt: 'בדיקת זמינות - חבילת מיקונוס', modalSubtitleTxt: 'השאירו פרטים ואחזור אליכם עם הצעה מלאה',
                 lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
-                aboutContent: 'נעים להכיר, אני אבי. חברת AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.',
+                aboutContent: 'נעים להכיר, אני אבי. סוכנות נסיעות AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.',
                 f1Title: 'המלצות ממקור ראשון', f1Desc: 'אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.',
                 f2Title: 'תכנון קפדני ואחריות', f2Desc: 'הניסיון שלי מלמד שאין מקום לטעויות. כל פרט בטיול שלכם מתוכנן בצורה מדויקת כדי למנוע הפתעות.',
                 f3Title: 'ליווי בגובה העיניים', f3Desc: 'כשאתם בחו"ל, אתם לא לבד. יש לכם גב ואדם שזמין עבורכם לכל שאלה או צורך שעולה בדרך.',
@@ -1689,7 +1675,6 @@
 
         function updateSlider() {
             const slider = document.getElementById('dealSlider');
-            // ב-RTL הסליידר זז חיובית (ימינה), ב-LTR שלילית (שמאלה)
             if (document.documentElement.dir === 'rtl') {
                 slider.style.transform = `translateX(${currentSlideIndex * 100}%)`;
             } else {
@@ -1703,9 +1688,6 @@
         }
 
         function moveSlide(direction) {
-            // direction: -1 = prev, +1 = next
-            // ב-RTL prev = ימינה (index קטן) = direction -1 → index--
-            // ב-LTR prev = שמאלה (index קטן) = direction -1 → index--
             currentSlideIndex += direction;
             if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
             if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
@@ -1723,11 +1705,9 @@
             const nextBtn = document.getElementById('arrowNext');
             
             if (document.documentElement.dir === 'rtl') {
-                // RTL: prev בימין מצביע ימינה (▶), next בשמאל מצביע שמאלה (◀)
                 prevBtn.textContent = '▶';
                 nextBtn.textContent = '◀';
             } else {
-                // LTR: prev בשמאל מצביע שמאלה (◀), next בימין מצביע ימינה (▶)
                 prevBtn.textContent = '◀';
                 nextBtn.textContent = '▶';
             }
@@ -1784,7 +1764,6 @@
                     document.getElementById('cookieBar').classList.add('show');
                 }, 1500);
             }
-            // אתחול חצי הסליידר בעברית
             updateSliderDirection();
         });
 
