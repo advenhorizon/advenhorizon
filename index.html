@@ -300,6 +300,27 @@
         .process-step h3 { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 12px; }
         .process-step p { color: #64748b; font-size: 1rem; }
 
+        /* יעדים חמים */
+        .destinations { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--card-shadow); transition: var(--transition); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .card-img { height: 240px; background-size: cover; background-position: center; }
+        .card-content { padding: 25px; }
+        .card-title { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 10px; }
+        .card-text { color: #4a5568; font-size: 0.95rem; margin-bottom: 20px; min-height: 72px; }
+        .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf2f7; padding-top: 15px; }
+        .price { color: var(--accent-gold); font-weight: 600; font-size: 1.05rem; margin-left: 15px; }
+        body[dir="ltr"] .price { margin-left: 0; margin-right: 15px; }
+        .btn-card { color: var(--primary-blue); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 5px; transition: var(--transition); white-space: nowrap; }
+        .btn-card:hover { color: var(--accent-gold); gap: 8px; }
+        body[dir="rtl"] .fa-arrow-dir::before { content: "\f053"; }
+        body[dir="ltr"] .fa-arrow-dir::before { content: "\f054"; }
+        @media (max-width: 992px) {
+            .grid { grid-template-columns: 1fr; }
+            .card-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
+        }
+
         /* התמחויות */
         .specialties-section { background-color: var(--light-bg); padding: 80px 20px; }
         .specialties-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
@@ -374,6 +395,7 @@
                     <li><a href="#about" id="nav-about">הסיפור שלנו</a></li>
                     <li><a href="#process" id="nav-process">איך זה עובד</a></li>
                     <li><a href="#deals" id="nav-deals">חבילות נופש</a></li>
+                    <li><a href="#destinations" id="nav-destinations">יעדים חמים</a></li>
                     <li><a href="#specialties" id="nav-specialties">התמחויות</a></li>
                     <li><a href="#policy" id="nav-policy">מדיניות ביטולים</a></li>
                     <li><a href="#faq" id="nav-faq">שאלות נפוצות</a></li>
@@ -580,6 +602,50 @@
         </div>
     </section>
 
+    <!-- יעדים חמים -->
+    <section class="destinations" id="destinations">
+        <h2 class="section-title" id="dest-title">החופשות החמות של 2026</h2>
+        <p class="section-subtitle" id="dest-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title" id="c1-title">חופשות בטן-גב אקזוטיות</h3>
+                    <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
+                    <div class="card-meta">
+                        <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title" id="c2-title">טיולי הרפתקאות, תרבות וטבע</h3>
+                    <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
+                    <div class="card-meta">
+                        <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-content">
+                    <h3 class="card-title" id="c3-title">חופשות אורבניות ויעדי קיץ מובילים</h3>
+                    <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
+                    <div class="card-meta">
+                        <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- התמחויות -->
     <section class="specialties-section" id="specialties">
         <h2 class="section-title" id="spec-main-title">ההתמחויות המיוחדות שלנו</h2>
@@ -655,6 +721,7 @@
             <div class="modal-header">
                 <button class="modal-close" onclick="closeLeadModal()">×</button>
                 <h3 id="modal-title-txt">בדיקת זמינות חבילה</h3>
+                <p id="modal-subtitle-txt">השאירו פרטים ואחזור אליכם עם הצעה מלאה</p>
             </div>
             <div class="modal-body">
                 <form id="dealForm" onsubmit="handleFormSubmit(event)">
@@ -723,7 +790,7 @@
 
         var translations = {
             he: {
-                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDeals: 'חבילות נופש', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDeals: 'חבילות נופש', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 dealsMainTitle: 'דילים אקסקלוסיביים לחגים ולקיץ', dealsMainSubtitle: 'חבילות פרימיום נבחרות מא\' ועד ת\' בראש שקט ובמחירים מנצחים',
@@ -743,7 +810,7 @@
                 dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip',
                 dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> כולל טיסות הלוך ושוב ללאס וגאס</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>חוויה:</strong> עיר האורות, הופעות ענק, בידור ופאר חסר תקדים</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> דיל בלעדי לחופשת חג יוצאת דופן</p>',
                 btnOrderVegas: 'לבדיקת זמינות',
-                modalTitleTxt: 'בדיקת זמינות חבילה', lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
+                modalTitleTxt: 'בדיקת זמינות חבילה', modalSubtitleTxt: 'השאירו פרטים ואחזור אליכם עם הצעה מלאה', lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
                 aboutContent: 'נעים להכיר, אני אבי. סוכנות נסיעות AdvenHorizon Travels הוקמה מתוך אהבה עמוקה לטיולים, מתוך תשוקה לחקור תרבויות חדשות ומתוך רצון לגלות את המקומות הנסתרים והמרהיבים ביותר על הגלובוס. לאחר שנים של שירות ביטחוני מורכב ותובעני כחוקר וכקצין חקירות ומודיעין במשטרה, החלטתי לקחת את ערכי הברזל שליוו אותי – אחריות, דיוק קפדני, תכנון אסטרטגי וירידה לפרטים – ולתרגם אותם למשימה החדשה שלי: לנהל, לתכנן ולסגור עבורכם את חופשת החלומות שלכם, בראש שקט ובביטחון מלא.',
                 f1Title: 'המלצות ממקור ראשון', f1Desc: 'אני לא מוכר לכם סתם מלונות מקטלוג. כל יעד נבחר מתוך היכרות אמיתית, תשוקה ואהבה לשטח.',
@@ -753,6 +820,13 @@
                 step1Title: 'שיחת אפיון והיכרות', step1Desc: 'נבין יחד את אופי המטיילים, התקציב, הסגנון המועדף והחלומות שלכם לגבי היעד.',
                 step2Title: 'בניית מסלול והזמנת הכל עבורכם', step2Desc: 'אני בונה את המסלול היומי המלא ומבצע עבורכם את כל ההזמנות הנדרשות - מטיסות ומלונות ועד לוגיסטיקה קטנה.',
                 step3Title: 'יוצאים לדרך בראש שקט', step3Desc: 'אתם מקבלים תיק טיול מוכן וסגור לחלוטין, ונהנים מליווי וזמינות שלי לכל שאלה או צורך שעולה במהלך השהות בחו"ל.',
+                destTitle: 'החופשות החמות של 2026', destSubtitle: 'אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת',
+                c1Title: 'חופשות בטן-גב אקזוטיות', c1Text: 'חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.',
+                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה', c1Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
+                c2Title: 'טיולי הרפתקאות, תרבות וטבע', c2Text: 'מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.',
+                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם', c2Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
+                c3Title: 'חופשות אורבניות ויעדי קיץ מובילים', c3Text: "תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.",
+                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות', c3Btn: 'לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i>',
                 specMainTitle: 'ההתמחויות המיוחדות שלנו', specMainSubtitle: 'כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו',
                 spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
                 spec2Title: 'ירחי דבש וטיולים זוגיים', spec2Text: 'חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.',
@@ -770,7 +844,7 @@
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             },
             en: {
-                navAbout: 'Our Story', navProcess: 'How It Works', navDeals: 'Holiday Packages', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                navAbout: 'Our Story', navProcess: 'How It Works', navDeals: 'Holiday Packages', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 dealsMainTitle: 'Exclusive Holiday & Summer Deals', dealsMainSubtitle: 'Bespoke high-end holiday packages curated meticulously for you',
@@ -790,7 +864,7 @@
                 dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Premium Luxury Hotel in the heart of the Strip',
                 dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Round-trip Flights to Las Vegas Included</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>Experience:</strong> Neon Lights, Mega Shows, Non-stop Entertainment & Luxury</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> Exclusive Deal for an Extraordinary Holiday Getaway</p>',
                 btnOrderVegas: 'Check Availability',
-                modalTitleTxt: 'Check Package Availability', lblFname: 'First Name', lblLname: 'Last Name', lblPhone: 'Phone Number', lblEmail: 'Email Address', btnSubmitTxt: "I am interested, let's talk",
+                modalTitleTxt: 'Check Package Availability', modalSubtitleTxt: 'Leave your details and I will get back to you with a complete offer', lblFname: 'First Name', lblLname: 'Last Name', lblPhone: 'Phone Number', lblEmail: 'Email Address', btnSubmitTxt: "I am interested, let's talk",
                 aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
                 aboutContent: 'Nice to meet you, I am Avi. AdvenHorizon Travels was born out of a deep love for traveling, exploring new cultures, and discovering the most hidden and spectacular spots on the globe. After years of demanding and complex security service as a police investigator and intelligence officer, I decided to take the core values that guided me – ultimate responsibility, precision, strategic planning, and attention to detail – and translate them into my new mission: to manage, plan, and secure your dream vacation with complete peace of mind and total safety.',
                 f1Title: 'First-Hand Recommendations', f1Desc: 'I do not just sell hotels from a catalog. Every destination is curated from real experience, passion, and true love for the field.',
@@ -800,6 +874,13 @@
                 step1Title: 'Discovery & Profiling Call', step1Desc: 'We sync together to thoroughly understand the travelers style, budget, preferred pace, and ultimate destination dreams.',
                 step2Title: 'Tailor-Made Itinerary & Full Booking', step2Desc: 'I construct your complete day-by-day route and handle all necessary reservations - from flights and premium hotels to small logistics.',
                 step3Title: 'Travel with Total Peace of Mind', step3Desc: 'You receive a complete, fully-arranged travel package and enjoy my personal backing and availability for any need during your stay.',
+                destTitle: 'Trending Destinations 2026', destSubtitle: 'We have gathered the most fascinating getaways for an unforgettable experience',
+                c1Title: 'Exotic Tropical Getaways', c1Text: 'Pristine white beaches and luxury resorts in Thailand, Laos, the Maldives, and Zanzibar, offering pure tranquility and an absolute escape.',
+                c1Tag: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Full Premium Custom Experience', c1Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
+                c2Title: 'Adventure, Culture & Nature Expeditions', c2Text: 'Deep cultural journeys into the breathtaking landscapes of Vietnam or magical Japan, blending ancient traditions with futuristic progress.',
+                c2Tag: '<i class="fa fa-compass" style="color: var(--accent-gold);"></i> A Bespoke Expedition Crafted For You', c2Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
+                c3Title: 'Urban Escapes & Top Summer Destinations', c3Text: 'Culture, high-end shopping, and fine dining in New York, Los Angeles, and London, alongside sun-drenched European getaways in Greece, Italy, and Spain.',
+                c3Tag: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Luxury Boutique Care Without Worries', c3Btn: 'WhatsApp Details <i class="fa fa-arrow-dir"></i>',
                 specMainTitle: 'Our Exclusive Specialties', specMainSubtitle: 'Because every style of travel deserves its own unique execution',
                 spec1Title: 'Complex Family Vacations', spec1Text: 'Designing balanced itineraries suitable for both children and adults, with flawless matching of family-focused boutique hotels and attractions.',
                 spec2Title: 'Honeymoons & Romantic Escapes', spec2Text: 'Romantic getaways with an emphasis on premium resorts, unique culinary experiences, and unforgettable moments tailored precisely for the two of you.',
@@ -837,6 +918,7 @@
             setText('nav-about', t.navAbout);
             setText('nav-process', t.navProcess);
             setText('nav-deals', t.navDeals);
+            setText('nav-destinations', t.navDestinations);
             setText('nav-specialties', t.navSpecialties);
             setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
@@ -874,6 +956,7 @@
             setText('label-vegas-person', t.labelVegasPerson);
 
             setText('modal-title-txt', t.modalTitleTxt);
+            setText('modal-subtitle-txt', t.modalSubtitleTxt);
             setText('lbl-fname', t.lblFname);
             setText('lbl-lname', t.lblLname);
             setText('lbl-phone', t.lblPhone);
@@ -897,6 +980,21 @@
             setText('step2-desc', t.step2Desc);
             setText('step3-title', t.step3Title);
             setText('step3-desc', t.step3Desc);
+            
+            setText('dest-title', t.destTitle);
+            setText('dest-subtitle', t.destSubtitle);
+            setText('c1-title', t.c1Title);
+            setText('c1-text', t.c1Text);
+            setText('c1-tag', t.c1Tag, true);
+            setText('c1-btn', t.c1Btn, true);
+            setText('c2-title', t.c2Title);
+            setText('c2-text', t.c2Text);
+            setText('c2-tag', t.c2Tag, true);
+            setText('c2-btn', t.c2Btn, true);
+            setText('c3-title', t.c3Title);
+            setText('c3-text', t.c3Text);
+            setText('c3-tag', t.c3Tag, true);
+            setText('c3-btn', t.c3Btn, true);
             
             setText('spec-main-title', t.specMainTitle);
             setText('spec-main-subtitle', t.specMainSubtitle);
