@@ -119,6 +119,22 @@
         .lang-switch-btn:hover { background-color: var(--primary-blue); color: var(--white); }
         .nav-social-btn-mobile { display: none; }
 
+        .nav-toggle { display: none; background: transparent; border: none; color: var(--primary-blue); font-size: 1.6rem; cursor: pointer; padding: 8px; }
+
+        .mobile-nav { display: none; flex-direction: column; background: var(--white); border-top: 1px solid #edf2f7; padding: 10px 20px 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .mobile-nav.active { max-height: 80vh; overflow-y: auto; }
+        .mobile-nav-links { list-style: none; display: flex; flex-direction: column; }
+        .mobile-nav-links li { border-bottom: 1px solid #f1f5f9; }
+        .mobile-nav-links a { display: block; padding: 14px 4px; text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 1.05rem; }
+        .mobile-nav-socials { display: flex; align-items: center; gap: 12px; padding-top: 16px; }
+
+        @media (max-width: 992px) {
+            .nav-links-container { display: none; }
+            .nav-toggle { display: flex; align-items: center; justify-content: center; }
+            .mobile-nav { display: flex; }
+            .logo-img { height: 70px; }
+        }
+
         /* Hero */
         .hero { background: linear-gradient(rgba(22, 54, 92, 0.65), rgba(22, 54, 92, 0.65)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 20px; }
         .hero h1 { font-family: 'Playfair Display', sans-serif; font-size: 3.2rem; margin-bottom: 5px; letter-spacing: 1px; }
@@ -381,6 +397,85 @@
         .footer-socials { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; }
         .footer-socials a { color: var(--white); transition: var(--transition); text-decoration: none; }
         .footer-socials a:hover { color: var(--accent-gold); }
+
+        /* ===== התאמה מלאה למובייל ===== */
+        @media (max-width: 768px) {
+            /* כלליים */
+            .section-title { font-size: 1.7rem; }
+            .section-subtitle, .about-subtitle { font-size: 0.95rem; margin-bottom: 35px; }
+
+            /* Hero */
+            .hero { height: 55vh; min-height: 380px; padding: 0 16px; }
+            .hero h1 { font-size: 2.1rem; }
+            .hero p { font-size: 1rem; letter-spacing: 1px; }
+            .btn-main { padding: 11px 24px; font-size: 1rem; }
+
+            /* חבילות נופש */
+            .deals-section { padding: 50px 16px; }
+            .deals-grid { gap: 24px; }
+            .deal-gallery-wrapper { height: 200px; }
+            .gallery-arrow { width: 32px; height: 32px; font-size: 12px; }
+            .deal-card-body { padding: 22px; }
+            .deal-card-body h3 { font-size: 1.3rem; }
+            .deal-card-price .amount { font-size: 1.5rem; }
+            .deal-card-bottom { flex-wrap: wrap; gap: 12px; }
+            .btn-deal-order { width: 100%; padding: 12px 22px; }
+
+            /* אודות */
+            .about-section { padding: 50px 16px; }
+            .about-text { padding: 22px; font-size: 1.05rem; }
+            .features-grid { gap: 18px; margin-top: 30px; }
+
+            /* איך זה עובד */
+            .process-section { padding: 50px 16px; }
+            .process-grid { gap: 28px; }
+
+            /* יעדים חמים */
+            .destinations { padding: 50px 16px; }
+
+            /* התמחויות */
+            .specialties-section { padding: 50px 16px; }
+            .specialty-card { padding: 28px 20px; }
+
+            /* מדיניות ביטולים */
+            .policy-section { padding: 50px 16px; }
+            .policy-container { padding: 24px; }
+            .policy-block h3 { font-size: 1.05rem; }
+
+            /* שאלות נפוצות */
+            .faq-section { padding: 50px 16px; }
+            .faq-item { padding: 16px; }
+
+            /* מודל לידים */
+            .modal-card { max-width: 100%; }
+            .modal-header { padding: 18px; }
+            .modal-body { padding: 20px; }
+
+            /* רכיבים צפים */
+            .whatsapp-float { width: 52px; height: 52px; font-size: 26px; bottom: 20px; }
+            body[dir="rtl"] .whatsapp-float { left: 16px; }
+            body[dir="ltr"] .whatsapp-float { right: 16px; }
+            .accessibility-wrapper { bottom: 20px; }
+            body[dir="rtl"] .accessibility-wrapper { right: 16px; }
+            body[dir="ltr"] .accessibility-wrapper { left: 16px; }
+            .accessibility-btn { width: 52px; height: 52px; font-size: 20px; }
+            .accessibility-menu { width: 230px; bottom: 65px; }
+
+            /* פס עוגיות */
+            .cookie-bar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px; }
+            .cookie-text { max-width: 100%; }
+            .cookie-btn { width: 100%; }
+
+            /* פוטר */
+            footer { padding: 30px 16px; }
+            .footer-logo { height: 70px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img { height: 56px; }
+            .hero h1 { font-size: 1.7rem; }
+            .nav-social-icon { width: 34px; height: 34px; font-size: 1.05rem; }
+        }
     </style>
 </head>
 <body id="body-tag" dir="rtl">
@@ -405,6 +500,25 @@
                     <a href="https://www.instagram.com/advenhorizontravels" class="nav-social-icon instagram" target="_blank" title="האינסטגרם שלנו"><i class="fa fa-instagram"></i></a>
                     <button class="lang-switch-btn" onclick="toggleLanguage()" id="lang-btn"><i class="fa fa-globe"></i> English</button>
                 </div>
+            </div>
+            <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="תפריט">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#about" onclick="closeMobileNav()">הסיפור שלנו</a></li>
+                <li><a href="#process" onclick="closeMobileNav()">איך זה עובד</a></li>
+                <li><a href="#deals" onclick="closeMobileNav()">חבילות נופש</a></li>
+                <li><a href="#destinations" onclick="closeMobileNav()">יעדים חמים</a></li>
+                <li><a href="#specialties" onclick="closeMobileNav()">התמחויות</a></li>
+                <li><a href="#policy" onclick="closeMobileNav()">מדיניות ביטולים</a></li>
+                <li><a href="#faq" onclick="closeMobileNav()">שאלות נפוצות</a></li>
+            </ul>
+            <div class="mobile-nav-socials">
+                <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-icon" target="_blank" title="הפייסבוק שלנו"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/advenhorizontravels" class="nav-social-icon instagram" target="_blank" title="האינסטגרם שלנו"><i class="fa fa-instagram"></i></a>
+                <button class="lang-switch-btn" onclick="toggleLanguage()" id="lang-btn-mobile"><i class="fa fa-globe"></i> English</button>
             </div>
         </div>
     </header>
@@ -923,6 +1037,7 @@
             setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
             setText('lang-btn', t.langBtn, true);
+            setText('lang-btn-mobile', t.langBtn, true);
             setText('hero-title', t.heroTitle);
             setText('hero-subtitle', t.heroSubtitle);
             setText('hero-btn', t.heroBtn);
@@ -1084,6 +1199,9 @@
             document.getElementById('cookieBar').classList.remove('show');
         }
 
+        function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('active'); }
+        function closeMobileNav() { document.getElementById('mobileNav').classList.remove('active'); }
+
         function toggleAccMenu() { document.getElementById('accMenu').classList.toggle('active'); }
 
         function accessibleAction(type) {
@@ -1108,7 +1226,10 @@
             var menu = document.getElementById('accMenu');
             var btn = document.getElementById('accBtn');
             var modal = document.getElementById('leadModal');
+            var mobileNav = document.getElementById('mobileNav');
+            var navToggle = document.getElementById('navToggle');
             if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)){ menu.classList.remove('active'); }
+            if (mobileNav && navToggle && mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !navToggle.contains(e.target)){ mobileNav.classList.remove('active'); }
             if (e.target === modal) { closeLeadModal(); }
         });
     </script>
