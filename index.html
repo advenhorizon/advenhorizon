@@ -375,6 +375,9 @@
             flex-grow: 1;
         }
 
+        body[dir="rtl"] .deal-card-body { text-align: right; }
+        body[dir="ltr"] .deal-card-body { text-align: left; }
+
         .deal-card-body h3 {
             color: var(--primary-blue);
             font-size: 1.55rem;
@@ -991,7 +994,7 @@
         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
     </section>
 
-    <!-- סקשן דילים אקסקלוסיביים -->
+    <!-- סקשן דילים אקסקלוסיביים - התוכן הפנימי נשלט כעת דינמית על ידי ה-JS -->
     <section class="deals-section" id="deals">
         <h2 class="section-title" id="deals-main-title">דילים אקסקלוסיביים לחגים ולקיץ</h2>
         <p class="section-subtitle" id="deals-main-subtitle">חבילות פרימיום נבחרות מא' ועד ת' בראש שקט ובמחירים מנצחים</p>
@@ -1001,10 +1004,8 @@
             <div class="deal-block-card">
                 <div class="deal-gallery-wrapper">
                     <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
-                    
                     <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">▶</button>
                     <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">◀</button>
-                    
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
@@ -1020,31 +1021,26 @@
                 </div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-mykonos">חופשת יוקרה בלתי נשכחת במיקונוס</h3>
-                    <div class="deal-card-hotel"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
-                    <div class="deal-card-specs">
-                        <p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p>
-                        <p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> טיסה ישירה (ארקיע - Arkia)</p>
-                        <p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>סוג החדר:</strong> Premium Room, Sea View (Luxury)</p>
-                        <p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודה (ללא טרולי) | ללא העברות</p>
+                    <div class="deal-card-hotel" id="deal-hotel-mykonos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
+                    <div class="deal-card-specs" id="deal-specs-mykonos">
+                        <!-- יוזן דינמית על ידי ה-JS בסנכרון מלא -->
                     </div>
                     <div class="deal-card-bottom">
                         <div class="deal-card-price">
                             <span class="amount">$1,050</span>
                             <span class="label" id="label-per-person">לאדם בחדר זוגי</span>
                         </div>
-                        <button class="btn-deal-order" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
+                        <button class="btn-deal-order" id="btn-order-mykonos" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
                     </div>
                 </div>
             </div>
 
-            <!-- כרטיס 2: פאפוס כשר - כל 7 התמונות האמיתיות שלך שולבו כאן בהצלחה -->
+            <!-- כרטיס 2: פאפוס כשר -->
             <div class="deal-block-card">
                 <div class="deal-gallery-wrapper">
                     <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
-                    
                     <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">▶</button>
                     <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">◀</button>
-                    
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
@@ -1057,19 +1053,16 @@
                 </div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-paphos">נופש משפחתי בסוכות בפאפוס</h3>
-                    <div class="deal-card-hotel"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
-                    <div class="deal-card-specs">
-                        <p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p>
-                        <p><i class="fa fa-users" style="color: var(--accent-gold);"></i> <strong>הרכב:</strong> משפחתי (זוג + 2 ילדים עד גיל 12)</p>
-                        <p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>בסיס אירוח:</strong> לינה וארוחת בוקר כשרה</p>
-                        <p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>חבילה כוללת:</strong> טיסות ישירות ומלון כשר פרימיום</p>
+                    <div class="deal-card-hotel" id="deal-hotel-paphos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
+                    <div class="deal-card-specs" id="deal-specs-paphos">
+                        <!-- יוזן דינמית על ידי ה-JS בסנכרון מלא -->
                     </div>
                     <div class="deal-card-bottom">
                         <div class="deal-card-price">
                             <span class="amount">$3,174</span>
                             <span class="label" id="label-per-family">מחיר כולל למשפחה</span>
                         </div>
-                        <button class="btn-deal-order" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
+                        <button class="btn-deal-order" id="btn-order-paphos" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
                     </div>
                 </div>
             </div>
@@ -1095,19 +1088,16 @@
                 </div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-ayianapa">חופשת פרימיום באיה נאפה</h3>
-                    <div class="deal-card-hotel"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel</div>
-                    <div class="deal-card-specs">
-                        <p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 30.07.2026 - 03.08.2026</p>
-                        <p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל-על (הלוך 16:15, חזור 21:55 ללרנקה)</p>
-                        <p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>חדר:</strong> Superior Room, Sea View (נוף פנורמי לים)</p>
-                        <p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודות לכל נוסע | גישה ישירה לחוף</p>
+                    <div class="deal-card-hotel" id="deal-hotel-ayianapa"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel</div>
+                    <div class="deal-card-specs" id="deal-specs-ayianapa">
+                        <!-- יוזן דינמית על ידי ה-JS בסנכרון מלא -->
                     </div>
                     <div class="deal-card-bottom">
                         <div class="deal-card-price">
                             <span class="amount">$2,400</span>
                             <span class="label" id="label-per-couple">עבור כל החבילה לזוג</span>
                         </div>
-                        <button class="btn-deal-order" onclick="openLeadModal('ayianapa')">לבדיקת זמינות</button>
+                        <button class="btn-deal-order" id="btn-order-ayianapa" onclick="openLeadModal('ayianapa')">לבדיקת זמינות</button>
                     </div>
                 </div>
             </div>
@@ -1116,10 +1106,8 @@
             <div class="deal-block-card">
                 <div class="deal-gallery-wrapper">
                     <span class="deal-card-badge" id="badge-vegas">חול המועד בארה"ב</span>
-                    
                     <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">▶</button>
                     <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">◀</button>
-                    
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
@@ -1133,19 +1121,16 @@
                 </div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-vegas">חול המועד סוכות בלאס וגאס</h3>
-                    <div class="deal-card-hotel"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip</div>
-                    <div class="deal-card-specs">
-                        <p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 24.09.2026 - 02.10.2026</p>
-                        <p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> כולל טיסות הלוך ושוב ללאס וגאס</p>
-                        <p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>חוויה:</strong> עיר האורות, הופעות ענק, בידור ופאר חסר תקדים</p>
-                        <p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> דיל בלעדי לחופשת חג יוצאת דופן</p>
+                    <div class="deal-card-hotel" id="deal-hotel-vegas"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip</div>
+                    <div class="deal-card-specs" id="deal-specs-vegas">
+                        <!-- המפרט יטען בצורה דינמית על פי השפה -->
                     </div>
                     <div class="deal-card-bottom">
                         <div class="deal-card-price">
                             <span class="amount">$2,675</span>
                             <span class="label" id="label-vegas-person">לאדם בחדר זוגי</span>
                         </div>
-                        <button class="btn-deal-order" onclick="openLeadModal('vegas')">לבדיקת זמינות</button>
+                        <button class="btn-deal-order" id="btn-order-vegas" onclick="openLeadModal('vegas')">לבדיקת זמינות</button>
                     </div>
                 </div>
             </div>
@@ -1357,14 +1342,26 @@
 
         var translations = {
             he: {
-                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDeals: 'חבילות נופש', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 btnFacebook: '<i class="fa fa-facebook"></i> הפייסבוק שלנו', btnInstagram: '<i class="fa fa-instagram"></i> האינסטגרם שלנו', langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 dealsMainTitle: 'דילים אקסקלוסיביים לחגים ולקיץ', dealsMainSubtitle: 'המבצעים החמים ביותר לחופשות פרימיום מפנקות לזמן מוגבל',
                 badgeMykonos: 'חול המועד סוכות', dealTitleMykonos: 'חופשת יוקרה בלתי נשכחת במיקונוס', labelPerPerson: 'לאדם בחדר זוגי',
+                dealHotelMykonos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa',
+                dealSpecsMykonos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> טיסה ישירה (ארקיע - Arkia)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>סוג החדר:</strong> Premium Room, Sea View (Luxury)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודה (ללא טרולי) | ללא העברות</p>',
+                btnOrderMykonos: 'לבדיקת זמינות',
                 badgePaphos: 'נופש משפחתי כשר', dealTitlePaphos: 'נופש משפחתי בסוכות בפאפוס', labelPerFamily: 'מחיר כולל למשפחה',
+                dealHotelPaphos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel',
+                dealSpecsPaphos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-users" style="color: var(--accent-gold);"></i> <strong>הרכב:</strong> משפחתי (זוג + 2 ילדים עד גיל 12)</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>בסיס אירוח:</strong> לינה וארוחת בוקר כשרה</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>חבילה כוללת:</strong> טיסות ישירות ומלון כשר פרימיום</p>',
+                btnOrderPaphos: 'לבדיקת זמינות',
                 badgeAyianapa: 'דיל זוגי קיץ 2026', dealTitleAyianapa: 'חופשת פרימיום באיה נאפה', labelPerCouple: 'עבור כל החבילה לזוג',
+                dealHotelAyianapa: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel',
+                dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל-על (הלוך 16:15, חזור 21:55 ללרנקה)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>חדר:</strong> Superior Room, Sea View (נוף פנורמי לים)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודות לכל נוסע | גישה ישירה לחוף</p>',
+                btnOrderAyianapa: 'לבדיקת זמינות',
                 badgeVegas: 'חול המועד בארה"ב', dealTitleVegas: 'חול המועד סוכות בלאס וגאס', labelVegasPerson: 'לאדם בחדר זוגי',
+                dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip',
+                dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> כולל טיסות הלוך ושוב ללאס וגאס</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>חוויה:</strong> עיר האורות, הופעות ענק, בידור ופאר חסר תקדים</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> דיל בלעדי לחופשת חג יוצאת דופן</p>',
+                btnOrderVegas: 'לבדיקת זמינות',
                 modalTitleTxt: 'בדיקת זמינות חבילה', modalSubtitleTxt: 'השאירו פרטים ואחזור אליכם בהקדם עם הצעה מלאה',
                 lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
@@ -1403,14 +1400,26 @@
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             },
             en: {
-                navAbout: 'Our Story', navProcess: 'How It Works', navDestinations: 'Top Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                navAbout: 'Our Story', navProcess: 'How It Works', navDeals: 'Holiday Packages', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 btnFacebook: '<i class="fa fa-facebook"></i> Our Facebook', btnInstagram: '<i class="fa fa-instagram"></i> Our Instagram', langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 dealsMainTitle: 'Exclusive Holiday & Summer Deals', dealsMainSubtitle: 'Bespoke high-end holiday packages curated meticulously for you',
                 badgeMykonos: 'Sukkot in Greece', dealTitleMykonos: 'Luxury Getaway in Mykonos', labelPerPerson: 'per person in double room',
+                dealHotelMykonos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa',
+                dealSpecsMykonos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Direct Flight (Arkia)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Room Type:</strong> Premium Room, Sea View (Luxury)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> Includes Checked Bag (No Trolley) | Transfers Excluded</p>',
+                btnOrderMykonos: 'Check Availability',
                 badgePaphos: 'Kosher Family Stay', dealTitlePaphos: 'Family Sukkot in Paphos', labelPerFamily: 'total price per family',
+                dealHotelPaphos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel',
+                dealSpecsPaphos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-users" style="color: var(--accent-gold);"></i> <strong>Guests:</strong> Family (Couple + 2 Children under 12)</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>Board Basis:</strong> Kosher Bed & Breakfast</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Package Includes:</strong> Direct Flights & Premium Kosher Hotel</p>',
+                btnOrderPaphos: 'Check Availability',
                 badgeAyianapa: 'Summer Romantic Deal', dealTitleAyianapa: 'Premium Couple Escape to Ayia Napa', labelPerCouple: 'final price per couple',
+                dealHotelAyianapa: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel',
+                dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El-Al Flights to Larnaca (Out 16:15, Return 21:55)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Room:</strong> Superior Room, Sea View (Breathtaking Panoramic View)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> Luggage Included for All Passengers | Direct Beach Access</p>',
+                btnOrderAyianapa: 'Check Availability',
                 badgeVegas: 'Holiday in the USA', dealTitleVegas: 'Sukkot Holidays in Las Vegas', labelVegasPerson: 'per person in double room',
+                dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Premium Luxury Hotel in the heart of the Strip',
+                dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Round-trip Flights to Las Vegas Included</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>Experience:</strong> Neon Lights, Mega Shows, Non-stop Entertainment & Luxury</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> Exclusive Deal for an Extraordinary Holiday Getaway</p>',
+                btnOrderVegas: 'Check Availability',
                 modalTitleTxt: 'Check Package Availability', modalSubtitleTxt: 'Leave your details and I will get back to you with a complete offer',
                 lblFname: 'First Name', lblLname: 'Last Name', lblPhone: 'Phone Number', lblEmail: 'Email Address', btnSubmitTxt: "I am interested, let's talk",
                 aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
@@ -1469,7 +1478,7 @@
 
             setText('nav-about', t.navAbout);
             setText('nav-process', t.navProcess);
-            setText('nav-destinations', t.navDestinations);
+            setText('nav-deals', t.navDeals);
             setText('nav-specialties', t.navSpecialties);
             setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
@@ -1480,19 +1489,36 @@
             setText('hero-subtitle', t.heroSubtitle);
             setText('hero-btn', t.heroBtn);
             
+            // עדכון רכיבי החבילות בצורה דינמית ומסונכרנת
             setText('deals-main-title', t.dealsMainTitle);
             setText('deals-main-subtitle', t.dealsMainSubtitle);
             setText('badge-mykonos', t.badgeMykonos);
             setText('deal-title-mykonos', t.dealTitleMykonos);
-            setText('label-per-person', t.labelPerPerson);
+            setText('deal-hotel-mykonos', t.dealHotelMykonos, true);
+            setText('deal-specs-mykonos', t.dealSpecsMykonos, true);
+            setText('btn-order-mykonos', t.btnOrderMykonos);
+            
             setText('badge-paphos', t.badgePaphos);
             setText('deal-title-paphos', t.dealTitlePaphos);
-            setText('label-per-family', t.labelPerFamily);
+            setText('deal-hotel-paphos', t.dealHotelPaphos, true);
+            setText('deal-specs-paphos', t.dealSpecsPaphos, true);
+            setText('btn-order-paphos', t.btnOrderPaphos);
+            
             setText('badge-ayianapa', t.badgeAyianapa);
             setText('deal-title-ayianapa', t.dealTitleAyianapa);
-            setText('label-per-couple', t.labelPerCouple);
+            setText('deal-hotel-ayianapa', t.dealHotelAyianapa, true);
+            setText('deal-specs-ayianapa', t.dealSpecsAyianapa, true);
+            setText('btn-order-ayianapa', t.btnOrderAyianapa);
+            
             setText('badge-vegas', t.badgeVegas);
             setText('deal-title-vegas', t.dealTitleVegas);
+            setText('deal-hotel-vegas', t.dealHotelVegas, true);
+            setText('deal-specs-vegas', t.dealSpecsVegas, true);
+            setText('btn-order-vegas', t.btnOrderVegas);
+            
+            setText('label-per-person', t.labelPerPerson);
+            setText('label-per-family', t.labelPerFamily);
+            setText('label-per-couple', t.labelPerCouple);
             setText('label-vegas-person', t.labelVegasPerson);
 
             setText('modal-title-txt', t.modalTitleTxt);
@@ -1639,6 +1665,12 @@
                     document.getElementById('cookieBar').classList.add('show');
                 }, 1500);
             }
+            // הרצה ראשונית כדי להזריק את תוכן המפרטים בכרטיסים לפי שפת ברירת המחדל (עברית)
+            var t = translations[currentLang];
+            document.getElementById('deal-specs-mykonos').innerHTML = t.dealSpecsMykonos;
+            document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
+            document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
+            document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
         });
 
         window.addEventListener('click', function(e){   
