@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <style>
+        html { font-size: 86%; }
         :root {
             --primary-blue: #16365c;
             --accent-gold: #cfa24b;
@@ -112,15 +113,46 @@
         .logo-img { height: 115px; width: auto; object-fit: contain; }
         .nav-links-container { display: flex; align-items: center; gap: 25px; }
         .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links li { }
         .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 1.05rem; transition: var(--transition); }
         .nav-links a:hover { color: var(--accent-gold); }
         .nav-right-side { display: flex; align-items: center; gap: 12px; }
+
+        .nav-dropdown { position: relative; padding-bottom: 14px; margin-bottom: -14px; }
+        .nav-dropdown-label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .nav-dropdown-label .fa-chevron-down { font-size: 0.7rem; transition: var(--transition); }
+        .nav-dropdown:hover .fa-chevron-down, .nav-dropdown:focus-within .fa-chevron-down { transform: rotate(180deg); }
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--card-shadow);
+            border-radius: 10px;
+            min-width: 130px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 1001;
+            margin-top: 0;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: flex; }
+        .nav-dropdown-menu a { padding: 9px 14px; border-radius: 6px; text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem; white-space: nowrap; transition: var(--transition); }
+        .nav-dropdown-menu a:hover { background-color: var(--light-bg); color: var(--accent-gold); }
         .nav-social-icon { width: 38px; height: 38px; background-color: var(--light-bg); color: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; text-decoration: none; transition: var(--transition); border: 1px solid #edf2f7; }
         .nav-social-icon:hover { background-color: var(--primary-blue); color: var(--white); transform: translateY(-2px); }
         .nav-social-icon.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: var(--white); }
         .lang-switch-btn { background-color: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
         .lang-switch-btn:hover { background-color: var(--primary-blue); color: var(--white); }
         .nav-social-btn-mobile { display: none; }
+
+        /* התאמות לגרסה האנגלית - מילים ארוכות יותר דורשות גופן ומרווחים מעט קטנים יותר */
+        body[dir="ltr"] .nav-links-container { gap: 18px; }
+        body[dir="ltr"] .nav-links { gap: 15px; }
+        body[dir="ltr"] .nav-links a { font-size: 0.92rem; }
+        body[dir="ltr"] .nav-dropdown-label { gap: 4px; }
+        body[dir="ltr"] .lang-switch-btn { font-size: 0.85rem; padding: 6px 12px; }
 
         .nav-toggle { display: none; background: transparent; border: none; color: var(--primary-blue); font-size: 1.6rem; cursor: pointer; padding: 8px; }
 
@@ -131,7 +163,7 @@
         .mobile-nav-links a { display: block; padding: 14px 4px; text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 1.05rem; }
         .mobile-nav-socials { display: flex; align-items: center; gap: 12px; padding-top: 16px; }
 
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             .nav-links-container { display: none; }
             .nav-toggle { display: flex; align-items: center; justify-content: center; }
             .mobile-nav { display: flex; }
@@ -157,9 +189,9 @@
         .deal-gallery-container::-webkit-scrollbar { display: none; }
         .deal-gallery-img { min-width: 100%; height: 100%; background-size: cover; background-position: center; scroll-snap-align: start; flex-shrink: 0; }
         
-        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(22, 54, 92, 0.75); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.2); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: var(--transition); }
+        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(22, 54, 92, 0.75); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.2); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: var(--transition); direction: ltr; unicode-bidi: bidi-override; }
         .gallery-arrow:hover { background: var(--accent-gold); }
-        .g-arrow-prev { right: 10px; } .g-arrow-next { left: 10px; }
+        .g-arrow-right { right: 10px; } .g-arrow-left { left: 10px; }
         
         .deal-card-badge { position: absolute; top: 15px; z-index: 5; background-color: var(--accent-gold); color: var(--white); padding: 4px 14px; font-weight: 700; font-size: 0.85rem; border-radius: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
         body[dir="rtl"] .deal-card-badge { right: 15px; } body[dir="ltr"] .deal-card-badge { left: 15px; }
@@ -492,7 +524,14 @@
                 <ul class="nav-links">
                     <li><a href="#about" id="nav-about">הסיפור שלנו</a></li>
                     <li><a href="#process" id="nav-process">איך זה עובד</a></li>
-                    <li><a href="#deals" id="nav-deals">חבילות נופש</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#deals-summer" class="nav-dropdown-label"><span id="nav-deals-label">חבילות נופש</span> <i class="fa fa-chevron-down"></i></a>
+                        <div class="nav-dropdown-menu">
+                            <a href="#deals-summer" id="nav-deals-summer">קיץ</a>
+                            <a href="#deals-holidays" id="nav-deals-holidays">חגים</a>
+                            <a href="#deals-winter" id="nav-deals-winter">חורף</a>
+                        </div>
+                    </li>
                     <li><a href="#destinations" id="nav-destinations">יעדים חמים</a></li>
                     <li><a href="#specialties" id="nav-specialties">התמחויות</a></li>
                     <li><a href="#policy" id="nav-policy">מדיניות ביטולים</a></li>
@@ -510,13 +549,15 @@
         </div>
         <div class="mobile-nav" id="mobileNav">
             <ul class="mobile-nav-links">
-                <li><a href="#about" onclick="closeMobileNav()">הסיפור שלנו</a></li>
-                <li><a href="#process" onclick="closeMobileNav()">איך זה עובד</a></li>
-                <li><a href="#deals" onclick="closeMobileNav()">חבילות נופש</a></li>
-                <li><a href="#destinations" onclick="closeMobileNav()">יעדים חמים</a></li>
-                <li><a href="#specialties" onclick="closeMobileNav()">התמחויות</a></li>
-                <li><a href="#policy" onclick="closeMobileNav()">מדיניות ביטולים</a></li>
-                <li><a href="#faq" onclick="closeMobileNav()">שאלות נפוצות</a></li>
+                <li><a href="#about" id="mnav-about" onclick="closeMobileNav()">הסיפור שלנו</a></li>
+                <li><a href="#process" id="mnav-process" onclick="closeMobileNav()">איך זה עובד</a></li>
+                <li><a href="#deals-summer" id="mnav-deals-summer" onclick="closeMobileNav()">קיץ</a></li>
+                <li><a href="#deals-holidays" id="mnav-deals-holidays" onclick="closeMobileNav()">חגים</a></li>
+                <li><a href="#deals-winter" id="mnav-deals-winter" onclick="closeMobileNav()">חורף</a></li>
+                <li><a href="#destinations" id="mnav-destinations" onclick="closeMobileNav()">יעדים חמים</a></li>
+                <li><a href="#specialties" id="mnav-specialties" onclick="closeMobileNav()">התמחויות</a></li>
+                <li><a href="#policy" id="mnav-policy" onclick="closeMobileNav()">מדיניות ביטולים</a></li>
+                <li><a href="#faq" id="mnav-faq" onclick="closeMobileNav()">שאלות נפוצות</a></li>
             </ul>
             <div class="mobile-nav-socials">
                 <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-icon" target="_blank" title="הפייסבוק שלנו"><i class="fa fa-facebook"></i></a>
@@ -532,80 +573,17 @@
         <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
     </section>
 
-    <section class="deals-section" id="deals">
-        <h2 class="section-title" id="deals-main-title">דילים חמים לחגים ולקיץ</h2>
-        <p class="section-subtitle" id="deals-main-subtitle">חבילות פרימיום נבחרות מא' ועד ת' בראש שקט ובמחירים מנצחים</p>
+    <section class="deals-section" id="deals-summer">
+        <h2 class="section-title" id="deals-summer-title">קיץ של חוף, שקט וכחול אינסופי</h2>
+        <p class="section-subtitle" id="deals-summer-subtitle">חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה</p>
         <div class="deals-grid">
-            
-            <!-- כרטיס 1: מיקונוס -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424826.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424853.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129557766.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601132.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600959.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601215.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600950.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129560364.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-mykonos">חופשת יוקרה בלתי נשכחת במיקונוס</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-mykonos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
-                    <div class="deal-card-specs" id="deal-specs-mykonos"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$1,050</span>
-                            <span class="label" id="label-per-person">לאדם בחדר זוגי</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-mykonos" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- כרטיס 2: פאפוס -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 6.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-paphos">נופש משפחתי בסוכות בפאפוס</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-paphos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
-                    <div class="deal-card-specs" id="deal-specs-paphos"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$3,174</span>
-                            <span class="label" id="label-per-family">מחיר כולל למשפחה</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-paphos" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- כרטיס 3: איה נאפה -->
+            <!-- כרטיס: איה נאפה -->
             <div class="deal-block-card">
                 <span class="deal-card-badge" id="badge-ayianapa">דיל זוגי קיץ 2026</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('איה נאפה.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('איה נאפה 1.jpg');"></div>
@@ -634,12 +612,84 @@
                 </div>
             </div>
 
-            <!-- כרטיס 4: לאס וגאס -->
+        </div>
+    </section>
+
+    <!-- חגים -->
+    <section class="deals-section" id="deals-holidays">
+        <h2 class="section-title" id="deals-holidays-title">השנה, החג נראה אחרת</h2>
+        <p class="section-subtitle" id="deals-holidays-subtitle">מהבירה הבווארית ועד עיר האורות - חבילות נבחרות לימי החג שלכם</p>
+        <div class="deals-grid">
+            
+            <!-- כרטיס: מיקונוס -->
+            <div class="deal-block-card">
+                <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734424826.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734424853.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('129557766.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88601132.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88600959.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88601215.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88600950.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('129560364.jpg');"></div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-mykonos">חופשת יוקרה בלתי נשכחת במיקונוס</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-mykonos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
+                    <div class="deal-card-specs" id="deal-specs-mykonos"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,050</span>
+                            <span class="label" id="label-per-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-mykonos" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס: פאפוס -->
+            <div class="deal-block-card">
+                <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 6.jpg');"></div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-paphos">נופש משפחתי בסוכות בפאפוס</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-paphos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
+                    <div class="deal-card-specs" id="deal-specs-paphos"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$3,174</span>
+                            <span class="label" id="label-per-family">מחיר כולל למשפחה</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-paphos" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס: לאס וגאס -->
             <div class="deal-block-card">
                 <span class="deal-card-badge" id="badge-vegas">חול המועד בארה"ב</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-prev" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <button class="gallery-arrow g-arrow-next" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
@@ -661,6 +711,85 @@
                             <span class="label" id="label-vegas-person">לאדם בחדר זוגי</span>
                         </div>
                         <button class="btn-deal-order" id="btn-order-vegas" onclick="openLeadModal('vegas')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס: מינכן -->
+            <div class="deal-block-card">
+                <span class="deal-card-badge" id="badge-munich">אוקטוברפסט 2026</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 6.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 7.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 8.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 9.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 10.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 11.jpg');"></div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-munich">פסטיבל הבירה במינכן 2026</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-munich"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Holiday Inn Munich - City Centre</div>
+                    <div class="deal-card-specs" id="deal-specs-munich"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$2,216</span>
+                            <span class="label" id="label-munich-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-munich" onclick="openLeadModal('munich')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- חורף -->
+    <section class="deals-section" id="deals-winter">
+        <h2 class="section-title" id="deals-winter-title">קסם של חורף אירופאי</h2>
+        <p class="section-subtitle" id="deals-winter-subtitle">רחובות מוארים, שווקי חג ואווירה שמרגישה כמו גלויה - בעיר העתיקה ביותר באירופה</p>
+        <div class="deals-grid">
+
+            <!-- כרטיס: פראג -->
+            <div class="deal-block-card">
+                <span class="deal-card-badge" id="badge-prague">כריסטמס 2026</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('פראג 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 6.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 7.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 8.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 9.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 10.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 11.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 12.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 13.jpg');"></div>
+                    </div>
+                </div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-prague">חופשת כריסטמס קסומה בפראג</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-prague"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> MOODs Charles Bridge</div>
+                    <div class="deal-card-specs" id="deal-specs-prague"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,184</span>
+                            <span class="label" id="label-prague-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-prague" onclick="openLeadModal('prague')">לבדיקת זמינות</button>
                     </div>
                 </div>
             </div>
@@ -902,15 +1031,19 @@
             mykonos: { he: "מיקונוס, יוון (סוכות) | Royal Myconian Resort | $1,050 לאדם", en: "Mykonos, Greece (Sukkot) | Royal Myconian Resort | $1,050 pp" },
             paphos: { he: "פאפוס, קפריסין (סוכות משפחתי) | Blue Lagoon Kosher | $3,174 למשפחה", en: "Paphos, Cyprus (Sukkot Family) | Blue Lagoon Kosher | $3,174 per family" },
             ayianapa: { he: "איה נאפה, קפריסין (קיץ זוגי) | Okeanos Beach Boutique | $2,400 לזוג", en: "Ayia Napa, Cyprus (Summer Couple) | Okeanos Beach Boutique | $2,400 per couple" },
-            vegas: { he: "לאס וגאס, ארה\"ב (סוכות) | חופשת פרימיום בעיר האורות | $2,675 לאדם", en: "Las Vegas, USA (Sukkot) | Premium Vacation | $2,675 pp" }
+            vegas: { he: "לאס וגאס, ארה\"ב (סוכות) | חופשת פרימיום בעיר האורות | $2,675 לאדם", en: "Las Vegas, USA (Sukkot) | Premium Vacation | $2,675 pp" },
+            munich: { he: "מינכן, גרמניה (אוקטוברפסט 2026) | Holiday Inn Munich - City Centre | $2,216 לאדם", en: "Munich, Germany (Oktoberfest 2026) | Holiday Inn Munich - City Centre | $2,216 pp" },
+            prague: { he: "פראג, צ'כיה (כריסטמס 2026) | MOODs Charles Bridge | $1,184 לאדם", en: "Prague, Czech Republic (Christmas 2026) | MOODs Charles Bridge | $1,184 pp" }
         };
 
         var translations = {
             he: {
-                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDeals: 'חבילות נופש', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
-                dealsMainTitle: 'דילים חמים לחגים ולקיץ', dealsMainSubtitle: 'חבילות פרימיום נבחרות מא\' ועד ת\' בראש שקט ובמחירים מנצחים',
+                dealsSummerTitle: 'קיץ של חוף, שקט וכחול אינסופי', dealsSummerSubtitle: 'חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה',
+                dealsHolidaysTitle: 'השנה, החג נראה אחרת', dealsHolidaysSubtitle: 'מהבירה הבווארית ועד עיר האורות - חבילות נבחרות לימי החג שלכם',
+                dealsWinterTitle: 'קסם של חורף אירופאי', dealsWinterSubtitle: 'רחובות מוארים, שווקי חג ואווירה שמרגישה כמו גלויה - בעיר העתיקה ביותר באירופה',
                 badgeMykonos: 'חול המועד סוכות', dealTitleMykonos: 'חופשת יוקרה בלתי נשכחת במיקונוס', labelPerPerson: 'לאדם בחדר זוגי',
                 dealHotelMykonos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa',
                 dealSpecsMykonos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> טיסה ישירה (ארקיע - Arkia)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>סוג החדר:</strong> Premium Room, Sea View (Luxury)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודה (ללא טרולי) | ללא העברות</p>',
@@ -924,8 +1057,12 @@
                 dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל-על (הלוך 16:15, חזור 21:55 ללרנקה)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>חדר:</strong> Superior Room, Sea View (נוף פנורמי לים)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודות לכל נוסע | גישה ישירה לחוף</p>',
                 btnOrderAyianapa: 'לבדיקת זמינות',
                 badgeVegas: 'חול המועד בארה"ב', dealTitleVegas: 'חול המועד סוכות בלאס וגאס', labelVegasPerson: 'לאדם בחדר זוגי',
+                badgeMunich: 'אוקטוברפסט 2026', dealTitleMunich: 'פסטיבל הבירה במינכן 2026', dealHotelMunich: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Holiday Inn Munich - City Centre', labelMunichPerson: 'לאדם בחדר זוגי',
+                badgePrague: 'כריסטמס 2026', dealTitlePrague: 'חופשת כריסטמס קסומה בפראג', dealHotelPrague: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> MOODs Charles Bridge', labelPraguePerson: 'לאדם בחדר זוגי',
                 dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip',
                 dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> כולל טיסות הלוך ושוב ללאס וגאס</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>חוויה:</strong> עיר האורות, הופעות ענק, בידור ופאר חסר תקדים</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> דיל בלעדי לחופשת חג יוצאת דופן</p>',
+                dealSpecsMunich: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> Lufthansa | הלוך 07:00, חזור 11:10 (כולל מזוודות)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>מלון:</strong> כ-20 דק׳ נסיעה בתחבורה ציבורית ממתחם הפסטיבל (לינה + ארוחת בוקר)</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> כולל כניסה לאחד הפסטיבלים המבוקשים בעולם</p>',
+                dealSpecsPrague: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 03.12.2026 - 07.12.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> Smart Wings | הלוך 05:35, חזור 12:45 (המחיר כולל כבודה)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>מלון:</strong> כולל ארוחת בוקר, אפשרות לביטול חינם עד 01.12.2026</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> חופשת חג מולד קסומה בלב העיר העתיקה</p>',
                 btnOrderVegas: 'לבדיקת זמינות',
                 modalTitleTxt: 'בדיקת זמינות חבילה', modalSubtitleTxt: 'השאירו פרטים ואחזור אליכם עם הצעה מלאה', lblFname: 'שם פרטי', lblLname: 'שם משפחה', lblPhone: 'מספר טלפון', lblEmail: 'כתובת אימייל', btnSubmitTxt: 'אני מעוניין/ת, דברו איתי',
                 aboutTitle: 'הסיפור מאחורי האופק', aboutSubtitle: 'איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?',
@@ -961,10 +1098,12 @@
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
             },
             en: {
-                navAbout: 'Our Story', navProcess: 'How It Works', navDeals: 'Holiday Packages', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
-                dealsMainTitle: 'Exclusive Holiday & Summer Deals', dealsMainSubtitle: 'Bespoke high-end holiday packages curated meticulously for you',
+                dealsSummerTitle: 'A Summer of Beaches, Calm & Endless Blue', dealsSummerSubtitle: 'Turquoise waters, unforgettable sunsets, and a few days off you will remember all year',
+                dealsHolidaysTitle: 'This Year, the Holiday Feels Different', dealsHolidaysSubtitle: 'From the Bavarian beer halls to the City of Lights - handpicked packages for your holiday break',
+                dealsWinterTitle: 'European Winter Magic', dealsWinterSubtitle: 'Glowing streets, festive markets, and an atmosphere straight out of a postcard - in Europe\'s most beautiful old town',
                 badgeMykonos: 'Sukkot in Greece', dealTitleMykonos: 'Luxury Getaway in Mykonos', labelPerPerson: 'per person in double room',
                 dealHotelMykonos: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa',
                 dealSpecsMykonos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Direct Flight (Arkia)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Room Type:</strong> Premium Room, Sea View (Luxury)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> Includes Checked Bag (No Trolley) | Transfers Excluded</p>',
@@ -978,8 +1117,12 @@
                 dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El-Al Flights to Larnaca (Out 16:15, Return 21:55)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Room:</strong> Superior Room, Sea View (Breathtaking Panoramic View)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> Luggage Included for All Passengers | Direct Beach Access</p>',
                 btnOrderAyianapa: 'Check Availability',
                 badgeVegas: 'Holiday in the USA', dealTitleVegas: 'Sukkot Holidays in Las Vegas', labelVegasPerson: 'per person in double room',
+                badgeMunich: 'Oktoberfest 2026', dealTitleMunich: 'Munich Beer Festival 2026', dealHotelMunich: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Holiday Inn Munich - City Centre', labelMunichPerson: 'per person in double room',
+                badgePrague: 'Christmas 2026', dealTitlePrague: 'A Magical Christmas Getaway in Prague', dealHotelPrague: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> MOODs Charles Bridge', labelPraguePerson: 'per person in double room',
                 dealHotelVegas: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Premium Luxury Hotel in the heart of the Strip',
                 dealSpecsVegas: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 24.09.2026 - 02.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Round-trip Flights to Las Vegas Included</p><p><i class="fa fa-star" style="color: var(--accent-gold);"></i> <strong>Experience:</strong> Neon Lights, Mega Shows, Non-stop Entertainment & Luxury</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> Exclusive Deal for an Extraordinary Holiday Getaway</p>',
+                dealSpecsMunich: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Lufthansa | Departure 07:00, Return 11:10 (Checked Bag Included)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Hotel:</strong> ~20 min by public transport from the festival grounds (B&B)</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> Includes Entry to One of the World\'s Most Sought-After Festivals</p>',
+                dealSpecsPrague: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 03.12.2026 - 07.12.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Smart Wings | Departure 05:35, Return 12:45 (Baggage Included)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Hotel:</strong> Includes Breakfast, Free Cancellation Until 01.12.2026</p><p><i class="fa fa-check-circle" style="color: var(--accent-gold);"></i> A Magical Christmas Getaway in the Heart of the Old Town</p>',
                 btnOrderVegas: 'Check Availability',
                 modalTitleTxt: 'Check Package Availability', modalSubtitleTxt: 'Leave your details and I will get back to you with a complete offer', lblFname: 'First Name', lblLname: 'Last Name', lblPhone: 'Phone Number', lblEmail: 'Email Address', btnSubmitTxt: "I am interested, let's talk",
                 aboutTitle: 'The Story Behind The Horizon', aboutSubtitle: 'How security discipline transforms into a passion for global adventures?',
@@ -1034,19 +1177,35 @@
 
             setText('nav-about', t.navAbout);
             setText('nav-process', t.navProcess);
-            setText('nav-deals', t.navDeals);
+            setText('nav-deals-label', t.navDealsLabel);
+            setText('nav-deals-summer', t.navDealsSummer);
+            setText('nav-deals-holidays', t.navDealsHolidays);
+            setText('nav-deals-winter', t.navDealsWinter);
             setText('nav-destinations', t.navDestinations);
             setText('nav-specialties', t.navSpecialties);
             setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
+            setText('mnav-about', t.navAbout);
+            setText('mnav-process', t.navProcess);
+            setText('mnav-deals-summer', t.navDealsSummer);
+            setText('mnav-deals-holidays', t.navDealsHolidays);
+            setText('mnav-deals-winter', t.navDealsWinter);
+            setText('mnav-destinations', t.navDestinations);
+            setText('mnav-specialties', t.navSpecialties);
+            setText('mnav-policy', t.navPolicy);
+            setText('mnav-faq', t.navFaq);
             setText('lang-btn', t.langBtn, true);
             setText('lang-btn-mobile', t.langBtn, true);
             setText('hero-title', t.heroTitle);
             setText('hero-subtitle', t.heroSubtitle);
             setText('hero-btn', t.heroBtn);
             
-            setText('deals-main-title', t.dealsMainTitle);
-            setText('deals-main-subtitle', t.dealsMainSubtitle);
+            setText('deals-summer-title', t.dealsSummerTitle);
+            setText('deals-summer-subtitle', t.dealsSummerSubtitle);
+            setText('deals-holidays-title', t.dealsHolidaysTitle);
+            setText('deals-holidays-subtitle', t.dealsHolidaysSubtitle);
+            setText('deals-winter-title', t.dealsWinterTitle);
+            setText('deals-winter-subtitle', t.dealsWinterSubtitle);
             
             setText('badge-mykonos', t.badgeMykonos);
             setText('deal-title-mykonos', t.dealTitleMykonos);
@@ -1067,6 +1226,20 @@
             setText('deal-title-vegas', t.dealTitleVegas);
             setText('deal-hotel-vegas', t.dealHotelVegas, true);
             setText('btn-order-vegas', t.btnOrderVegas);
+
+            setText('badge-munich', t.badgeMunich);
+            setText('deal-title-munich', t.dealTitleMunich);
+            setText('deal-hotel-munich', t.dealHotelMunich, true);
+            setText('deal-specs-munich', t.dealSpecsMunich, true);
+            setText('btn-order-munich', t.btnOrderVegas);
+            setText('label-munich-person', t.labelMunichPerson);
+
+            setText('badge-prague', t.badgePrague);
+            setText('deal-title-prague', t.dealTitlePrague);
+            setText('deal-hotel-prague', t.dealHotelPrague, true);
+            setText('deal-specs-prague', t.dealSpecsPrague, true);
+            setText('btn-order-prague', t.btnOrderVegas);
+            setText('label-prague-person', t.labelPraguePerson);
             
             setText('label-per-person', t.labelPerPerson);
             setText('label-per-family', t.labelPerFamily);
@@ -1154,15 +1327,51 @@
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
             document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
+            document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
+            document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
         }
 
-        function scrollGallery(buttonEl, direction) {
+        function scrollGallery(buttonEl, screenDirection) {
+            // screenDirection: -1 = show the image to the left, 1 = show the image to the right.
+            // Uses on-screen geometry instead of scrollLeft sign tricks, because browsers
+            // disagree on the sign of scrollLeft in RTL containers. The current position is
+            // cached on the container so repeated clicks don't re-read geometry mid-animation.
             var wrapper = buttonEl.parentElement;
             var container = wrapper.querySelector('.deal-gallery-container');
             if (!container) return;
-            var scrollAmount = container.clientWidth;
-            var dirMultiplier = document.documentElement.dir === 'rtl' ? -1 : 1;
-            container.scrollBy({ left: direction * scrollAmount * dirMultiplier, behavior: 'smooth' });
+            var images = Array.prototype.slice.call(container.querySelectorAll('.deal-gallery-img'));
+            var count = images.length;
+            if (!count) return;
+
+            var visualOrder = container.__galleryVisualOrder;
+            if (!visualOrder) {
+                var withPos = images.map(function (img, idx) {
+                    return { idx: idx, left: img.getBoundingClientRect().left };
+                });
+                withPos.sort(function (a, b) { return a.left - b.left; });
+                visualOrder = withPos.map(function (o) { return o.idx; });
+                container.__galleryVisualOrder = visualOrder;
+            }
+
+            var pos = container.__galleryPos;
+            if (pos === undefined) {
+                var containerRect = container.getBoundingClientRect();
+                var containerCenter = containerRect.left + containerRect.width / 2;
+                var currentIdx = 0, bestDist = Infinity;
+                images.forEach(function (img, idx) {
+                    var r = img.getBoundingClientRect();
+                    var center = r.left + r.width / 2;
+                    var dist = Math.abs(center - containerCenter);
+                    if (dist < bestDist) { bestDist = dist; currentIdx = idx; }
+                });
+                pos = visualOrder.indexOf(currentIdx);
+            }
+
+            pos = ((pos + screenDirection) % count + count) % count; // wrap around both ends
+            container.__galleryPos = pos;
+            var targetIdx = visualOrder[pos];
+
+            images[targetIdx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
         }
 
         function openLeadModal(dealKey) {
@@ -1220,6 +1429,8 @@
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
             document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
+            document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
+            document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
         });
 
         window.addEventListener('click', function(e){   
