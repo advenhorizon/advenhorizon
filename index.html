@@ -13,10 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdvenHorizon Travels | מעבר לטיול הרגיל</title>
-    
+
     <link rel="icon" type="image/jpeg" href="710253020_122102817603337169_4083674208247026205_n.jpg">
     <link rel="apple-touch-icon" href="710253020_122102817603337169_4083674208247026205_n.jpg">
-    
+
     <meta name="description" content="AdvenHorizon Travels - תכנון חופשות פרימיום, טיולי משפחות, ירח דבש וטיולי עומק בהתאמה אישית עם אבי. בואו לתכנן את המסע הבא שלכם בראש שקט.">
     <meta property="og:title" content="AdvenHorizon Travels | מעבר לטיול הרגיל">
     <meta property="og:description" content="חופשות פרימיום ותכנון מסעות בהתאמה אישית מא' ועד ת' עם אבי. Beyond Ordinary Travel.">
@@ -25,492 +25,606 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Rubik:wght@400;500;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <style>
-        html { font-size: 86%; }
         :root {
-            --primary-blue: #16365c;
-            --accent-gold: #cfa24b;
-            --light-bg: #f8f9fa;
-            --text-dark: #2d3748;
-            --white: #ffffff;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --blue:        #0057B8;
+            --blue-dark:   #003E8A;
+            --blue-mid:    #0067D5;
+            --blue-light:  #E8F1FB;
+            --blue-xlight: #F0F6FF;
+            --sky:         #38A3F5;
+            --white:       #FFFFFF;
+            --off-white:   #F8FAFC;
+            --ink:         #0B1F3A;
+            --ink-soft:    #1D3557;
+            --slate:       #5A6E85;
+            --line:        rgba(0,87,184,0.12);
+            --accent-gold: #0057B8;
+            --shadow-sm:   0 2px 12px rgba(0,62,138,0.10);
+            --shadow-md:   0 8px 32px rgba(0,62,138,0.14);
+            --shadow-lg:   0 24px 60px rgba(0,62,138,0.18);
+            --transition:  all 0.3s cubic-bezier(.4,0,.2,1);
+            --radius-card: 16px;
+            --radius-btn:  100px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Heebo', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--white); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        html { font-size: 100%; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* הגדרות נגישות */
-        body.accessible-large-text { font-size: 1.15rem; }
-        body.accessible-large-text p { font-size: 1.1rem; }
-        body.accessible-large-text h1 { font-size: 4rem; }
-        body.accessible-large-text h2 { font-size: 2.8rem; }
-        body.accessible-large-text h3 { font-size: 1.6rem; }
-        
-        body.accessible-contrast { background-color: #000000 !important; color: #ffffff !important; }
-        body.accessible-contrast .about-section, 
-        body.accessible-contrast .specialties-section, 
-        body.accessible-contrast .faq-section, 
-        body.accessible-contrast .policy-section, 
-        body.accessible-contrast .faq-item, 
-        body.accessible-contrast .card, 
-        body.accessible-contrast .feature-item, 
-        body.accessible-contrast .specialty-card, 
-        body.accessible-contrast header, 
-        body.accessible-contrast .about-text, 
-        body.accessible-contrast .policy-container, 
-        body.accessible-contrast .deals-section, 
-        body.accessible-contrast .deal-block-card,
-        body.accessible-contrast .process-section { background-color: #111111 !important; color: #ffffff !important; border-color: #ffffff !important; }
-        body.accessible-contrast a, body.accessible-contrast h1, body.accessible-contrast h2, body.accessible-contrast h3, body.accessible-contrast i { color: #ffff00 !important; }
-
-        body.accessible-links a {
-            text-decoration: underline !important;
-            font-weight: bold !important;
-            background-color: rgba(207, 162, 75, 0.2) !important;
-        }
-
-        h1, h2, h3 { font-family: 'Rubik', sans-serif; }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary-blue);
-            font-size: 2.3rem;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-gold);
-            margin: 10px auto 0;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #718096;
-            margin-bottom: 50px;
-            font-size: 1.05rem;
-        }
-
-        .about-subtitle {
-            text-align: center;
-            color: #718096;
-            margin-bottom: 50px;
-            font-size: 1.05rem;
-        }
-
-        header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; top: 0; z-index: 1000; }
-        @media (min-width: 993px) { header { position: sticky; } }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 5px 20px; }
-        .logo-area { display: flex; align-items: center; }
-        .logo-img { height: 115px; width: auto; object-fit: contain; }
-        .nav-links-container { display: flex; align-items: center; gap: 25px; }
-        .nav-links { display: flex; list-style: none; gap: 25px; }
-        .nav-links li { }
-        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 1.05rem; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-gold); }
-        .nav-right-side { display: flex; align-items: center; gap: 12px; }
-
-        .nav-dropdown { position: relative; padding-bottom: 14px; margin-bottom: -14px; }
-        .nav-dropdown-label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
-        .nav-dropdown-label .fa-chevron-down { font-size: 0.7rem; transition: var(--transition); }
-        .nav-dropdown:hover .fa-chevron-down, .nav-dropdown:focus-within .fa-chevron-down { transform: rotate(180deg); }
-        .nav-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
+        body {
+            font-family: 'Heebo', sans-serif;
             background: var(--white);
-            box-shadow: var(--card-shadow);
-            border-radius: 10px;
-            min-width: 130px;
-            padding: 8px;
-            display: none;
-            flex-direction: column;
-            gap: 2px;
-            z-index: 1001;
-            margin-top: 0;
-        }
-        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display: flex; }
-        .nav-dropdown-menu a { padding: 9px 14px; border-radius: 6px; text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 0.95rem; white-space: nowrap; transition: var(--transition); }
-        .nav-dropdown-menu a:hover { background-color: var(--light-bg); color: var(--accent-gold); }
-        .nav-social-icon { width: 38px; height: 38px; background-color: var(--light-bg); color: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; text-decoration: none; transition: var(--transition); border: 1px solid #edf2f7; }
-        .nav-social-icon:hover { background-color: var(--primary-blue); color: var(--white); transform: translateY(-2px); }
-        .nav-social-icon.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: var(--white); }
-        .lang-switch-btn { background-color: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
-        .lang-switch-btn:hover { background-color: var(--primary-blue); color: var(--white); }
-        .nav-social-btn-mobile { display: none; }
-
-        /* התאמות לגרסה האנגלית - מילים ארוכות יותר דורשות גופן ומרווחים מעט קטנים יותר */
-        body[dir="ltr"] .nav-links-container { gap: 18px; }
-        body[dir="ltr"] .nav-links { gap: 15px; }
-        body[dir="ltr"] .nav-links a { font-size: 0.92rem; }
-        body[dir="ltr"] .nav-dropdown-label { gap: 4px; }
-        body[dir="ltr"] .lang-switch-btn { font-size: 0.85rem; padding: 6px 12px; }
-
-        .nav-toggle { display: none; background: transparent; border: none; color: var(--primary-blue); font-size: 1.6rem; cursor: pointer; padding: 8px; }
-
-        .mobile-nav { display: none; flex-direction: column; background: var(--white); border-top: 1px solid #edf2f7; padding: 10px 20px 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-        .mobile-nav.active { max-height: 80vh; overflow-y: auto; }
-        .mobile-nav-links { list-style: none; display: flex; flex-direction: column; }
-        .mobile-nav-links li { border-bottom: 1px solid #f1f5f9; }
-        .mobile-nav-links a { display: block; padding: 14px 4px; text-decoration: none; color: var(--primary-blue); font-weight: 600; font-size: 1.05rem; }
-        .mobile-nav-socials { display: flex; align-items: center; gap: 12px; padding-top: 16px; }
-
-        @media (max-width: 768px) {
-            .nav-links-container { display: none; }
-            .nav-toggle { display: flex; align-items: center; justify-content: center; }
-            .mobile-nav { display: flex; }
-            .logo-img { height: 70px; }
+            color: var(--ink);
+            line-height: 1.65;
+            overflow-x: hidden;
         }
 
-        /* Hero */
-        .hero { background: linear-gradient(rgba(22, 54, 92, 0.65), rgba(22, 54, 92, 0.65)), url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 0 20px; }
-        .hero h1 { font-family: 'Playfair Display', sans-serif; font-size: 3.2rem; margin-bottom: 5px; letter-spacing: 1px; }
-        .hero p { font-family: 'Heebo', sans-serif; font-size: 1.25rem; margin-bottom: 25px; color: #f0f4f8; font-weight: 300; letter-spacing: 2px; }
-        .btn-main { background-color: var(--accent-gold); color: var(--white); padding: 12px 30px; text-decoration: none; font-size: 1.1rem; font-weight: 600; border-radius: 50px; box-shadow: 0 4px 15px rgba(207, 162, 75, 0.4); transition: var(--transition); }
-        .btn-main:hover { background-color: #b3893b; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(207, 162, 75, 0.6); }
-
-        /* חבילות נופש */
-        .deals-section { padding: 80px 20px; background-color: #f8fafc; }
-        .deals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto; }
-        @media (min-width: 992px) { .deals-grid { grid-template-columns: repeat(2, 1fr); } }
-        
-        .deal-block-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; border: 1px solid #e2e8f0; transition: var(--transition); position: relative; }
-        .deal-block-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
-        .deal-gallery-wrapper { position: relative; width: 100%; height: 240px; overflow: hidden; background-color: #0f172a; }
-        .deal-gallery-container { width: 100%; height: 100%; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
-        .deal-gallery-container::-webkit-scrollbar { display: none; }
-        .deal-gallery-img { min-width: 100%; height: 100%; background-size: cover; background-position: center; scroll-snap-align: start; flex-shrink: 0; }
-        
-        .gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(22, 54, 92, 0.75); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.2); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 10; transition: var(--transition); direction: ltr; unicode-bidi: bidi-override; }
-        .gallery-arrow:hover { background: var(--accent-gold); }
-        .g-arrow-right { right: 10px; } .g-arrow-left { left: 10px; }
-        
-        .deal-card-badge { position: absolute; top: 15px; z-index: 5; background-color: var(--accent-gold); color: var(--white); padding: 4px 14px; font-weight: 700; font-size: 0.85rem; border-radius: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-        body[dir="rtl"] .deal-card-badge { right: 15px; } body[dir="ltr"] .deal-card-badge { left: 15px; }
-        
-        .deal-card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-        body[dir="rtl"] .deal-card-body { text-align: right; } body[dir="ltr"] .deal-card-body { text-align: left; }
-        .deal-card-body h3 { color: var(--primary-blue); font-size: 1.55rem; margin-bottom: 5px; }
-        .deal-card-hotel { font-size: 1.05rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 15px; }
-        .deal-card-hotel i { margin-left: 4px; } body[dir="ltr"] .deal-card-hotel i { margin-left: 0; margin-right: 4px; }
-        
-        .deal-card-specs { margin-bottom: 20px; font-size: 0.95rem; color: #4a5568; flex-grow: 1; }
-        .deal-card-specs p { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .deal-card-bottom { border-top: 1px solid #edf2f7; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .deal-card-price { display: flex; flex-direction: column; }
-        .deal-card-price .amount { font-size: 1.8rem; font-weight: 700; color: var(--primary-blue); line-height: 1.1; }
-        .deal-card-price .label { font-size: 0.8rem; color: #718096; }
-        .btn-deal-order { background-color: var(--primary-blue); color: var(--white); padding: 10px 22px; border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
-        .btn-deal-order:hover { background-color: var(--accent-gold); }
-
-        /* פופ-אפ טופס לידים */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(11, 23, 38, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-card {
-            background: var(--white);
-            width: 100%;
-            max-width: 500px;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            overflow: hidden;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 20px;
-            position: relative;
-        }
-        body[dir="rtl"] .modal-header { text-align: right; }
-        body[dir="ltr"] .modal-header { text-align: left; }
-
-        .modal-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .modal-header p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            background: transparent;
-            border: none;
-            color: var(--white);
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-        body[dir="rtl"] .modal-close { left: 20px; }
-        body[dir="ltr"] .modal-close { right: 20px; }
-
-        .modal-close:hover { opacity: 1; }
-
-        .modal-body {
-            padding: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-        body[dir="rtl"] .form-group { text-align: right; }
-        body[dir="ltr"] .form-group { text-align: left; }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(207, 162, 75, 0.15);
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05rem;
+        h1,h2,h3,.display-face {
+            font-family: 'Poppins', 'Heebo', sans-serif;
             font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
+            letter-spacing: -0.02em;
+        }
+        .mono, .mono-num { font-family: 'Heebo', sans-serif; font-weight: 600; }
+
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+        button { font-family: inherit; }
+
+        /* ===== Accessibility ===== */
+        body.accessible-large-text { font-size: 1.18rem; }
+        body.accessible-large-text p { font-size: 1.12rem; }
+        body.accessible-large-text h1 { font-size: 3.6rem; }
+        body.accessible-large-text h2 { font-size: 2.5rem; }
+        body.accessible-large-text h3 { font-size: 1.5rem; }
+        body.accessible-contrast { background-color: #000 !important; color: #fff !important; }
+        body.accessible-contrast .about-section,body.accessible-contrast .specialties-section,body.accessible-contrast .faq-section,body.accessible-contrast .policy-section,body.accessible-contrast .faq-item,body.accessible-contrast .card,body.accessible-contrast .feature-item,body.accessible-contrast .specialty-card,body.accessible-contrast header,body.accessible-contrast .about-text,body.accessible-contrast .policy-block,body.accessible-contrast .deals-section,body.accessible-contrast .ticket-card,body.accessible-contrast .process-section { background-color:#111!important;color:#fff!important;border-color:#fff!important; }
+        body.accessible-contrast a,body.accessible-contrast h1,body.accessible-contrast h2,body.accessible-contrast h3,body.accessible-contrast i { color:#82c4ff!important; }
+        body.accessible-links a { text-decoration:underline!important;font-weight:bold!important;background-color:rgba(0,87,184,0.14)!important; }
+
+        /* ===== Shared ===== */
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase;
+            color: var(--blue); font-weight: 700; margin-bottom: 14px;
+        }
+        .eyebrow::before { content:''; width:24px; height:2px; background:var(--blue); display:inline-block; border-radius:2px; }
+        body[dir="rtl"] .eyebrow::before { order:2; }
+
+        .section-title { font-size: clamp(1.9rem,3.2vw,2.6rem); color: var(--ink); margin-bottom: 16px; line-height: 1.18; }
+        .section-subtitle { color: var(--slate); margin-bottom: 36px; font-size: 1.06rem; max-width: 620px; }
+        .section-head { text-align:center; display:flex; flex-direction:column; align-items:center; }
+        .section-head .eyebrow { align-self:center; }
+        .section-pad { padding:100px 20px; }
+        .wrap { max-width:1200px; margin:0 auto; }
+
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 1px 0 var(--line), var(--shadow-sm);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; }
+        .logo-area { display:flex; align-items:center; gap:10px; }
+        .logo-img { height:46px; width:auto; object-fit:contain; border-radius:50%; }
+        .logo-wordmark { font-family:'Heebo',sans-serif; font-weight:800; font-size:1.15rem; color:var(--blue-dark); white-space:nowrap; }
+        .logo-wordmark span { color:var(--sky); }
+
+        .nav-links-container { display:flex; align-items:center; gap:24px; }
+        .nav-links { display:flex; list-style:none; gap:6px; align-items:center; }
+        .nav-links li { display:flex; align-items:center; }
+        .nav-links a { text-decoration:none; color:var(--ink-soft); font-weight:600; font-size:0.92rem; transition:var(--transition); position:relative; padding:8px 12px; border-radius:8px; }
+        .nav-links a:not(.nav-dropdown-label):hover { background:var(--blue-xlight); color:var(--blue); }
+        .nav-links a:not(.nav-dropdown-label):after { display:none; }
+        .nav-right-side { display:flex; align-items:center; gap:12px; }
+
+        .nav-dropdown { position:relative; padding-bottom:14px; margin-bottom:-14px; display:flex; align-items:center; }
+        .nav-dropdown-label { display:flex; align-items:center; gap:5px; cursor:pointer; }
+        .nav-dropdown-label .fa-chevron-down { font-size:0.65rem; transition:var(--transition); color:var(--blue); }
+        .nav-dropdown:hover .fa-chevron-down,.nav-dropdown:focus-within .fa-chevron-down { transform:rotate(180deg); }
+        .nav-dropdown-menu { position:absolute; top:100%; right:0; background:var(--white); box-shadow:var(--shadow-lg); border-radius:14px; min-width:150px; padding:8px; display:none; flex-direction:column; gap:2px; z-index:1001; margin-top:0; border:1px solid var(--line); }
+        .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu { display:flex; }
+        .nav-dropdown-menu a { padding:10px 14px; border-radius:8px; text-decoration:none; color:var(--ink); font-weight:600; font-size:0.92rem; white-space:nowrap; transition:var(--transition); }
+        .nav-dropdown-menu a:after { display:none!important; }
+        .nav-dropdown-menu a:hover { background:var(--blue-xlight); color:var(--blue); }
+
+        .nav-social-icon { width:36px; height:36px; border:1.5px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.05rem; text-decoration:none; color:var(--slate); transition:var(--transition); }
+        .nav-social-icon:hover { background:var(--blue); color:var(--white); border-color:var(--blue); }
+        .lang-switch-btn { background:var(--blue); border:none; color:var(--white); padding:9px 18px; border-radius:var(--radius-btn); font-weight:700; font-size:0.84rem; cursor:pointer; transition:var(--transition); display:flex; align-items:center; gap:6px; }
+        .lang-switch-btn:hover { background:var(--blue-dark); transform:translateY(-1px); box-shadow:var(--shadow-md); }
+        .nav-social-btn-mobile { display:none; }
+
+        body[dir="ltr"] .nav-links-container { gap:18px; }
+        body[dir="ltr"] .nav-links { gap:4px; }
+        body[dir="ltr"] .nav-links a { font-size:0.86rem; }
+        body[dir="ltr"] .lang-switch-btn { font-size:0.78rem; padding:9px 14px; }
+
+        .nav-toggle { display:none; background:transparent; border:none; color:var(--ink); font-size:1.5rem; cursor:pointer; padding:8px; }
+        .mobile-nav { display:none; flex-direction:column; background:var(--white); border-top:1px solid var(--line); padding:10px 24px 24px; max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+        .mobile-nav.active { max-height:80vh; overflow-y:auto; }
+        .mobile-nav-links { list-style:none; display:flex; flex-direction:column; }
+        .mobile-nav-links li { border-bottom:1px solid var(--line); }
+        .mobile-nav-links a { display:block; padding:15px 4px; text-decoration:none; color:var(--ink); font-weight:600; font-size:1.05rem; }
+        .mobile-nav-socials { display:flex; align-items:center; gap:12px; padding-top:18px; }
+
+        @media(max-width:768px) {
+            .nav-links-container { display:none; }
+            .nav-toggle { display:flex; align-items:center; justify-content:center; }
+            .mobile-nav { display:flex; }
+            .logo-img { height:38px; }
+            .logo-wordmark { font-size:0.95rem; }
         }
 
-        .btn-submit:hover {
-            background-color: var(--accent-gold);
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 80px 20px 60px;
+            text-align: center;
+            color: #ffffff;
+            background: linear-gradient(160deg, #002F6C 0%, #0050AA 45%, #0080D6 80%, #1A9EEC 100%);
+        }
+        .hero-bg-photo {
+            position: absolute; inset: 0; z-index: 0;
+            background: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            opacity: 0.28; pointer-events: none;
+        }
+        .hero-orb {
+            position: absolute; border-radius: 50%; z-index: 1; pointer-events: none;
+            animation: floatOrb 8s ease-in-out infinite;
+        }
+        .hero-orb-1 { width:500px; height:500px; background:radial-gradient(circle,rgba(56,163,245,0.22) 0%,transparent 70%); top:-100px; left:-100px; }
+        .hero-orb-2 { width:350px; height:350px; background:radial-gradient(circle,rgba(255,255,255,0.10) 0%,transparent 70%); bottom:60px; right:80px; animation-delay:-3s; }
+        .hero-orb-3 { width:250px; height:250px; background:radial-gradient(circle,rgba(56,163,245,0.15) 0%,transparent 70%); top:40%; left:60%; animation-delay:-5s; }
+        @keyframes floatOrb {
+            0%,100% { transform:translateY(0px) scale(1); }
+            50% { transform:translateY(-20px) scale(1.04); }
+        }
+        .hero-inner { position:relative; z-index:2; max-width:800px; margin:0 auto; }
+        .hero-kicker {
+            font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase;
+            color:rgba(255,255,255,0.9); margin-bottom:18px;
+            display:inline-flex; align-items:center; gap:8px; justify-content:center; font-weight:700;
+            background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+            border-radius:100px; padding:8px 20px;
+        }
+        .hero-kicker .fa-plane { transform:rotate(-45deg); color:#82c9ff; }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1; margin-bottom: 12px;
+            color: #ffffff; text-shadow: 0 4px 24px rgba(0,20,60,0.5); font-weight: 900;
+        }
+        .hero p#hero-subtitle {
+            font-size:0.86rem; letter-spacing:0.18em; color:rgba(255,255,255,0.78);
+            font-weight:600; margin-bottom:28px;
+        }
+        .hero-cta-wrap { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+        .btn-hero-primary {
+            background: #ffffff; color: var(--blue); padding:12px 26px; text-decoration:none;
+            font-size:0.88rem; font-weight:800; border-radius:var(--radius-btn);
+            transition:var(--transition); display:inline-flex; align-items:center; gap:8px;
+            white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,0.22);
+        }
+        .btn-hero-primary:hover { transform:translateY(-2px); box-shadow:0 14px 32px rgba(0,0,0,0.28); }
+        .btn-hero-primary .fa-whatsapp { font-size:1.05rem; color:#25D366; }
+        .btn-hero-secondary {
+            background: rgba(255,255,255,0.15); color: #ffffff;
+            border: 1.5px solid rgba(255,255,255,0.45); padding:11px 22px; text-decoration:none;
+            font-size:0.86rem; font-weight:700; border-radius:var(--radius-btn);
+            transition:var(--transition); display:inline-flex; align-items:center; gap:7px; white-space:nowrap;
+        }
+        .btn-hero-secondary:hover { background:rgba(255,255,255,0.25); transform:translateY(-2px); }
+
+        /* bp-wrapper & search widget */
+        .bp-wrapper {
+            background: var(--white);
+            padding: 24px 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .search-widget {
+            width: min(1100px, 96vw);
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 56px rgba(0,62,138,0.18), 0 0 0 1px rgba(0,87,184,0.1);
+            display: flex; align-items: stretch;
+            position: relative; z-index: 10;
+            overflow: hidden;
+        }
+        .sw-field {
+            flex: 1; display: flex; flex-direction: column;
+            justify-content: center; padding: 16px 20px; gap: 5px;
+            min-width: 0;
+        }
+        .sw-field-pax { flex: 0 0 130px; }
+        .sw-label {
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--slate);
+            display: flex; align-items: center; gap: 5px;
+        }
+        .sw-label i { color: var(--blue); }
+        .sw-select-wrap { position: relative; }
+        .sw-select {
+            width: 100%; border: none; outline: none; background: transparent;
+            font-size: 0.9rem; font-weight: 700; color: var(--ink);
+            font-family: 'Heebo', sans-serif; cursor: pointer;
+            appearance: none; -webkit-appearance: none;
+            padding-left: 20px; padding-right: 0;
+        }
+        body[dir="rtl"] .sw-select { padding-right: 20px; padding-left: 0; }
+        .sw-chevron {
+            position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            color: var(--blue); font-size: 0.7rem; pointer-events: none;
+        }
+        body[dir="rtl"] .sw-chevron { left: auto; right: 0; }
+        .sw-date {
+            border: none; outline: none; background: transparent;
+            font-size: 0.9rem; font-weight: 700; color: var(--ink);
+            font-family: 'Heebo', sans-serif; cursor: pointer; width: 100%;
+        }
+        .sw-date::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.5; }
+        .sw-pax-wrap {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .sw-pax-wrap span { font-size: 1.1rem; font-weight: 800; color: var(--ink); min-width: 20px; text-align: center; }
+        .sw-pax-btn {
+            width: 28px; height: 28px; border-radius: 50%;
+            border: 1.5px solid rgba(0,87,184,0.3); background: transparent;
+            color: var(--blue); font-size: 1rem; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); line-height: 1;
+        }
+        .sw-pax-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+        .sw-divider {
+            width: 1px; background: var(--line);
+            flex-shrink: 0; margin: 12px 0;
+        }
+        .sw-search-btn {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+            color: #fff; border: none; padding: 0 28px;
+            font-size: 0.9rem; font-weight: 800; cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            transition: var(--transition); font-family: 'Heebo', sans-serif;
+            white-space: nowrap;
+        }
+        .sw-search-btn:hover { background: var(--blue-dark); }
+
+        @media(max-width:900px) {
+            .search-widget {
+                flex-wrap: wrap; margin: -20px auto 0;
+                border-radius: 16px;
+            }
+            .sw-field { flex: 1 1 calc(50% - 1px); padding: 14px 16px; border-bottom: 1px solid var(--line); }
+            .sw-field-pax { flex: 1 1 calc(50% - 1px); }
+            .sw-divider { display: none; }
+            .sw-search-btn { width: 100%; padding: 16px; justify-content: center; font-size: 1rem; border-radius: 0 0 16px 16px; }
+        }
+        @media(max-width:768px) {
+            .sw-field { flex: 1 1 100%; }
         }
 
-        /* אודות הסיפור שלנו */
-        .about-section { background-color: var(--light-bg); padding: 80px 20px; }
-        .about-container { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .about-text { font-size: 1.15rem; color: #4a5568; max-width: 800px; margin: 0 auto 40px; background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        body[dir="rtl"] .about-text { text-align: right; border-right: 5px solid var(--accent-gold); }
-        body[dir="ltr"] .about-text { text-align: left; border-left: 5px solid var(--accent-gold); }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 25px; margin-top: 40px; }
-        .feature-item { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: var(--transition); text-align: center; }
-        .feature-item i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 15px; }
-        .feature-item h3 { color: var(--primary-blue); margin-bottom: 10px; font-size: 1.25rem; }
+        /* ===== ABOUT ===== */
+        .about-section { padding: 56px 20px 72px; background:var(--white); }
+        @media(max-width:768px) { .about-section { padding-top: 40px; } }
+        .about-container { max-width:900px; margin:0 auto; text-align:center; }
+        .about-section .section-title { font-size:clamp(2rem,3.5vw,2.6rem); }
+        .about-subtitle { text-align:center; color:var(--slate); margin-bottom:44px; font-size:1.08rem; }
+        .about-text {
+            font-size:1.22rem; line-height:1.8; color:var(--ink-soft); margin-bottom:64px;
+            padding:36px 40px; background:var(--blue-xlight); border-radius:20px;
+            border-right:4px solid var(--blue); text-align:right; position:relative;
+        }
+        body[dir="ltr"] .about-text { border-right:none; border-left:4px solid var(--blue); text-align:left; }
+        .about-text::before { display:none; }
 
-        /* איך זה עובד */
-        .process-section { padding: 80px 20px; background-color: var(--white); text-align: center; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .process-step { padding: 30px; text-align: center; }
-        .step-number { width: 50px; height: 50px; background-color: var(--primary-blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 4px 10px rgba(22, 54, 92, 0.2); }
-        .process-step h3 { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 12px; }
-        .process-step p { color: #64748b; font-size: 1rem; }
-
-        /* יעדים חמים */
-        .destinations { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 30px; }
-        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--card-shadow); transition: var(--transition); }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
-        .card-img { height: 240px; background-size: cover; background-position: center; }
-        .card-content { padding: 25px; }
-        .card-title { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 10px; }
-        .card-text { color: #4a5568; font-size: 0.95rem; margin-bottom: 20px; min-height: 72px; }
-        .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf2f7; padding-top: 15px; }
-        .price { color: var(--accent-gold); font-weight: 600; font-size: 1.05rem; margin-left: 15px; }
-        body[dir="ltr"] .price { margin-left: 0; margin-right: 15px; }
-        .btn-card { color: var(--primary-blue); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 5px; transition: var(--transition); white-space: nowrap; }
-        .btn-card:hover { color: var(--accent-gold); gap: 8px; }
-        body[dir="rtl"] .fa-arrow-dir::before { content: "\f053"; }
-        body[dir="ltr"] .fa-arrow-dir::before { content: "\f054"; }
-        @media (max-width: 992px) {
-            .grid { grid-template-columns: 1fr; }
-            .card-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
+        .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; text-align:center; }
+        .feature-item {
+            padding:36px 28px; background:var(--white); border-radius:16px;
+            border:1.5px solid var(--line); transition:var(--transition);
+        }
+        .feature-item:hover { border-color:var(--blue); box-shadow:var(--shadow-md); transform:translateY(-4px); }
+        .feature-item i { font-size:1.6rem; color:var(--blue); margin-bottom:16px; display:block; }
+        .feature-item h3 { font-size:1.1rem; margin-bottom:10px; }
+        .feature-item p { color:var(--slate); font-size:0.94rem; }
+        @media(max-width:860px) {
+            .features-grid { grid-template-columns:1fr; }
+            .about-text { font-size:1.1rem; padding:28px 24px; }
         }
 
-        /* התמחויות */
-        .specialties-section { background-color: var(--light-bg); padding: 80px 20px; }
-        .specialties-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .specialty-card { background: var(--white); border-radius: 12px; padding: 35px 25px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: var(--transition); border-bottom: 4px solid transparent; }
-        .specialty-card:hover { transform: translateY(-5px); border-bottom-color: var(--accent-gold); box-shadow: var(--card-shadow); }
-        .specialty-icon { width: 70px; height: 70px; background-color: #f1f5f9; color: var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; }
-        .specialty-card h3 { color: var(--primary-blue); font-size: 1.25rem; margin-bottom: 12px; }
-        .specialty-card p { color: #4a5568; font-size: 0.95rem; }
-
-        /* מדיניות ביטולים */
-        .policy-section { padding: 80px 20px; background-color: var(--light-bg); }
-        .policy-container { max-width: 900px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: var(--card-shadow); }
-        .policy-block { margin-bottom: 25px; }
-        body[dir="rtl"] .policy-block { text-align: right; } body[dir="ltr"] .policy-block { text-align: left; }
-        .policy-block:last-child { margin-bottom: 0; }
-        .policy-block h3 { color: var(--primary-blue); font-size: 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .policy-block p { color: #4a5568; font-size: 1rem; }
-        body[dir="rtl"] .policy-block p { padding-right: 28px; } body[dir="ltr"] .policy-block p { padding-left: 28px; }
-
-        /* שאלות נפוצות */
-        .faq-section { padding: 80px 20px; background-color: var(--white); }
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        .faq-item { background-color: var(--light-bg); border-radius: 8px; margin-bottom: 15px; padding: 20px; transition: var(--transition); }
-        .faq-item h3 { color: var(--primary-blue); font-size: 1.15rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .faq-item p { color: #4a5568; font-size: 0.95rem; }
-        body[dir="rtl"] .faq-item p { padding-right: 24px; } body[dir="ltr"] .faq-item p { padding-left: 24px; }
-
-        /* רכיבים צפים */
-        .whatsapp-float { position: fixed; bottom: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition); }
-        body[dir="rtl"] .whatsapp-float { left: 30px; right: auto; } body[dir="ltr"] .whatsapp-float { right: 30px; left: auto; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-
-        .accessibility-wrapper { position: fixed; bottom: 30px; z-index: 1001; }
-        body[dir="rtl"] .accessibility-wrapper { right: 30px; left: auto; } body[dir="ltr"] .accessibility-wrapper { left: 30px; right: auto; }
-        .accessibility-btn { background-color: var(--primary-blue); color: var(--white); width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-        .accessibility-btn:hover { background-color: var(--accent-gold); transform: scale(1.05); }
-        
-        .accessibility-menu { position: absolute; bottom: 75px; background: var(--white); width: 260px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.15); padding: 20px; display: none; flex-direction: column; gap: 12px; border: 1px solid #edf2f7; }
-        body[dir="rtl"] .accessibility-menu { right: 0; left: auto; } body[dir="ltr"] .accessibility-menu { left: 0; right: auto; }
-        .accessibility-menu.active { display: flex; }
-        .accessibility-menu h4 { color: var(--primary-blue); font-size: 1.1rem; margin-bottom: 5px; border-bottom: 2px solid var(--light-bg); padding-bottom: 8px; }
-        body[dir="rtl"] .accessibility-menu h4 { text-align: right; } body[dir="ltr"] .accessibility-menu h4 { text-align: left; }
-        
-        .acc-option { background: var(--light-bg); border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--text-dark); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; transition: var(--transition); width: 100%; }
-        body[dir="rtl"] .acc-option { text-align: right; } body[dir="ltr"] .acc-option { text-align: left; }
-        .acc-option:hover { background: #e2e8f0; color: var(--primary-blue); }
-
-        .cookie-bar { position: fixed; bottom: 0; left: 0; right: 0; background-color: #1a202c; color: var(--white); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 1002; box-shadow: 0 -4px 15px rgba(0,0,0,0.15); transform: translateY(100%); transition: transform 0.4s ease; }
-        .cookie-bar.show { transform: translateY(0); }
-        .cookie-text { font-size: 0.95rem; max-width: 75%; }
-        body[dir="rtl"] .cookie-text { text-align: right; } body[dir="ltr"] .cookie-text { text-align: left; }
-        .cookie-btn { background-color: var(--accent-gold); color: var(--white); border: none; padding: 8px 24px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
-        .cookie-btn:hover { background-color: #b3893b; }
-
-        footer { background-color: var(--primary-blue); color: var(--white); padding: 40px 20px; text-align: center; margin-top: 0; position: relative; z-index: 10; }
-        .footer-logo { height: 90px; margin-bottom: 20px; width: auto; object-fit: contain; }
-        .footer-text { margin-bottom: 20px; opacity: 0.8; font-size: 0.95rem; }
-        .footer-socials { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; }
-        .footer-socials a { color: var(--white); transition: var(--transition); text-decoration: none; }
-        .footer-socials a:hover { color: var(--accent-gold); }
-
-        /* ===== התאמה מלאה למובייל ===== */
-        @media (max-width: 768px) {
-            /* כלליים */
-            .section-title { font-size: 1.7rem; }
-            .section-subtitle, .about-subtitle { font-size: 0.95rem; margin-bottom: 35px; }
-
-            /* Hero */
-            .hero { height: 55vh; min-height: 380px; padding: 0 16px; }
-            .hero h1 { font-size: 2.1rem; }
-            .hero p { font-size: 1rem; letter-spacing: 1px; }
-            .btn-main { padding: 11px 24px; font-size: 1rem; }
-
-            /* חבילות נופש */
-            .deals-section { padding: 50px 16px; }
-            .deals-grid { gap: 24px; }
-            .deal-gallery-wrapper { height: 200px; }
-            .gallery-arrow { width: 32px; height: 32px; font-size: 12px; }
-            .deal-card-body { padding: 22px; }
-            .deal-card-body h3 { font-size: 1.3rem; }
-            .deal-card-price .amount { font-size: 1.5rem; }
-            .deal-card-bottom { flex-wrap: wrap; gap: 12px; }
-            .btn-deal-order { width: 100%; padding: 12px 22px; }
-
-            /* אודות */
-            .about-section { padding: 50px 16px; }
-            .about-text { padding: 22px; font-size: 1.05rem; }
-            .features-grid { gap: 18px; margin-top: 30px; }
-
-            /* איך זה עובד */
-            .process-section { padding: 50px 16px; }
-            .process-grid { gap: 28px; }
-
-            /* יעדים חמים */
-            .destinations { padding: 50px 16px; }
-
-            /* התמחויות */
-            .specialties-section { padding: 50px 16px; }
-            .specialty-card { padding: 28px 20px; }
-
-            /* מדיניות ביטולים */
-            .policy-section { padding: 50px 16px; }
-            .policy-container { padding: 24px; }
-            .policy-block h3 { font-size: 1.05rem; }
-
-            /* שאלות נפוצות */
-            .faq-section { padding: 50px 16px; }
-            .faq-item { padding: 16px; }
-
-            /* מודל לידים */
-            .modal-card { max-width: 100%; }
-            .modal-header { padding: 18px; }
-            .modal-body { padding: 20px; }
-
-            /* רכיבים צפים */
-            .whatsapp-float { width: 52px; height: 52px; font-size: 26px; bottom: 20px; }
-            body[dir="rtl"] .whatsapp-float { left: 16px; }
-            body[dir="ltr"] .whatsapp-float { right: 16px; }
-            .accessibility-wrapper { bottom: 20px; }
-            body[dir="rtl"] .accessibility-wrapper { right: 16px; }
-            body[dir="ltr"] .accessibility-wrapper { left: 16px; }
-            .accessibility-btn { width: 52px; height: 52px; font-size: 20px; }
-            .accessibility-menu { width: 230px; bottom: 65px; }
-
-            /* פס עוגיות */
-            .cookie-bar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px; }
-            .cookie-text { max-width: 100%; }
-            .cookie-btn { width: 100%; }
-
-            /* פוטר */
-            footer { padding: 30px 16px; }
-            .footer-logo { height: 70px; }
+        /* ===== PROCESS ===== */
+        .process-section {
+            background: linear-gradient(135deg, #003E8A 0%, #0057B8 60%, #006FD1 100%);
+            color:var(--white); padding:72px 20px; position:relative; overflow:hidden;
+        }
+        /* subtle grid texture */
+        .process-section::before {
+            content:''; position:absolute; inset:0; z-index:0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size:48px 48px;
+        }
+        .process-section .section-head, .process-grid { position:relative; z-index:1; }
+        .process-section .eyebrow { color:#82c9ff; }
+        .process-section .eyebrow::before { background:#82c9ff; }
+        .process-section .section-title { color:var(--white); }
+        .process-section .section-subtitle { color:rgba(255,255,255,0.7); }
+        .process-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; }
+        .process-grid::before {
+            content:''; position:absolute; top:28px; left:16%; right:16%; height:0;
+            border-top:2px dashed rgba(255,255,255,0.25); z-index:0;
+        }
+        .process-step { text-align:center; padding:0 30px; position:relative; z-index:1; }
+        .step-number {
+            width:58px; height:58px; border-radius:50%;
+            background:rgba(255,255,255,0.12); border:2px solid rgba(255,255,255,0.4);
+            color:var(--white); font-weight:800; font-size:1.2rem;
+            display:flex; align-items:center; justify-content:center; margin:0 auto 28px;
+            backdrop-filter:blur(8px);
+        }
+        .process-step h3 { color:var(--white); font-size:1.18rem; margin-bottom:12px; }
+        .process-step p { color:rgba(255,255,255,0.72); font-size:0.96rem; max-width:280px; margin:0 auto; }
+        @media(max-width:860px) {
+            .process-grid { grid-template-columns:1fr; gap:48px; }
+            .process-grid::before { display:none; }
         }
 
-        @media (max-width: 480px) {
-            .logo-img { height: 56px; }
-            .hero h1 { font-size: 1.7rem; }
-            .nav-social-icon { width: 34px; height: 34px; font-size: 1.05rem; }
+        /* ===== UNIFIED DEALS SECTION ===== */
+        .all-deals-wrapper {
+            background: var(--off-white);
+            padding-bottom: 56px;
         }
+        .all-deals-intro {
+            text-align: center; display: flex; flex-direction: column; align-items: center;
+            padding: 56px 20px 32px;
+        }
+        .deals-tabs {
+            display: flex; gap: 8px; margin-top: 8px;
+            background: var(--white); border-radius: 100px;
+            padding: 6px; box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--line);
+        }
+        .deals-tab {
+            padding: 10px 24px; border-radius: 100px; border: none;
+            font-family: 'Heebo', sans-serif; font-size: 0.9rem; font-weight: 700;
+            cursor: pointer; transition: var(--transition);
+            background: transparent; color: var(--slate);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .deals-tab.active {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+            color: #fff; box-shadow: 0 4px 14px rgba(0,87,184,0.3);
+        }
+        .deals-tab:not(.active):hover { background: var(--blue-xlight); color: var(--blue); }
+
+        .deals-section.deals-tab-content { display: none; padding: 0 20px 20px; background: transparent; }
+        .deals-section.deals-tab-content.active-tab { display: block; }
+        .deals-grid-wrap {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px,100%),1fr)); gap: 28px;
+        }
+
+        .ticket-card {
+            background:var(--white); border-radius:20px; overflow:hidden;
+            box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+            transition:var(--transition); border:1.5px solid var(--line); position:relative;
+        }
+        .ticket-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--blue); }
+
+        .deal-gallery-wrapper { position:relative; width:100%; height:240px; overflow:hidden; background:var(--ink); }
+        .deal-gallery-container { width:100%; height:100%; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; }
+        .deal-gallery-container::-webkit-scrollbar { display:none; }
+        .deal-gallery-img { min-width:100%; height:100%; background-size:cover; background-position:center; scroll-snap-align:start; flex-shrink:0; }
+        .gallery-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); color:var(--blue); border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; z-index:10; transition:var(--transition); direction:ltr; unicode-bidi:bidi-override; box-shadow:var(--shadow-sm); }
+        .gallery-arrow:hover { background:var(--blue); color:var(--white); }
+        .g-arrow-right { right:10px; } .g-arrow-left { left:10px; }
+
+        .deal-card-badge {
+            position:absolute; top:14px; left:14px; z-index:5;
+            background:linear-gradient(135deg,var(--blue) 0%,var(--sky) 100%);
+            color:#fff; padding:6px 16px;
+            font-size:0.72rem; font-weight:700; letter-spacing:0.04em; border-radius:100px;
+            box-shadow:0 4px 12px rgba(0,87,184,0.3);
+        }
+        body[dir="ltr"] .deal-card-badge { left:auto; right:14px; }
+
+        .ticket-perforation { position:relative; height:0; border-top:2px dashed rgba(0,87,184,0.15); margin:0 20px; }
+        .ticket-perforation::before,.ticket-perforation::after { content:''; position:absolute; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--off-white); }
+        .deals-section:nth-of-type(odd) .ticket-perforation::before,.deals-section:nth-of-type(odd) .ticket-perforation::after { background:var(--white); }
+        .ticket-perforation::before { right:-30px; }
+        .ticket-perforation::after { left:-30px; }
+
+        .deal-card-body { padding:24px 26px 26px; display:flex; flex-direction:column; flex-grow:1; }
+        .deal-card-body h3 { font-size:1.22rem; margin-bottom:8px; line-height:1.3; }
+        .deal-card-hotel { color:var(--blue); font-size:0.87rem; margin-bottom:16px; font-weight:600; }
+        .deal-card-hotel .fa-star { font-size:0.76rem; }
+        .deal-card-specs p { display:flex; align-items:baseline; gap:8px; font-size:0.87rem; color:var(--slate); margin-bottom:6px; line-height:1.5; }
+        .deal-card-specs strong { color:var(--ink); font-weight:700; }
+        .deal-card-specs i { width:16px; text-align:center; flex-shrink:0; color:var(--blue); }
+        .deal-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:20px; padding-top:18px; border-top:1.5px dashed rgba(0,87,184,0.15); }
+        .deal-card-price { display:flex; flex-direction:column; }
+        .deal-card-price .amount { font-weight:800; font-size:1.6rem; color:var(--blue); }
+        .deal-card-price .label { font-size:0.72rem; color:var(--slate); }
+        .btn-deal-order {
+            background:linear-gradient(135deg,var(--blue) 0%,var(--blue-mid) 100%);
+            color:var(--white); border:none; padding:12px 22px; border-radius:var(--radius-btn);
+            font-weight:700; font-size:0.86rem; cursor:pointer; transition:var(--transition); white-space:nowrap;
+            box-shadow:0 6px 18px rgba(0,87,184,0.28);
+        }
+        .btn-deal-order:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,87,184,0.38); }
+
+        @media(max-width:480px) {
+            .deal-gallery-wrapper { height:210px; }
+            .deal-card-bottom { flex-direction:column; align-items:stretch; }
+            .btn-deal-order { width:100%; }
+        }
+
+        /* ===== DESTINATIONS ===== */
+        .destinations { padding:72px 20px; background:var(--white); }
+        .grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr)); gap:28px; }
+        .card { background:var(--white); border-radius:18px; overflow:hidden; border:1.5px solid var(--line); transition:var(--transition); }
+        .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--blue); }
+        .card-img { height:220px; background-size:cover; background-position:center; }
+        .card-content { padding:26px; }
+        .card-title { font-size:1.18rem; margin-bottom:10px; }
+        .card-text { color:var(--slate); font-size:0.92rem; margin-bottom:20px; min-height:70px; }
+        .card-meta { display:flex; flex-direction:column; gap:12px; align-items:flex-start; padding-top:16px; border-top:1.5px dashed rgba(0,87,184,0.15); }
+        .price { font-size:0.84rem; color:var(--blue); font-weight:700; }
+        .btn-card { color:var(--blue); text-decoration:none; font-weight:700; font-size:0.87rem; display:inline-flex; align-items:center; gap:6px; border-bottom:1.5px solid var(--blue); padding-bottom:2px; transition:var(--transition); }
+        .btn-card:hover { color:var(--blue-dark); border-color:var(--blue-dark); }
+
+        /* ===== SPECIALTIES ===== */
+        .specialties-section { padding:72px 20px; background:var(--blue-xlight); }
+        .specialties-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+        .specialty-card {
+            background:var(--white); padding:40px 28px; border-radius:18px;
+            text-align:center; border:1.5px solid var(--line); transition:var(--transition);
+        }
+        .specialty-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-6px); border-color:var(--blue); }
+        .specialty-icon {
+            width:62px; height:62px; border-radius:16px;
+            background:linear-gradient(135deg,var(--blue) 0%,var(--sky) 100%);
+            color:var(--white); display:flex; align-items:center; justify-content:center;
+            font-size:1.5rem; margin:0 auto 22px; box-shadow:0 8px 20px rgba(0,87,184,0.25);
+        }
+        .specialty-card h3 { font-size:1.12rem; margin-bottom:12px; }
+        .specialty-card p { color:var(--slate); font-size:0.92rem; }
+        @media(max-width:860px) { .specialties-grid { grid-template-columns:1fr; } }
+
+        /* ===== POLICY ===== */
+        .policy-section { padding:72px 20px; background:var(--white); }
+        .policy-container { max-width:800px; margin:0 auto; }
+        .policy-block { padding:28px 0; border-bottom:1px solid var(--line); }
+        .policy-block:last-child { border-bottom:none; }
+        .policy-block h3 { font-size:1.1rem; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+        .policy-block p { color:var(--slate); font-size:0.95rem; line-height:1.75; }
+
+        /* ===== FAQ ===== */
+        .faq-section { padding:72px 20px; background:var(--off-white); }
+        .faq-container { max-width:800px; margin:0 auto; }
+        .faq-item { background:var(--white); border:1.5px solid var(--line); border-radius:14px; margin-bottom:12px; overflow:hidden; transition:var(--transition); }
+        .faq-item:hover { border-color:var(--blue); }
+        .faq-item.open { border-color:var(--blue); box-shadow:var(--shadow-sm); }
+        .faq-item h3 { font-size:1rem; padding:20px 22px; margin:0; display:flex; align-items:center; gap:12px; cursor:pointer; justify-content:space-between; font-family:'Heebo',sans-serif; font-weight:700; }
+        .faq-item h3 .faq-q-inner { display:flex; align-items:center; gap:12px; }
+        .faq-item h3 .fa-chevron-down { font-size:0.78rem; color:var(--blue); transition:var(--transition); flex-shrink:0; }
+        .faq-item.open h3 .fa-chevron-down { transform:rotate(180deg); }
+        .faq-item .faq-a-wrap { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+        .faq-item.open .faq-a-wrap { max-height:400px; }
+        .faq-item p { color:var(--slate); font-size:0.95rem; line-height:1.7; padding:0 22px 20px; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay { position:fixed; inset:0; background:rgba(0,30,80,0.65); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:2000; opacity:0; visibility:hidden; transition:var(--transition); padding:20px; }
+        .modal-overlay.active { opacity:1; visibility:visible; }
+        .modal-card { background:var(--white); border-radius:22px; max-width:460px; width:100%; max-height:90vh; overflow-y:auto; transform:scale(0.96) translateY(12px); transition:var(--transition); box-shadow:var(--shadow-lg); }
+        .modal-overlay.active .modal-card { transform:scale(1) translateY(0); }
+        .modal-header { background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 100%); color:var(--white); padding:28px 30px; position:relative; border-radius:22px 22px 0 0; }
+        .modal-header h3 { color:var(--white); font-size:1.3rem; margin-bottom:6px; }
+        .modal-header p { color:rgba(255,255,255,0.72); font-size:0.9rem; }
+        .modal-close { position:absolute; top:18px; left:20px; background:rgba(255,255,255,0.15); border:none; color:var(--white); font-size:1.2rem; cursor:pointer; line-height:1; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+        .modal-close:hover { background:rgba(255,255,255,0.3); }
+        .modal-body { padding:28px 30px 32px; }
+        .form-group { margin-bottom:16px; }
+        .form-group label { display:block; font-size:0.84rem; font-weight:700; margin-bottom:6px; color:var(--ink); }
+        .form-group input { width:100%; padding:13px 16px; border:1.5px solid rgba(0,87,184,0.2); border-radius:12px; font-size:0.94rem; background:var(--white); font-family:'Heebo',sans-serif; transition:var(--transition); color:var(--ink); }
+        .form-group input:focus { outline:none; border-color:var(--blue); box-shadow:0 0 0 4px rgba(0,87,184,0.1); }
+        .btn-submit { width:100%; background:linear-gradient(135deg,var(--blue) 0%,var(--blue-mid) 100%); color:var(--white); border:none; padding:15px; border-radius:var(--radius-btn); font-weight:700; font-size:0.98rem; cursor:pointer; transition:var(--transition); margin-top:8px; box-shadow:0 8px 24px rgba(0,87,184,0.3); }
+        .btn-submit:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,87,184,0.4); }
+
+        /* ===== FLOATING ===== */
+        .whatsapp-float { position:fixed; bottom:24px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.7rem; box-shadow:0 6px 20px rgba(0,0,0,0.25); transition:var(--transition); text-decoration:none; }
+        body[dir="rtl"] .whatsapp-float { left:24px; }
+        body[dir="ltr"] .whatsapp-float { right:24px; }
+        .whatsapp-float:hover { transform:scale(1.1); box-shadow:0 10px 28px rgba(0,0,0,0.3); }
+
+        .accessibility-wrapper { position:fixed; bottom:24px; z-index:999; }
+        body[dir="rtl"] .accessibility-wrapper { right:24px; }
+        body[dir="ltr"] .accessibility-wrapper { left:24px; }
+        .accessibility-btn { width:56px; height:56px; border-radius:50%; background:var(--blue-dark); color:var(--white); border:none; font-size:1.4rem; cursor:pointer; box-shadow:0 6px 20px rgba(0,62,138,0.3); transition:var(--transition); }
+        .accessibility-btn:hover { background:var(--blue); }
+        .accessibility-menu { position:absolute; bottom:68px; background:var(--white); border-radius:16px; box-shadow:var(--shadow-lg); padding:16px; width:240px; display:none; flex-direction:column; gap:6px; border:1.5px solid var(--line); }
+        body[dir="rtl"] .accessibility-menu { right:0; }
+        body[dir="ltr"] .accessibility-menu { left:0; }
+        .accessibility-menu.active { display:flex; }
+        .accessibility-menu h4 { font-size:0.95rem; margin-bottom:8px; font-family:'Heebo',sans-serif; font-weight:700; }
+        .acc-option { background:var(--off-white); border:none; padding:11px 14px; border-radius:10px; text-align:right; cursor:pointer; font-size:0.87rem; display:flex; align-items:center; gap:8px; transition:var(--transition); color:var(--ink); }
+        body[dir="ltr"] .acc-option { text-align:left; }
+        .acc-option:hover { background:var(--blue-light); color:var(--blue); }
+
+        .cookie-bar { position:fixed; bottom:0; right:0; left:0; background:var(--ink); color:var(--white); padding:18px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; z-index:1500; transform:translateY(100%); transition:transform 0.4s ease; flex-wrap:wrap; }
+        .cookie-bar.show { transform:translateY(0); }
+        .cookie-text { font-size:0.86rem; color:rgba(255,255,255,0.75); max-width:800px; }
+        .cookie-btn { background:var(--blue); color:var(--white); border:none; padding:11px 28px; border-radius:var(--radius-btn); font-weight:700; font-size:0.88rem; cursor:pointer; white-space:nowrap; transition:var(--transition); }
+        .cookie-btn:hover { background:var(--blue-mid); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(160deg, #001F5C 0%, #002F8A 60%, #003EA0 100%);
+            color: rgba(255,255,255,0.7);
+            padding: 72px 20px 0;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+            gap: 48px;
+            padding-bottom: 56px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        @media(max-width:900px) {
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+        }
+        @media(max-width:540px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+        }
+        .footer-brand { display:flex; flex-direction:column; align-items:flex-end; }
+        body[dir="ltr"] .footer-brand { align-items:flex-start; }
+        .footer-logo { height:56px; width:56px; border-radius:50%; margin-bottom:12px; object-fit:cover; border:2px solid rgba(255,255,255,0.2); }
+        .footer-logo-text { width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,0.12); align-items:center; justify-content:center; margin-bottom:12px; font-size:1.4rem; color:#fff; }
+        .footer-brand-name { font-size:1.3rem; font-weight:800; color:#ffffff; margin-bottom:6px; }
+        .footer-brand-name span { color:#82c9ff; }
+        .footer-tagline { font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:22px; font-weight:600; }
+        .footer-socials { display:flex; gap:10px; }
+        .footer-socials a { width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none; transition:var(--transition); font-size:1rem; }
+        .footer-socials a:hover { background:var(--blue); border-color:var(--blue); transform:translateY(-2px); }
+
+        .footer-col { display:flex; flex-direction:column; align-items:flex-end; }
+        body[dir="ltr"] .footer-col { align-items:flex-start; }
+        .footer-col-title { font-size:0.88rem; font-weight:800; color:#ffffff; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .footer-links li { font-size:0.9rem; color:rgba(255,255,255,0.6); display:flex; align-items:center; gap:8px; }
+        .footer-links a { color:rgba(255,255,255,0.6); text-decoration:none; transition:var(--transition); }
+        .footer-links a:hover { color:#ffffff; }
+        .footer-contact li { gap:10px; }
+        .footer-contact i { color:#82c9ff; width:16px; text-align:center; flex-shrink:0; }
+        .footer-cta-btn {
+            display:inline-flex; align-items:center; gap:8px; margin-top:20px;
+            background:linear-gradient(135deg,var(--blue) 0%,var(--sky) 100%);
+            color:#fff; text-decoration:none; padding:12px 22px;
+            border-radius:var(--radius-btn); font-size:0.88rem; font-weight:700;
+            transition:var(--transition); box-shadow:0 6px 20px rgba(0,87,184,0.4);
+        }
+        .footer-cta-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,87,184,0.5); }
+        .footer-bottom {
+            max-width:1200px; margin:0 auto;
+            padding:20px 0 28px;
+            text-align:center;
+            font-size:0.82rem;
+            color:rgba(255,255,255,0.35);
+        }
+
+        /* ===== SCROLL REVEAL ANIMATION ===== */
+        .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .reveal-delay-1 { transition-delay:0.1s; }
+        .reveal-delay-2 { transition-delay:0.2s; }
+        .reveal-delay-3 { transition-delay:0.3s; }
     </style>
 </head>
 <body id="body-tag" dir="rtl">
@@ -524,14 +638,7 @@
                 <ul class="nav-links">
                     <li><a href="#about" id="nav-about">הסיפור שלנו</a></li>
                     <li><a href="#process" id="nav-process">איך זה עובד</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#deals-summer" class="nav-dropdown-label"><span id="nav-deals-label">חבילות נופש</span> <i class="fa fa-chevron-down"></i></a>
-                        <div class="nav-dropdown-menu">
-                            <a href="#deals-summer" id="nav-deals-summer">קיץ</a>
-                            <a href="#deals-holidays" id="nav-deals-holidays">חגים</a>
-                            <a href="#deals-winter" id="nav-deals-winter">חורף</a>
-                        </div>
-                    </li>
+                    <li><a href="#all-deals" id="nav-deals-label">חבילות נופש</a></li>
                     <li><a href="#destinations" id="nav-destinations">יעדים חמים</a></li>
                     <li><a href="#specialties" id="nav-specialties">התמחויות</a></li>
                     <li><a href="#policy" id="nav-policy">מדיניות ביטולים</a></li>
@@ -551,9 +658,7 @@
             <ul class="mobile-nav-links">
                 <li><a href="#about" id="mnav-about" onclick="closeMobileNav()">הסיפור שלנו</a></li>
                 <li><a href="#process" id="mnav-process" onclick="closeMobileNav()">איך זה עובד</a></li>
-                <li><a href="#deals-summer" id="mnav-deals-summer" onclick="closeMobileNav()">קיץ</a></li>
-                <li><a href="#deals-holidays" id="mnav-deals-holidays" onclick="closeMobileNav()">חגים</a></li>
-                <li><a href="#deals-winter" id="mnav-deals-winter" onclick="closeMobileNav()">חורף</a></li>
+                <li><a href="#all-deals" id="mnav-deals" onclick="closeMobileNav()">חבילות נופש</a></li>
                 <li><a href="#destinations" id="mnav-destinations" onclick="closeMobileNav()">יעדים חמים</a></li>
                 <li><a href="#specialties" id="mnav-specialties" onclick="closeMobileNav()">התמחויות</a></li>
                 <li><a href="#policy" id="mnav-policy" onclick="closeMobileNav()">מדיניות ביטולים</a></li>
@@ -568,238 +673,159 @@
     </header>
 
     <section class="hero">
-        <h1 id="hero-title">AdvenHorizon Travels</h1>
-        <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
-        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-main" target="_blank" id="hero-btn">תכננו את המסע שלכם</a>
-    </section>
-
-    <section class="deals-section" id="deals-summer">
-        <h2 class="section-title" id="deals-summer-title">קיץ של חוף, שקט וכחול אינסופי</h2>
-        <p class="section-subtitle" id="deals-summer-subtitle">חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה</p>
-        <div class="deals-grid">
-
-            <!-- כרטיס: איה נאפה -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-ayianapa">דיל זוגי קיץ 2026</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 7.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 8.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 9.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('איה נאפה 10.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-ayianapa">חופשת פרימיום באיה נאפה</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-ayianapa"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel</div>
-                    <div class="deal-card-specs" id="deal-specs-ayianapa"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$2,400</span>
-                            <span class="label" id="label-per-couple">עבור כל החבילה לזוג</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-ayianapa" onclick="openLeadModal('ayianapa')">לבדיקת זמינות</button>
-                    </div>
-                </div>
+        <div class="hero-bg-photo"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-inner">
+            <p class="hero-kicker"><i class="fa fa-plane"></i> AdvenHorizon Travels · 2026</p>
+            <h1 id="hero-title">AdvenHorizon Travels</h1>
+            <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
+            <div class="hero-cta-wrap">
+                <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-hero-primary" target="_blank" id="hero-btn">
+                    <i class="fa fa-whatsapp"></i> תכננו את המסע שלכם
+                </a>
+                <a href="#deals-summer" class="btn-hero-secondary">
+                    <i class="fa fa-th-large"></i> לחבילות הנופש
+                </a>
             </div>
-
         </div>
     </section>
 
-    <!-- חגים -->
-    <section class="deals-section" id="deals-holidays">
-        <h2 class="section-title" id="deals-holidays-title">השנה, החג נראה אחרת</h2>
-        <p class="section-subtitle" id="deals-holidays-subtitle">מהבירה הבווארית ועד עיר האורות - חבילות נבחרות לימי החג שלכם</p>
-        <div class="deals-grid">
-            
-            <!-- כרטיס: מיקונוס -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424826.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424853.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129557766.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601132.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600959.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601215.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600950.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129560364.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-mykonos">חופשת יוקרה בלתי נשכחת במיקונוס</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-mykonos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
-                    <div class="deal-card-specs" id="deal-specs-mykonos"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$1,050</span>
-                            <span class="label" id="label-per-person">לאדם בחדר זוגי</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-mykonos" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- כרטיס: פאפוס -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 6.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-paphos">נופש משפחתי בסוכות בפאפוס</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-paphos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
-                    <div class="deal-card-specs" id="deal-specs-paphos"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$3,174</span>
-                            <span class="label" id="label-per-family">מחיר כולל למשפחה</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-paphos" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
-                    </div>
+    <!-- Interactive search widget -->
+    <div class="bp-wrapper">
+        <div class="search-widget">
+            <div class="sw-field">
+                <label class="sw-label" id="sw-label-dest"><i class="fa fa-map-marker"></i> יעד נסיעה</label>
+                <div class="sw-select-wrap">
+                    <select id="sw-dest" class="sw-select">
+                        <option value="" id="sw-placeholder">בחרו יעד...</option>
+                        <optgroup label="🌊 חבילות הקיץ שלנו">
+                            <option value="איה נאפה, קפריסין">איה נאפה, קפריסין</option>
+                        </optgroup>
+                        <optgroup label="✡️ חבילות חגים שלנו">
+                            <option value="מיקונוס, יוון">מיקונוס, יוון</option>
+                            <option value="פאפוס, קפריסין">פאפוס, קפריסין</option>
+                            <option value="לאס וגאס, ארה&quot;ב">לאס וגאס, ארה"ב</option>
+                            <option value="מינכן, גרמניה">מינכן, גרמניה</option>
+                        </optgroup>
+                        <optgroup label="❄️ חבילות חורף שלנו">
+                            <option value="פראג, צ'כיה">פראג, צ'כיה</option>
+                        </optgroup>
+                        <optgroup label="✈️ יעדים נוספים">
+                            <option value="תאילנד">תאילנד</option>
+                            <option value="האיים המלדיביים">האיים המלדיביים</option>
+                            <option value="זנזיבר">זנזיבר</option>
+                            <option value="יפן">יפן</option>
+                            <option value="וייטנאם">וייטנאם</option>
+                            <option value="ניו יורק, ארה&quot;ב">ניו יורק, ארה"ב</option>
+                            <option value="לוס אנג'לס, ארה&quot;ב">לוס אנג'לס, ארה"ב</option>
+                            <option value="לונדון, אנגליה">לונדון, אנגליה</option>
+                            <option value="פריז, צרפת">פריז, צרפת</option>
+                            <option value="רומא, איטליה">רומא, איטליה</option>
+                            <option value="ברצלונה, ספרד">ברצלונה, ספרד</option>
+                            <option value="אתונה, יוון">אתונה, יוון</option>
+                            <option value="דובאי, איחוד האמירויות">דובאי, איחוד האמירויות</option>
+                            <option value="בנגקוק, תאילנד">בנגקוק, תאילנד</option>
+                            <option value="בלי, אינדונזיה">באלי, אינדונזיה</option>
+                            <option value="אמסטרדם, הולנד">אמסטרדם, הולנד</option>
+                            <option value="ברלין, גרמניה">ברלין, גרמניה</option>
+                            <option value="וינה, אוסטריה">וינה, אוסטריה</option>
+                            <option value="לאוס">לאוס</option>
+                            <option value="יעד אחר">יעד אחר (אפרט בוואטסאפ)</option>
+                        </optgroup>
+                    </select>
+                    <i class="fa fa-chevron-down sw-chevron"></i>
                 </div>
             </div>
 
-            <!-- כרטיס: לאס וגאס -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-vegas">חול המועד בארה"ב</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 7.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-vegas">חול המועד סוכות בלאס וגאס</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-vegas"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip</div>
-                    <div class="deal-card-specs" id="deal-specs-vegas"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$2,675</span>
-                            <span class="label" id="label-vegas-person">לאדם בחדר זוגי</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-vegas" onclick="openLeadModal('vegas')">לבדיקת זמינות</button>
-                    </div>
+            <div class="sw-divider"></div>
+
+            <div class="sw-field">
+                <label class="sw-label" id="sw-label-from"><i class="fa fa-calendar"></i> תאריך יציאה</label>
+                <input type="date" id="sw-date-from" class="sw-date" min="">
+            </div>
+
+            <div class="sw-divider"></div>
+
+            <div class="sw-field">
+                <label class="sw-label" id="sw-label-to"><i class="fa fa-calendar-check-o"></i> תאריך חזרה</label>
+                <input type="date" id="sw-date-to" class="sw-date" min="">
+            </div>
+
+            <div class="sw-divider"></div>
+
+            <div class="sw-field sw-field-pax">
+                <label class="sw-label" id="sw-label-pax"><i class="fa fa-users"></i> נוסעים</label>
+                <div class="sw-pax-wrap">
+                    <button class="sw-pax-btn" onclick="changePax(-1)">−</button>
+                    <span id="sw-pax-count">2</span>
+                    <button class="sw-pax-btn" onclick="changePax(1)">+</button>
                 </div>
             </div>
 
-            <!-- כרטיס: מינכן -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-munich">אוקטוברפסט 2026</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 7.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 8.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 9.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 10.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 11.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-munich">פסטיבל הבירה במינכן 2026</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-munich"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Holiday Inn Munich - City Centre</div>
-                    <div class="deal-card-specs" id="deal-specs-munich"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$2,216</span>
-                            <span class="label" id="label-munich-person">לאדם בחדר זוגי</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-munich" onclick="openLeadModal('munich')">לבדיקת זמינות</button>
-                    </div>
-                </div>
-            </div>
-
+            <button class="sw-search-btn" onclick="doSearch()">
+                <i class="fa fa-search"></i>
+                <span id="sw-btn-txt">חפשו עכשיו</span>
+            </button>
         </div>
-    </section>
+    </div>
 
-    <!-- חורף -->
-    <section class="deals-section" id="deals-winter">
-        <h2 class="section-title" id="deals-winter-title">קסם של חורף אירופאי</h2>
-        <p class="section-subtitle" id="deals-winter-subtitle">רחובות מוארים, שווקי חג ואווירה שמרגישה כמו גלויה - בעיר העתיקה ביותר באירופה</p>
-        <div class="deals-grid">
+    <script>
+        // Set min date to today
+        (function(){
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('sw-date-from').min = today;
+            document.getElementById('sw-date-to').min = today;
+            document.getElementById('sw-date-from').value = today;
+        })();
 
-            <!-- כרטיס: פראג -->
-            <div class="deal-block-card">
-                <span class="deal-card-badge" id="badge-prague">כריסטמס 2026</span>
-                <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('פראג 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 7.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 8.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 9.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 10.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 11.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 12.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 13.jpg');"></div>
-                    </div>
-                </div>
-                <div class="deal-card-body">
-                    <h3 id="deal-title-prague">חופשת כריסטמס קסומה בפראג</h3>
-                    <div class="deal-card-hotel" id="deal-hotel-prague"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> MOODs Charles Bridge</div>
-                    <div class="deal-card-specs" id="deal-specs-prague"></div>
-                    <div class="deal-card-bottom">
-                        <div class="deal-card-price">
-                            <span class="amount">$1,184</span>
-                            <span class="label" id="label-prague-person">לאדם בחדר זוגי</span>
-                        </div>
-                        <button class="btn-deal-order" id="btn-order-prague" onclick="openLeadModal('prague')">לבדיקת זמינות</button>
-                    </div>
-                </div>
-            </div>
+        var swPax = 2;
+        function changePax(d) {
+            swPax = Math.max(1, Math.min(20, swPax + d));
+            document.getElementById('sw-pax-count').textContent = swPax;
+        }
 
-        </div>
-    </section>
+        function doSearch() {
+            var dest = document.getElementById('sw-dest').value;
+            var dateFrom = document.getElementById('sw-date-from').value;
+            var dateTo = document.getElementById('sw-date-to').value;
+            var pax = swPax;
 
-    <!-- אודות הסיפור שלנו -->
+            if (!dest) { alert('אנא בחרו יעד נסיעה'); return; }
+            if (!dateFrom) { alert('אנא בחרו תאריך יציאה'); return; }
+
+            // Format dates nicely
+            function fmt(d) {
+                if (!d) return '';
+                var p = d.split('-');
+                return p[2]+'/'+p[1]+'/'+p[0];
+            }
+
+            var isHe = (currentLang === 'he');
+            var msg = isHe ? 'שלום אבי! 👋\n\n' : 'Hi Avi! 👋\n\n';
+            msg += isHe ? 'אני מעוניין/ת לתכנן טיול:\n\n' : 'I would like to plan a trip:\n\n';
+            msg += '✈️ ' + (isHe ? 'יעד' : 'Destination') + ': ' + dest + '\n';
+            msg += '📅 ' + (isHe ? 'יציאה' : 'Departure') + ': ' + fmt(dateFrom) + '\n';
+            if (dateTo) msg += '📅 ' + (isHe ? 'חזרה' : 'Return') + ': ' + fmt(dateTo) + '\n';
+            msg += '👥 ' + (isHe ? 'מספר נוסעים' : 'Travelers') + ': ' + pax + '\n\n';
+            msg += isHe ? 'אשמח לקבל הצעת מחיר ותוכנית טיול 🙏' : 'I would love to get a quote and travel plan 🙏';
+
+            window.open('https://wa.me/972506275616?text=' + encodeURIComponent(msg), '_blank');
+        }
+
+        // Ensure return date is after departure
+        document.getElementById('sw-date-from').addEventListener('change', function() {
+            document.getElementById('sw-date-to').min = this.value;
+            if (document.getElementById('sw-date-to').value && document.getElementById('sw-date-to').value < this.value) {
+                document.getElementById('sw-date-to').value = this.value;
+            }
+        });
+    </script>
+
     <section class="about-section" id="about">
         <div class="about-container">
+            <p class="eyebrow">מאחורי הקלעים</p>
             <h2 class="section-title" id="about-title">הסיפור מאחורי האופק</h2>
             <p class="about-subtitle" id="about-subtitle">איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?</p>
             <div class="about-text" id="about-content">
@@ -825,34 +851,270 @@
         </div>
     </section>
 
-    <!-- איך זה עובד -->
     <section class="process-section" id="process">
-        <h2 class="section-title" id="proc-title">איך זה עובד?</h2>
-        <p class="section-subtitle" id="proc-subtitle">הדרך שלכם לחופשה מושלמת ללא דאגות</p>
+        <div class="section-head wrap">
+            <p class="eyebrow">תיק המסע</p>
+            <h2 class="section-title" id="proc-title">איך זה עובד?</h2>
+            <p class="section-subtitle" id="proc-subtitle">הדרך שלכם לחופשה מושלמת ללא דאגות</p>
+        </div>
         <div class="process-grid">
             <div class="process-step">
-                <div class="step-number">1</div>
+                <div class="step-number">01</div>
                 <h3 id="step1-title">שיחת אפיון והיכרות</h3>
                 <p id="step1-desc">נבין יחד את אופי המטיילים, התקציב, הסגנון המועדף והחלומות שלכם לגבי היעד.</p>
             </div>
             <div class="process-step">
-                <div class="step-number">2</div>
+                <div class="step-number">02</div>
                 <h3 id="step2-title">בניית מסלול והזמנת הכל עבורכם</h3>
                 <p id="step2-desc">אני בונה את המסלול היומי המלא ומבצע עבורכם את כל ההזמנות הנדרשות - מטיסות ומלונות ועד לוגיסטיקה קטנה.</p>
             </div>
             <div class="process-step">
-                <div class="step-number">3</div>
+                <div class="step-number">03</div>
                 <h3 id="step3-title">יוצאים לדרך בראש שקט</h3>
                 <p id="step3-desc">אתם מקבלים תיק טיול מוכן וסגור לחלוטין, ונהנים מליווי וזמינות שלי לכל שאלה או צורך שעולה במהלך השהות בחו"ל.</p>
             </div>
         </div>
     </section>
 
-    <!-- יעדים חמים -->
+    <!-- ===== כל חבילות הנופש — קיץ, חגים, חורף ===== -->
+    <div class="all-deals-wrapper" id="all-deals">
+        <div class="all-deals-intro wrap">
+            <p class="eyebrow">חבילות נופש 2026</p>
+            <h2 class="section-title" id="all-deals-title">בחרו את החופשה שלכם</h2>
+            <p class="section-subtitle" id="all-deals-subtitle">חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳</p>
+            <div class="deals-tabs">
+                <button class="deals-tab active" onclick="showDealsTab('summer',this)" id="tab-summer"><i class="fa fa-sun-o"></i> <span id="tab-summer-txt">קיץ</span></button>
+                <button class="deals-tab" onclick="showDealsTab('holidays',this)" id="tab-holidays"><i class="fa fa-star"></i> <span id="tab-holidays-txt">חגים</span></button>
+                <button class="deals-tab" onclick="showDealsTab('winter',this)" id="tab-winter"><i class="fa fa-snowflake-o"></i> <span id="tab-winter-txt">חורף</span></button>
+            </div>
+        </div>
+
+        <section class="deals-section deals-tab-content active-tab" id="deals-summer">
+            <div class="deals-grid deals-grid-wrap">
+
+                <div class="ticket-card">
+                    <span class="deal-card-badge" id="badge-ayianapa">דיל זוגי קיץ 2026</span>
+                    <div class="deal-gallery-wrapper">
+                        <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                        <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                        <div class="deal-gallery-container">
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 1.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 2.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 3.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 4.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 5.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 6.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 7.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 8.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 9.jpg');"></div>
+                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 10.jpg');"></div>
+                        </div>
+                    </div>
+                    <div class="ticket-perforation"></div>
+                    <div class="deal-card-body">
+                        <h3 id="deal-title-ayianapa">חופשת פרימיום באיה נאפה</h3>
+                        <div class="deal-card-hotel" id="deal-hotel-ayianapa"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel</div>
+                        <div class="deal-card-specs" id="deal-specs-ayianapa"></div>
+                        <div class="deal-card-bottom">
+                            <div class="deal-card-price">
+                                <span class="amount">$2,400</span>
+                                <span class="label" id="label-per-couple">עבור כל החבילה לזוג</span>
+                            </div>
+                            <button class="btn-deal-order" id="btn-order-ayianapa" onclick="openLeadModal('ayianapa')">לבדיקת זמינות</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="deals-section deals-tab-content" id="deals-holidays">
+            <div class="deals-grid deals-grid-wrap">
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734424826.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('734424853.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('129557766.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88601132.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88600959.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88601215.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('88600950.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('129560364.jpg');"></div>
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-mykonos">חופשת יוקרה בלתי נשכחת במיקונוס</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-mykonos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Royal Myconian Resort and Spa</div>
+                    <div class="deal-card-specs" id="deal-specs-mykonos"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,050</span>
+                            <span class="label" id="label-per-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-mykonos" onclick="openLeadModal('mykonos')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פאפוס 6.jpg');"></div>
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-paphos">נופש משפחתי בסוכות בפאפוס</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-paphos"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Blue Lagoon Kosher Hotel</div>
+                    <div class="deal-card-specs" id="deal-specs-paphos"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$3,174</span>
+                            <span class="label" id="label-per-family">מחיר כולל למשפחה</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-paphos" onclick="openLeadModal('paphos')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-vegas">חול המועד בארה"ב</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 6.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('וגאס 7.jpg');"></div>
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-vegas">חול המועד סוכות בלאס וגאס</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-vegas"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון פרימיום יוקרתי בלב ה-Strip</div>
+                    <div class="deal-card-specs" id="deal-specs-vegas"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$2,675</span>
+                            <span class="label" id="label-vegas-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-vegas" onclick="openLeadModal('vegas')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-munich">אוקטוברפסט 2026</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 6.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 7.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 8.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 9.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 10.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('מינכן 11.jpg');"></div>
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-munich">פסטיבל הבירה במינכן 2026</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-munich"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Holiday Inn Munich - City Centre</div>
+                    <div class="deal-card-specs" id="deal-specs-munich"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$2,216</span>
+                            <span class="label" id="label-munich-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-munich" onclick="openLeadModal('munich')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </section>
+
+        <section class="deals-section deals-tab-content" id="deals-winter">
+            <div class="deals-grid deals-grid-wrap">
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-prague">כריסטמס 2026</span>
+                <div class="deal-gallery-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <div class="deal-gallery-img" style="background-image: url('פראג 1.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 2.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 3.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 4.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 5.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 6.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 7.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 8.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 9.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 10.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 11.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 12.jpg');"></div>
+                        <div class="deal-gallery-img" style="background-image: url('פראג 13.jpg');"></div>
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-prague">חופשת כריסטמס קסומה בפראג</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-prague"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> MOODs Charles Bridge</div>
+                    <div class="deal-card-specs" id="deal-specs-prague"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,184</span>
+                            <span class="label" id="label-prague-person">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-prague" onclick="openLeadModal('prague')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </section>
+
+    </div><!-- end all-deals-wrapper -->
+
     <section class="destinations" id="destinations">
-        <h2 class="section-title" id="dest-title">החופשות החמות של 2026</h2>
-        <p class="section-subtitle" id="dest-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
-        
+        <div class="section-head">
+            <p class="eyebrow">קטלוג יעדים</p>
+            <h2 class="section-title" id="dest-title">החופשות החמות של 2026</h2>
+            <p class="section-subtitle" id="dest-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
+        </div>
+
         <div class="grid">
             <div class="card">
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80');"></div>
@@ -861,7 +1123,7 @@
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -873,7 +1135,7 @@
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
                     <div class="card-meta">
                         <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -885,17 +1147,19 @@
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
                     <div class="card-meta">
                         <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- התמחויות -->
     <section class="specialties-section" id="specialties">
-        <h2 class="section-title" id="spec-main-title">ההתמחויות המיוחדות שלנו</h2>
-        <p class="section-subtitle" id="spec-main-subtitle">כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו</p>
+        <div class="section-head">
+            <p class="eyebrow">התמחויות</p>
+            <h2 class="section-title" id="spec-main-title">ההתמחויות המיוחדות שלנו</h2>
+            <p class="section-subtitle" id="spec-main-subtitle">כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו</p>
+        </div>
         <div class="specialties-grid">
             <div class="specialty-card">
                 <div class="specialty-icon"><i class="fa fa-users"></i></div>
@@ -915,22 +1179,24 @@
         </div>
     </section>
 
-    <!-- מדיניות ביטולים -->
     <section class="policy-section" id="policy">
         <div class="policy-container">
-            <h2 class="section-title" id="policy-main-title">מדיניות ביטולים ותנאי שירות</h2>
-            <p class="section-subtitle" id="policy-main-subtitle">חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה</p>
-            
+            <div class="section-head" style="text-align:right; align-items:flex-start;">
+                <p class="eyebrow">תנאי שירות</p>
+                <h2 class="section-title" id="policy-main-title" style="text-align:right;">מדיניות ביטולים ותנאי שירות</h2>
+                <p class="section-subtitle" id="policy-main-subtitle" style="text-align:right;">חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה</p>
+            </div>
+
             <div class="policy-block">
                 <h3 id="pol1-title"><i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> כללי ביטול עסקה (חוק הגנת הצרכן)</h3>
                 <p id="pol1-desc">בהתאם לחוק הגנת הצרכן הישראלי, ניתן לבטל עסקת שירותי תיירות בתוך 14 ימים מיום עשיית העסקה, ובלבד שהביטול ייעשה לפחות 7 ימי עבודה קודם למועד מתן השירות. דמי הביטול במסגרת זו יהיו בגובה 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).</p>
             </div>
-            
+
             <div class="policy-block">
                 <h3 id="pol2-title"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> ביטולים ושינויים מול ספקי תיירות בחו"ל</h3>
                 <p id="pol2-desc">לאחר חלוף תקופת הזמן הקבועה בחוק הגנת הצרכן, תנאי הביטול, השינוי או השחזור של טיסות, מלונות, רכבים ואטרקציות יהיו כפופים לחלוטין למדיניות של ספקי השירות בפועל (חברות התעופה, הריזורטים וסוכני השטח). אנו ב-AdvenHorizon Travels נשקף לכם את תנאי הביטול של כל נכס תיירותי עוד במעמד ההזמנה.</p>
             </div>
-            
+
             <div class="policy-block">
                 <h3 id="pol3-title"><i class="fa fa-shield" style="color: var(--accent-gold);"></i> המלצה חמה: ביטוח נסיעות וביטוח ביטול</h3>
                 <p id="pol3-desc">מאחר וחופשות פרימיום ותכנון מסלולים מורכבים כרוכים בעלויות מראש, אנו מחייבים וממליצים לכל לקוחותינו לרכוש ביטוח נסיעות מקיף לחו"ל הכולל הרחבה רפואית והרחבת כבודה, מיד עם סגירת הטיול. כמו כן, מומלץ לשקול פוליסת ביטוח ייעודית לביטול טיסה מכל סיבה שהיא.</p>
@@ -938,25 +1204,36 @@
         </div>
     </section>
 
-    <!-- שאלות נפוצות - משוחזר ומתוקן ב-100% לפי תמונה image_d99403.png -->
     <section class="faq-section" id="faq">
         <div class="faq-container">
-            <h2 class="section-title" id="faq-main-title">שאלות נפוצות</h2>
-            <p class="section-subtitle" id="faq-main-subtitle">כל מה שחשוב לדעת לפני שיוצאים לדרך</p>
-            
-            <div class="faq-item">
-                <h3 id="faq1-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?</h3>
-                <p id="faq1-a">השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.</p>
+            <div class="section-head">
+                <p class="eyebrow">שאלות נפוצות</p>
+                <h2 class="section-title" id="faq-main-title">שאלות נפוצות</h2>
+                <p class="section-subtitle" id="faq-main-subtitle">כל מה שחשוב לדעת לפני שיוצאים לדרך</p>
             </div>
-            
-            <div class="faq-item">
-                <h3 id="faq2-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?</h3>
-                <p id="faq2-a">בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.</p>
+
+            <div class="faq-item open">
+                <h3 onclick="toggleFaq(this.parentElement)">
+                    <span class="faq-q-inner" id="faq1-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?</span>
+                    <i class="fa fa-chevron-down"></i>
+                </h3>
+                <div class="faq-a-wrap"><p id="faq1-a">השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.</p></div>
             </div>
-            
+
             <div class="faq-item">
-                <h3 id="faq3-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?</h3>
-                <p id="faq3-a">על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.</p>
+                <h3 onclick="toggleFaq(this.parentElement)">
+                    <span class="faq-q-inner" id="faq2-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?</span>
+                    <i class="fa fa-chevron-down"></i>
+                </h3>
+                <div class="faq-a-wrap"><p id="faq2-a">בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא' ועד ת'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.</p></div>
+            </div>
+
+            <div class="faq-item">
+                <h3 onclick="toggleFaq(this.parentElement)">
+                    <span class="faq-q-inner" id="faq3-q"><i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?</span>
+                    <i class="fa fa-chevron-down"></i>
+                </h3>
+                <div class="faq-a-wrap"><p id="faq3-a">על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.</p></div>
             </div>
         </div>
     </section>
@@ -994,8 +1271,8 @@
     </div>
 
     <!-- רכיבים צפים -->
-    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%9D%20%D7%9C%2DAdvenHorizon%20Travels%2E%20%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%AA%20%D7%9C%D7%9B%D7%9D%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%9C%D7%AA%D7%9B%D7%A0%D7%95%D7%9F%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%9B%D7%9D%21" class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
-    
+    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+
     <div class="accessibility-wrapper">
         <button class="accessibility-btn" id="accBtn" onclick="toggleAccMenu()"><i class="fa fa-universal-access"></i></button>
         <div class="accessibility-menu" id="accMenu">
@@ -1012,13 +1289,63 @@
         <button class="cookie-btn" onclick="acceptCookies()" id="cookie-btn-txt">מאשר/ת</button>
     </div>
 
-    <!-- פוטר מקורי נקי בלבד -->
     <footer>
-        <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon" class="footer-logo">
-        <p class="footer-text" id="footer-copy">© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel</p>
-        <div class="footer-socials">
-            <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="https://www.instagram.com/advenhorizontravels" target="_blank"><i class="fa fa-instagram"></i></a>
+        <div class="footer-inner">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="footer-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="footer-logo-text" style="display:none;">
+                    <span class="footer-logo-icon"><i class="fa fa-paper-plane"></i></span>
+                </div>
+                <h3 class="footer-brand-name">AdvenHorizon<span> Travels</span></h3>
+                <p class="footer-tagline">Beyond Ordinary Travel</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/advenhorizontravels" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="https://wa.me/972506275616" target="_blank" title="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick links -->
+            <div class="footer-col">
+                <h4 class="footer-col-title" id="footer-title-nav">ניווט מהיר</h4>
+                <ul class="footer-links">
+                    <li><a href="#about" id="fl-about">הסיפור שלנו</a></li>
+                    <li><a href="#process" id="fl-process">איך זה עובד</a></li>
+                    <li><a href="#all-deals" id="fl-summer">חבילות קיץ</a></li>
+                    <li><a href="#all-deals" id="fl-holidays">חבילות חגים</a></li>
+                    <li><a href="#all-deals" id="fl-winter">חבילות חורף</a></li>
+                </ul>
+            </div>
+
+            <!-- More links -->
+            <div class="footer-col">
+                <h4 class="footer-col-title" id="footer-title-info">מידע נוסף</h4>
+                <ul class="footer-links">
+                    <li><a href="#destinations" id="fl-dest">יעדים חמים</a></li>
+                    <li><a href="#specialties" id="fl-spec">התמחויות</a></li>
+                    <li><a href="#policy" id="fl-policy">מדיניות ביטולים</a></li>
+                    <li><a href="#faq" id="fl-faq">שאלות נפוצות</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-col">
+                <h4 class="footer-col-title" id="footer-title-contact">צור קשר</h4>
+                <ul class="footer-links footer-contact">
+                    <li><i class="fa fa-whatsapp"></i> <a href="https://wa.me/972506275616" target="_blank">050-627-5616</a></li>
+                    <li><i class="fa fa-plane"></i> <span id="fl-custom">תכנון מסעות בהתאמה אישית</span></li>
+                    <li><i class="fa fa-clock-o"></i> <span id="fl-avail">זמינות גבוהה · 7 ימים בשבוע</span></li>
+                </ul>
+                <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%99!" class="footer-cta-btn" target="_blank">
+                    <i class="fa fa-whatsapp"></i> <span id="fl-cta">שלחו הודעה עכשיו</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p id="footer-copy">© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel</p>
         </div>
     </footer>
 
@@ -1095,7 +1422,15 @@
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?', faq3A: 'על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.',
                 accMenuTitle: 'תפריט נגישות', accOptText: '<i class="fa fa-text-height"></i> הגדלת גופן', accOptContrast: '<i class="fa fa-adjust"></i> ניגודיות גבוהה', accOptLinks: '<i class="fa fa-link"></i> הדגשת קישורים', accOptReset: '<i class="fa fa-refresh"></i> איפוס נגישות',
                 cookieMsg: 'אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.', cookieBtnTxt: 'מאשר/ת',
-                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
+                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
+                swLabelDest: 'יעד נסיעה', swPlaceholder: 'בחרו יעד...', swLabelFrom: 'תאריך יציאה',
+                swLabelTo: 'תאריך חזרה', swLabelPax: 'נוסעים', swBtnTxt: 'חפשו עכשיו',
+                allDealsTitle: 'בחרו את החופשה שלכם', allDealsSubtitle: 'חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳',
+                tabSummer: 'קיץ', tabHolidays: 'חגים', tabWinter: 'חורף',
+                footerTitleNav: 'ניווט מהיר', footerTitleInfo: 'מידע נוסף', footerTitleContact: 'צור קשר',
+                flAbout: 'הסיפור שלנו', flProcess: 'איך זה עובד', flSummer: 'חבילות קיץ', flHolidays: 'חבילות חגים', flWinter: 'חבילות חורף',
+                flDest: 'יעדים חמים', flSpec: 'התמחויות', flPolicy: 'מדיניות ביטולים', flFaq: 'שאלות נפוצות',
+                flCustom: 'תכנון מסעות בהתאמה אישית', flAvail: 'זמינות גבוהה · 7 ימים בשבוע', flCta: 'שלחו הודעה עכשיו',
             },
             en: {
                 navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
@@ -1155,7 +1490,15 @@
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> How far in advance should we contact you to book a trip?', faq3A: 'In order to guarantee the best flight routes, highly-requested boutique hotels, and optimal pricing, it is highly recommended to contact us about 3 to 5 months before your planned departure.',
                 accMenuTitle: 'Accessibility Menu', accOptText: '<i class="fa fa-text-height"></i> Enlarge Text', accOptContrast: '<i class="fa fa-adjust"></i> High Contrast', accOptLinks: '<i class="fa fa-link"></i> Highlight Links', accOptReset: '<i class="fa fa-refresh"></i> Reset Accessibility',
                 cookieMsg: 'This website uses cookies to ensure you get the best experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use.', cookieBtnTxt: 'Accept',
-                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel'
+                footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
+                swLabelDest: 'Destination', swPlaceholder: 'Choose destination...', swLabelFrom: 'Departure Date',
+                swLabelTo: 'Return Date', swLabelPax: 'Travelers', swBtnTxt: 'Search Now',
+                allDealsTitle: 'Choose Your Vacation', allDealsSubtitle: 'Ready packages for summer, holidays & winter — fully planned from A to Z',
+                tabSummer: 'Summer', tabHolidays: 'Holidays', tabWinter: 'Winter',
+                footerTitleNav: 'Quick Links', footerTitleInfo: 'More Info', footerTitleContact: 'Contact Us',
+                flAbout: 'Our Story', flProcess: 'How It Works', flSummer: 'Summer Packages', flHolidays: 'Holiday Packages', flWinter: 'Winter Packages',
+                flDest: 'Trending Destinations', flSpec: 'Our Specialties', flPolicy: 'Cancellation Policy', flFaq: 'FAQ',
+                flCustom: 'Custom Trip Planning', flAvail: 'High Availability · 7 Days a Week', flCta: 'Send a Message Now',
             }
         };
 
@@ -1323,6 +1666,38 @@
             setText('faq3-a', t.faq3A);
             setText('footer-copy', t.footerCopy);
 
+            // Search widget
+            setText('sw-label-dest', t.swLabelDest);
+            setText('sw-placeholder', t.swPlaceholder);
+            setText('sw-label-from', t.swLabelFrom);
+            setText('sw-label-to', t.swLabelTo);
+            setText('sw-label-pax', t.swLabelPax);
+            setText('sw-btn-txt', t.swBtnTxt);
+            setText('all-deals-title', t.allDealsTitle);
+            setText('all-deals-subtitle', t.allDealsSubtitle);
+            setText('tab-summer-txt', t.tabSummer);
+            setText('tab-holidays-txt', t.tabHolidays);
+            setText('tab-winter-txt', t.tabWinter);
+            setText('footer-title-nav', t.footerTitleNav);
+            // Footer links
+            setText('fl-about', t.flAbout);
+            setText('fl-process', t.flProcess);
+            setText('fl-summer', t.flSummer);
+            setText('fl-holidays', t.flHolidays);
+            setText('fl-winter', t.flWinter);
+            setText('fl-dest', t.flDest);
+            setText('fl-spec', t.flSpec);
+            setText('fl-policy', t.flPolicy);
+            setText('fl-faq', t.flFaq);
+            setText('fl-custom', t.flCustom);
+            setText('fl-avail', t.flAvail);
+            setText('fl-cta', t.flCta);
+            setText('footer-title-info', t.footerTitleInfo);
+            setText('footer-title-contact', t.footerTitleContact);
+
+            // Search widget WhatsApp message language
+            currentSearchLang = currentLang;
+
             document.getElementById('deal-specs-mykonos').innerHTML = t.dealSpecsMykonos;
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
             document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
@@ -1394,7 +1769,7 @@
             var email = document.getElementById('email').value;
             var dealInfoStr = dealDetailsData[selectedDealKey] ? dealDetailsData[selectedDealKey][currentLang] : selectedDealKey;
 
-            var message = "שלום אבי, בקשת בדיקת זמינות חדשה הוגשה מהאתר:\n\n" +
+            var message = "✈️ בקשת זמינות חדשה מהאתר AdvenHorizon!\n\n" +
                           "👤 שם מלא: " + firstName + " " + lastName + "\n" +
                           "📞 טלפון: " + phone + "\n" +
                           "📧 מייל: " + email + "\n\n" +
@@ -1415,6 +1790,13 @@
 
         function toggleAccMenu() { document.getElementById('accMenu').classList.toggle('active'); }
 
+        function toggleFaq(itemEl) {
+            if (!itemEl) return;
+            var wasOpen = itemEl.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(function (el) { el.classList.remove('open'); });
+            if (!wasOpen) { itemEl.classList.add('open'); }
+        }
+
         function accessibleAction(type) {
             if(type === 'text') { document.body.classList.toggle('accessible-large-text'); } 
             else if(type === 'contrast') { document.body.classList.toggle('accessible-contrast'); } 
@@ -1433,6 +1815,23 @@
             document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
         });
 
+        // ===== Deals tabs =====
+        function showDealsTab(name, btn) {
+            document.querySelectorAll('.deals-tab-content').forEach(function(el){ el.classList.remove('active-tab'); });
+            document.querySelectorAll('.deals-tab').forEach(function(el){ el.classList.remove('active'); });
+            var target = document.getElementById('deals-' + name);
+            if (target) target.classList.add('active-tab');
+            if (btn) btn.classList.add('active');
+        }
+
+        // ===== Scroll-reveal =====
+        (function(){
+            var els = document.querySelectorAll('.feature-item,.ticket-card,.card,.specialty-card,.process-step,.faq-item,.policy-block');
+            els.forEach(function(el,i){ el.classList.add('reveal'); if(i%3===1) el.classList.add('reveal-delay-1'); if(i%3===2) el.classList.add('reveal-delay-2'); });
+            var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); },{threshold:0.12});
+            document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+        })();
+
         window.addEventListener('click', function(e){   
             var menu = document.getElementById('accMenu');
             var btn = document.getElementById('accBtn');
@@ -1446,3 +1845,4 @@
     </script>
 </body>
 </html>
+
