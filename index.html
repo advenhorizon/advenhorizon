@@ -625,6 +625,113 @@
         .reveal-delay-1 { transition-delay:0.1s; }
         .reveal-delay-2 { transition-delay:0.2s; }
         .reveal-delay-3 { transition-delay:0.3s; }
+
+        /* ===== MOBILE OVERHAUL ===== */
+        @media(max-width:768px) {
+
+            /* Nav */
+            .nav-container { padding:10px 16px; }
+            .logo-img { height:36px; }
+            .logo-wordmark { font-size:0.9rem; }
+
+            /* Hero */
+            .hero { min-height:55vh; padding:60px 16px 50px; }
+            .hero h1 { font-size:1.8rem; line-height:1.1; }
+            .hero p#hero-subtitle { font-size:0.75rem; letter-spacing:0.12em; margin-bottom:22px; }
+            .hero-kicker { font-size:0.65rem; padding:7px 14px; margin-bottom:14px; }
+            .hero-cta-wrap { flex-direction:column; gap:10px; }
+            .btn-hero-primary, .btn-hero-secondary { width:100%; justify-content:center; padding:12px 20px; font-size:0.85rem; }
+
+            /* Search widget */
+            .bp-wrapper { padding:16px 12px 0; }
+            .search-widget { border-radius:14px; margin:0 auto; }
+            .sw-field { flex:1 1 100%; padding:12px 14px; border-bottom:1px solid var(--line); }
+            .sw-field:last-of-type { border-bottom:none; }
+            .sw-field-pax { flex:1 1 100%; }
+            .sw-divider { display:none; }
+            .sw-label { font-size:0.6rem; }
+            .sw-select, .sw-date { font-size:0.88rem; }
+            .sw-search-btn { width:100%; padding:15px; justify-content:center; font-size:0.95rem; border-radius:0 0 14px 14px; }
+
+            /* About */
+            .about-section { padding:40px 16px 48px; }
+            .about-text { font-size:1rem; padding:20px 18px; margin-bottom:32px; }
+            .about-subtitle { font-size:0.95rem; margin-bottom:24px; }
+            .features-grid { grid-template-columns:1fr; gap:12px; }
+            .feature-item { padding:24px 20px; }
+
+            /* Process */
+            .process-section { padding:48px 16px; }
+            .process-grid { grid-template-columns:1fr; gap:36px; }
+            .process-grid::before { display:none; }
+            .process-step { padding:0 16px; }
+
+            /* Deals */
+            .all-deals-intro { padding:40px 16px 24px; }
+            .all-deals-intro .section-title { font-size:1.6rem; }
+            .all-deals-intro .section-subtitle { font-size:0.9rem; margin-bottom:20px; }
+            .deals-tabs { gap:6px; padding:5px; }
+            .deals-tab { padding:8px 14px; font-size:0.8rem; }
+            .deals-section.deals-tab-content { padding:0 12px 16px; }
+            .deals-grid-wrap { gap:16px; }
+            .ticket-card { border-radius:14px; }
+            .deal-gallery-wrapper { height:200px; }
+            .deal-card-body { padding:18px 16px; }
+            .deal-card-body h3 { font-size:1.05rem; }
+            .deal-card-bottom { flex-direction:column; gap:10px; }
+            .btn-deal-order { width:100%; text-align:center; justify-content:center; padding:12px; }
+            .deal-card-price .amount { font-size:1.3rem; }
+
+            /* Destinations */
+            .destinations { padding:48px 16px; }
+            .grid { grid-template-columns:1fr; gap:16px; }
+            .card-img { height:180px; }
+            .card-content { padding:18px 16px; }
+
+            /* Specialties */
+            .specialties-section { padding:48px 16px; }
+            .specialties-grid { grid-template-columns:1fr; gap:14px; }
+            .specialty-card { padding:28px 20px; }
+
+            /* Policy */
+            .policy-section { padding:48px 16px; }
+            .policy-container { padding:0; }
+
+            /* FAQ */
+            .faq-section { padding:48px 16px; }
+            .faq-item h3 { font-size:0.92rem; padding:16px 16px; }
+            .faq-item p { padding:0 16px 16px; font-size:0.88rem; }
+
+            /* Section titles global */
+            .section-title { font-size:1.6rem; }
+            .section-subtitle { font-size:0.9rem; margin-bottom:24px; }
+            .eyebrow { font-size:0.68rem; }
+
+            /* Modal */
+            .modal-card { border-radius:16px; }
+            .modal-header { padding:20px 20px; border-radius:16px 16px 0 0; }
+            .modal-body { padding:20px 20px 24px; }
+
+            /* Footer */
+            .footer-inner { grid-template-columns:1fr; gap:28px; padding-bottom:36px; }
+            .footer-brand { align-items:flex-start; }
+            body[dir="ltr"] .footer-brand { align-items:flex-start; }
+            .footer-col { align-items:flex-start; }
+            .footer-brand-name { font-size:1.1rem; }
+            .footer-cta-btn { width:100%; justify-content:center; }
+
+            /* Floating buttons */
+            .whatsapp-float { width:48px; height:48px; font-size:1.4rem; bottom:16px; }
+            body[dir="rtl"] .whatsapp-float { left:16px; }
+            .accessibility-wrapper { bottom:16px; }
+            body[dir="rtl"] .accessibility-wrapper { right:16px; }
+            .accessibility-btn { width:48px; height:48px; font-size:1.2rem; }
+        }
+
+        @media(max-width:400px) {
+            .hero h1 { font-size:1.5rem; }
+            .deals-tab { padding:7px 10px; font-size:0.72rem; }
+        }
     </style>
 </head>
 <body id="body-tag" dir="rtl">
