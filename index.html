@@ -92,8 +92,19 @@
             font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase;
             color: var(--blue); font-weight: 700; margin-bottom: 14px;
         }
-        .eyebrow::before { content:''; width:24px; height:2px; background:var(--blue); display:inline-block; border-radius:2px; }
-        body[dir="rtl"] .eyebrow::before { order:2; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.75rem; letter-spacing: 0.13em; text-transform: uppercase;
+            color: var(--blue); font-weight: 700; margin-bottom: 14px;
+        }
+        .eyebrow::before, .eyebrow::after { display:none; }
+        .eyebrow-bar {
+            display:inline-block; width:24px; height:2px;
+            background:var(--blue); border-radius:2px; flex-shrink:0;
+        }
+        .eyebrow-bar { display:none !important; }
+        .process-section .eyebrow { color:#82c9ff; }
+        .process-section .eyebrow-bar { background:#82c9ff; }
 
         .section-title { font-size: clamp(1.9rem,3.2vw,2.6rem); color: var(--ink); margin-bottom: 16px; line-height: 1.18; }
         .section-subtitle { color: var(--slate); margin-bottom: 36px; font-size: 1.06rem; max-width: 620px; }
@@ -108,20 +119,22 @@
             backdrop-filter: blur(16px);
             box-shadow: 0 1px 0 var(--line), var(--shadow-sm);
             position: sticky; top: 0; z-index: 1000;
+            direction: rtl;
         }
-        .nav-container { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; }
+        body[dir="ltr"] header { direction: ltr; }
+        .nav-container { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; gap:16px; }
         .logo-area { display:flex; align-items:center; gap:10px; }
         .logo-img { height:46px; width:auto; object-fit:contain; border-radius:50%; }
         .logo-wordmark { font-family:'Heebo',sans-serif; font-weight:800; font-size:1.15rem; color:var(--blue-dark); white-space:nowrap; }
         .logo-wordmark span { color:var(--sky); }
 
-        .nav-links-container { display:flex; align-items:center; gap:24px; }
+        .nav-links-container { display:flex; align-items:center; flex:1; justify-content:center; }
         .nav-links { display:flex; list-style:none; gap:6px; align-items:center; }
         .nav-links li { display:flex; align-items:center; }
         .nav-links a { text-decoration:none; color:var(--ink-soft); font-weight:600; font-size:0.92rem; transition:var(--transition); position:relative; padding:8px 12px; border-radius:8px; }
         .nav-links a:not(.nav-dropdown-label):hover { background:var(--blue-xlight); color:var(--blue); }
         .nav-links a:not(.nav-dropdown-label):after { display:none; }
-        .nav-right-side { display:flex; align-items:center; gap:12px; }
+        .nav-right-side { display:flex; align-items:center; gap:12px; flex-shrink:0; }
 
         .nav-dropdown { position:relative; padding-bottom:14px; margin-bottom:-14px; display:flex; align-items:center; }
         .nav-dropdown-label { display:flex; align-items:center; gap:5px; cursor:pointer; }
@@ -221,101 +234,65 @@
         }
         .btn-hero-secondary:hover { background:rgba(255,255,255,0.25); transform:translateY(-2px); }
 
-        /* bp-wrapper & search widget */
-        .bp-wrapper {
-            background: var(--white);
-            padding: 24px 20px 0;
-            position: relative;
-            z-index: 10;
-        }
+        /* ===== SEARCH WIDGET ===== */
+        .bp-wrapper { background:var(--white); padding:24px 20px 0; position:relative; z-index:10; }
         .search-widget {
-            width: min(1100px, 96vw);
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 20px 56px rgba(0,62,138,0.18), 0 0 0 1px rgba(0,87,184,0.1);
-            display: flex; align-items: stretch;
-            position: relative; z-index: 10;
-            overflow: hidden;
-        }
-        .sw-field {
-            flex: 1; display: flex; flex-direction: column;
-            justify-content: center; padding: 16px 20px; gap: 5px;
-            min-width: 0; align-items: flex-start;
-        }
-        body[dir="rtl"] .sw-field { align-items: flex-end; }
-        .sw-field-pax { flex: 0 0 140px; }
-        .sw-label {
-            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--slate);
-            display: flex; align-items: center; gap: 5px;
+            width:min(1100px,96vw); margin:0 auto; background:#fff; border-radius:20px;
+            box-shadow:0 20px 56px rgba(0,62,138,0.18),0 0 0 1px rgba(0,87,184,0.1);
+            display:flex; align-items:stretch; position:relative; z-index:10;
+            overflow:hidden; /* clips button corners correctly */
             flex-direction: row;
         }
-        body[dir="rtl"] .sw-label { flex-direction: row-reverse; }
-        .sw-label i { color: var(--blue); }
-        .sw-select-wrap { position: relative; width: 100%; }
-        .sw-select {
-            width: 100%; border: none; outline: none; background: transparent;
-            font-size: 0.9rem; font-weight: 700; color: var(--ink);
-            font-family: 'Heebo', sans-serif; cursor: pointer;
-            appearance: none; -webkit-appearance: none;
-            text-align: left; direction: ltr; padding-left: 22px; padding-right: 0;
+        body[dir="ltr"] .search-widget { flex-direction: row-reverse; }
+        /* dropdown must escape overflow:hidden via position:fixed */
+        .sw-dropdown {
+            position:fixed !important;
         }
-        body[dir="rtl"] .sw-select { text-align: right; direction: rtl; padding-right: 22px; padding-left: 0; }
-        .sw-chevron {
-            position: absolute; left: 0; right: auto; top: 50%; transform: translateY(-50%);
-            color: var(--blue); font-size: 0.7rem; pointer-events: none;
-        }
-        body[dir="rtl"] .sw-chevron { left: auto; right: 0; }
-        .sw-date {
-            border: none; outline: none; background: transparent;
-            font-size: 0.9rem; font-weight: 700; color: var(--ink);
-            font-family: 'Heebo', sans-serif; cursor: pointer; width: 100%;
-            text-align: left; direction: ltr;
-        }
-        body[dir="rtl"] .sw-date { text-align: right; direction: rtl; }
-        .sw-date::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.5; }
-        .sw-pax-wrap {
-            display: flex; align-items: center; gap: 12px;
-            flex-direction: row;
-        }
-        body[dir="rtl"] .sw-pax-wrap { flex-direction: row-reverse; }
-        .sw-pax-wrap span { font-size: 1.1rem; font-weight: 800; color: var(--ink); min-width: 24px; text-align: center; }
-        .sw-pax-btn {
-            width: 30px; height: 30px; border-radius: 50%;
-            border: 1.5px solid rgba(0,87,184,0.3); background: transparent;
-            color: var(--blue); font-size: 1rem; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); line-height: 1; flex-shrink: 0;
-        }
-        .sw-pax-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-        .sw-divider {
-            width: 1px; background: var(--line);
-            flex-shrink: 0; margin: 12px 0;
-        }
-        .sw-search-btn {
-            flex-shrink: 0;
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
-            color: #fff; border: none; padding: 0 28px;
-            font-size: 0.9rem; font-weight: 800; cursor: pointer;
-            display: flex; align-items: center; gap: 8px;
-            transition: var(--transition); font-family: 'Heebo', sans-serif;
-            white-space: nowrap;
-        }
-        .sw-search-btn:hover { background: var(--blue-dark); }
-
+        .sw-field { flex:1; display:flex; flex-direction:column; justify-content:center; padding:14px 18px; gap:6px; min-width:0; position:relative; direction:rtl; }
+        body[dir="ltr"] .sw-field { direction:ltr; }
+        .sw-field-inner { display:flex; flex-direction:column; gap:5px; width:100%; }
+        .sw-label { font-size:0.63rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); display:flex; align-items:center; gap:5px; white-space:nowrap; }
+        .sw-label i { color:var(--blue); }
+        .sw-date-display { font-size:0.92rem; font-weight:700; color:var(--ink); }
+        .sw-pax-wrap { display:flex; align-items:center; gap:14px; }
+        .sw-field-pax { flex:0 0 150px; }
+        .sw-label { font-size:0.63rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); display:flex; align-items:center; gap:5px; white-space:nowrap; direction:rtl; }
+        body[dir="ltr"] .sw-label { direction:ltr; }
+        .sw-label i { color:var(--blue); }
+        /* Custom select */
+        .sw-custom-select { display:flex; align-items:center; gap:8px; cursor:pointer; width:100%; }
+        .sw-selected-txt { font-size:0.92rem; font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+        .sw-chevron { color:var(--blue); font-size:0.7rem; flex-shrink:0; transition:transform 0.2s; }
+        .sw-chevron.open { transform:rotate(180deg); }
+        .sw-dropdown { display:none; position:absolute; top:calc(100% + 4px); right:0; background:#fff; border-radius:14px; box-shadow:0 16px 48px rgba(0,62,138,0.2); border:1.5px solid var(--line); min-width:250px; max-height:300px; overflow-y:auto; z-index:9999; }
+        body[dir="ltr"] .sw-dropdown { right:auto; left:0; }
+        .sw-dropdown.open { display:block; }
+        .sw-dropdown-group { padding:10px 16px 4px; font-size:0.7rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:0.06em; text-align:right; }
+        body[dir="ltr"] .sw-dropdown-group { text-align:left; }
+        .sw-dropdown-item { padding:10px 16px; font-size:0.9rem; font-weight:600; color:var(--ink); cursor:pointer; transition:background 0.15s; text-align:right; }
+        body[dir="ltr"] .sw-dropdown-item { text-align:left; }
+        .sw-dropdown-item:hover { background:var(--blue-xlight); color:var(--blue); }
+        /* Date display */
+        .sw-date-display { font-size:0.92rem; font-weight:700; color:var(--ink); }
+        .sw-date-hidden { position:absolute; opacity:0; pointer-events:none; width:0; height:0; top:0; }
+        /* Pax */
+        .sw-pax-wrap { display:flex; align-items:center; gap:14px; justify-content:flex-end; }
+        body[dir="ltr"] .sw-pax-wrap { justify-content:flex-start; }
+        .sw-pax-wrap span { font-size:1.1rem; font-weight:800; color:var(--ink); min-width:24px; text-align:center; }
+        .sw-pax-btn { width:30px; height:30px; border-radius:50%; border:1.5px solid rgba(0,87,184,0.3); background:transparent; color:var(--blue); font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+        .sw-pax-btn:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+        .sw-divider { width:1px; background:var(--line); flex-shrink:0; margin:12px 0; }
+        .sw-btn-wrap { flex-shrink:0; display:flex; align-items:stretch; }
+        .sw-search-btn { background:linear-gradient(135deg,var(--blue) 0%,var(--blue-mid) 100%); color:#fff; border:none; padding:0 28px; font-size:0.9rem; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:8px; transition:var(--transition); font-family:'Heebo',sans-serif; white-space:nowrap; border-radius:0; }
+        .sw-search-btn:hover { background:var(--blue-dark); }
         @media(max-width:900px) {
-            .search-widget {
-                flex-wrap: wrap; margin: -20px auto 0;
-                border-radius: 16px;
-            }
-            .sw-field { flex: 1 1 calc(50% - 1px); padding: 14px 16px; border-bottom: 1px solid var(--line); }
-            .sw-field-pax { flex: 1 1 calc(50% - 1px); }
-            .sw-divider { display: none; }
-            .sw-search-btn { width: 100%; padding: 16px; justify-content: center; font-size: 1rem; border-radius: 0 0 16px 16px; }
-        }
-        @media(max-width:768px) {
-            .sw-field { flex: 1 1 100%; }
+            .search-widget { flex-wrap:wrap; border-radius:16px; overflow:hidden; }
+            .sw-field { flex:1 1 100%; padding:14px 16px; border-bottom:1px solid var(--line); }
+            .sw-field-pax { flex:1 1 100%; }
+            .sw-divider { display:none; }
+            .sw-btn-wrap { width:100%; border-radius:0; overflow:hidden; }
+            .sw-search-btn { width:100%; padding:16px; justify-content:center; }
+            .sw-dropdown { min-width:200px; max-height:240px; }
         }
 
         /* ===== ABOUT ===== */
@@ -361,7 +338,6 @@
         }
         .process-section .section-head, .process-grid { position:relative; z-index:1; }
         .process-section .eyebrow { color:#82c9ff; }
-        .process-section .eyebrow::before { background:#82c9ff; }
         .process-section .section-title { color:var(--white); }
         .process-section .section-subtitle { color:rgba(255,255,255,0.7); }
         .process-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; }
@@ -651,65 +627,9 @@
             .hero-cta-wrap { flex-direction:column; gap:10px; }
             .btn-hero-primary, .btn-hero-secondary { width:100%; justify-content:center; padding:12px 20px; font-size:0.85rem; }
 
-            /* Search widget - mobile full rewrite */
-            .bp-wrapper { padding: 12px 12px 0; }
-            .search-widget {
-                flex-direction: column;
-                border-radius: 16px;
-                margin: 0 auto;
-                overflow: hidden;
-            }
-            .sw-divider { display: none; }
-            .sw-field {
-                flex: none;
-                width: 100%;
-                padding: 14px 18px;
-                border-bottom: 1px solid var(--line);
-                align-items: flex-end;
-                min-width: 0;
-            }
-            body[dir="rtl"] .sw-field { align-items: flex-end; }
-            .sw-field-pax { flex: none; width: 100%; }
-            .sw-label {
-                font-size: 0.65rem;
-                width: 100%;
-                text-align: right;
-            }
-            body[dir="rtl"] .sw-label { text-align: right; }
-            .sw-select-wrap { width: 100%; }
-            .sw-select {
-                font-size: 0.95rem;
-                width: 100%;
-                text-align: right;
-                direction: rtl;
-                padding-right: 4px;
-            }
-            body[dir="rtl"] .sw-select { text-align: right; direction: rtl; padding-right: 4px; padding-left: 0; }
-            .sw-date {
-                font-size: 0.95rem;
-                width: 100%;
-                text-align: right;
-                direction: rtl;
-            }
-            body[dir="rtl"] .sw-date { text-align: right; direction: rtl; }
-            .sw-pax-wrap {
-                width: 100%;
-                justify-content: flex-start;
-                gap: 16px;
-                flex-direction: row;
-            }
-            body[dir="rtl"] .sw-pax-wrap { justify-content: flex-end; flex-direction: row-reverse; }
-            .sw-select-wrap { text-align: right; }
-            body[dir="rtl"] .sw-select-wrap { text-align: right; }
-            .sw-pax-btn { width: 32px; height: 32px; font-size: 1.1rem; }
-            .sw-pax-wrap span { font-size: 1.15rem; }
-            .sw-search-btn {
-                width: 100%;
-                padding: 16px;
-                justify-content: center;
-                font-size: 1rem;
-                border-radius: 0;
-            }
+            /* Search widget mobile */
+            .sw-field-inner { align-items: flex-end; }
+            body[dir="ltr"] .sw-field-inner { align-items: flex-start; }
 
             /* About */
             .about-section { padding:40px 16px 48px; }
@@ -809,11 +729,11 @@
                     <li><a href="#policy" id="nav-policy">מדיניות ביטולים</a></li>
                     <li><a href="#faq" id="nav-faq">שאלות נפוצות</a></li>
                 </ul>
-                <div class="nav-right-side">
-                    <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-icon" target="_blank" title="הפייסבוק שלנו"><i class="fa fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/advenhorizontravels" class="nav-social-icon instagram" target="_blank" title="האינסטגרם שלנו"><i class="fa fa-instagram"></i></a>
-                    <button class="lang-switch-btn" onclick="toggleLanguage()" id="lang-btn"><i class="fa fa-globe"></i> English</button>
-                </div>
+            </div>
+            <div class="nav-right-side">
+                <a href="https://www.facebook.com/profile.php?id=61590115097548" class="nav-social-icon" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/advenhorizontravels" class="nav-social-icon" target="_blank"><i class="fa fa-instagram"></i></a>
+                <button class="lang-switch-btn" onclick="toggleLanguage()" id="lang-btn"><i class="fa fa-globe"></i> English</button>
             </div>
             <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="תפריט">
                 <i class="fa fa-bars"></i>
@@ -847,11 +767,11 @@
             <h1 id="hero-title">AdvenHorizon Travels</h1>
             <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
             <div class="hero-cta-wrap">
-                <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-hero-primary" target="_blank" id="hero-btn">
-                    <i class="fa fa-whatsapp"></i> תכננו את המסע שלכם
+                <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="btn-hero-primary" target="_blank" id="hero-btn">
+                    <i class="fa fa-whatsapp"></i> <span id="hero-btn-txt">תכננו את המסע שלכם</span>
                 </a>
-                <a href="#deals-summer" class="btn-hero-secondary">
-                    <i class="fa fa-th-large"></i> לחבילות הנופש
+                <a href="#all-deals" class="btn-hero-secondary" id="hero-btn-2">
+                    <i class="fa fa-th-large"></i> <span id="hero-btn-2-txt">לחבילות הנופש</span>
                 </a>
             </div>
         </div>
@@ -860,152 +780,203 @@
     <!-- Interactive search widget -->
     <div class="bp-wrapper">
         <div class="search-widget">
-            <div class="sw-field">
-                <label class="sw-label" id="sw-label-dest"><i class="fa fa-map-marker"></i> יעד נסיעה</label>
-                <div class="sw-select-wrap">
-                    <select id="sw-dest" class="sw-select">
-                        <option value="" id="sw-placeholder">בחרו יעד...</option>
-                        <optgroup label="🌊 חבילות הקיץ שלנו">
-                            <option value="איה נאפה, קפריסין">איה נאפה, קפריסין</option>
-                        </optgroup>
-                        <optgroup label="✡️ חבילות חגים שלנו">
-                            <option value="מיקונוס, יוון">מיקונוס, יוון</option>
-                            <option value="פאפוס, קפריסין">פאפוס, קפריסין</option>
-                            <option value="לאס וגאס, ארה&quot;ב">לאס וגאס, ארה"ב</option>
-                            <option value="מינכן, גרמניה">מינכן, גרמניה</option>
-                        </optgroup>
-                        <optgroup label="❄️ חבילות חורף שלנו">
-                            <option value="פראג, צ'כיה">פראג, צ'כיה</option>
-                        </optgroup>
-                        <optgroup label="✈️ יעדים נוספים">
-                            <option value="תאילנד">תאילנד</option>
-                            <option value="האיים המלדיביים">האיים המלדיביים</option>
-                            <option value="זנזיבר">זנזיבר</option>
-                            <option value="יפן">יפן</option>
-                            <option value="וייטנאם">וייטנאם</option>
-                            <option value="ניו יורק, ארה&quot;ב">ניו יורק, ארה"ב</option>
-                            <option value="לוס אנג'לס, ארה&quot;ב">לוס אנג'לס, ארה"ב</option>
-                            <option value="לונדון, אנגליה">לונדון, אנגליה</option>
-                            <option value="פריז, צרפת">פריז, צרפת</option>
-                            <option value="רומא, איטליה">רומא, איטליה</option>
-                            <option value="ברצלונה, ספרד">ברצלונה, ספרד</option>
-                            <option value="אתונה, יוון">אתונה, יוון</option>
-                            <option value="דובאי, איחוד האמירויות">דובאי, איחוד האמירויות</option>
-                            <option value="בנגקוק, תאילנד">בנגקוק, תאילנד</option>
-                            <option value="בלי, אינדונזיה">באלי, אינדונזיה</option>
-                            <option value="אמסטרדם, הולנד">אמסטרדם, הולנד</option>
-                            <option value="ברלין, גרמניה">ברלין, גרמניה</option>
-                            <option value="וינה, אוסטריה">וינה, אוסטריה</option>
-                            <option value="לאוס">לאוס</option>
-                            <option value="יעד אחר">יעד אחר (אפרט בוואטסאפ)</option>
-                        </optgroup>
-                    </select>
-                    <i class="fa fa-chevron-down sw-chevron"></i>
+
+            <!-- Destination -->
+            <div class="sw-field" id="sw-dest-field">
+                <div class="sw-field-inner">
+                    <span class="sw-label" id="sw-label-dest"><i class="fa fa-map-marker"></i> <span id="sw-label-dest-txt">יעד נסיעה</span></span>
+                    <div class="sw-custom-select" onclick="toggleDestDropdown()">
+                        <i class="fa fa-chevron-down sw-chevron" id="sw-dest-chevron"></i>
+                        <span class="sw-selected-txt" id="sw-selected-dest">בחרו יעד...</span>
+                    </div>
+                </div>
+                <div class="sw-dropdown" id="sw-dropdown">
+                    <div class="sw-dropdown-group">🌊 <strong id="sw-grp-summer">חבילות קיץ</strong></div>
+                    <div class="sw-dropdown-item" onclick="selectDest('איה נאפה, קפריסין')">איה נאפה, קפריסין</div>
+                    <div class="sw-dropdown-group">✡️ <strong id="sw-grp-holidays">חבילות חגים</strong></div>
+                    <div class="sw-dropdown-item" onclick="selectDest('מיקונוס, יוון')">מיקונוס, יוון</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('פאפוס, קפריסין')">פאפוס, קפריסין</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('לאס וגאס, ארה\'ב')">לאס וגאס, ארה"ב</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('מינכן, גרמניה')">מינכן, גרמניה</div>
+                    <div class="sw-dropdown-group">❄️ <strong id="sw-grp-winter">חבילות חורף</strong></div>
+                    <div class="sw-dropdown-item" onclick="selectDest('פראג, צ\'כיה')">פראג, צ'כיה</div>
+                    <div class="sw-dropdown-group">✈️ <strong id="sw-grp-more">יעדים נוספים</strong></div>
+                    <div class="sw-dropdown-item" onclick="selectDest('תאילנד')">תאילנד</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('האיים המלדיביים')">האיים המלדיביים</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('זנזיבר')">זנזיבר</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('יפן')">יפן</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('וייטנאם')">וייטנאם</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('ניו יורק, ארה\'ב')">ניו יורק, ארה"ב</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('לוס אנג\'לס, ארה\'ב')">לוס אנג'לס, ארה"ב</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('לונדון, אנגליה')">לונדון, אנגליה</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('פריז, צרפת')">פריז, צרפת</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('רומא, איטליה')">רומא, איטליה</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('ברצלונה, ספרד')">ברצלונה, ספרד</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('אתונה, יוון')">אתונה, יוון</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('דובאי, איחוד האמירויות')">דובאי, איחוד האמירויות</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('בנגקוק, תאילנד')">בנגקוק, תאילנד</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('באלי, אינדונזיה')">באלי, אינדונזיה</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('אמסטרדם, הולנד')">אמסטרדם, הולנד</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('ברלין, גרמניה')">ברלין, גרמניה</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('וינה, אוסטריה')">וינה, אוסטריה</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('לאוס')">לאוס</div>
+                    <div class="sw-dropdown-item" onclick="selectDest('יעד אחר')">יעד אחר</div>
                 </div>
             </div>
 
             <div class="sw-divider"></div>
 
-            <div class="sw-field" onclick="try{document.getElementById('sw-date-from').showPicker()}catch(e){document.getElementById('sw-date-from').click()}" style="cursor:pointer;">
-                <label class="sw-label" id="sw-label-from" style="cursor:pointer;pointer-events:none;"><i class="fa fa-calendar"></i> תאריך יציאה</label>
-                <input type="date" id="sw-date-from" class="sw-date" min="" style="cursor:pointer;">
+            <!-- Departure Date -->
+            <div class="sw-field" onclick="document.getElementById('sw-date-from').focus(); try{document.getElementById('sw-date-from').showPicker()}catch(e){}" style="cursor:pointer;">
+                <div class="sw-field-inner">
+                    <span class="sw-label" id="sw-label-from" style="pointer-events:none;"><i class="fa fa-calendar"></i> <span id="sw-label-from-txt">תאריך יציאה</span></span>
+                    <span class="sw-date-display" id="sw-display-from" style="pointer-events:none;">dd/mm/yyyy</span>
+                </div>
+                <input type="date" id="sw-date-from" class="sw-date-hidden" min="">
             </div>
 
             <div class="sw-divider"></div>
 
-            <div class="sw-field" onclick="try{document.getElementById('sw-date-to').showPicker()}catch(e){document.getElementById('sw-date-to').click()}" style="cursor:pointer;">
-                <label class="sw-label" id="sw-label-to" style="cursor:pointer;pointer-events:none;"><i class="fa fa-calendar-check-o"></i> תאריך חזרה</label>
-                <input type="date" id="sw-date-to" class="sw-date" min="" style="cursor:pointer;">
+            <!-- Return Date -->
+            <div class="sw-field" onclick="document.getElementById('sw-date-to').focus(); try{document.getElementById('sw-date-to').showPicker()}catch(e){}" style="cursor:pointer;">
+                <div class="sw-field-inner">
+                    <span class="sw-label" id="sw-label-to" style="pointer-events:none;"><i class="fa fa-calendar-check-o"></i> <span id="sw-label-to-txt">תאריך חזרה</span></span>
+                    <span class="sw-date-display" id="sw-display-to" style="pointer-events:none;">dd/mm/yyyy</span>
+                </div>
+                <input type="date" id="sw-date-to" class="sw-date-hidden" min="">
             </div>
 
             <div class="sw-divider"></div>
 
+            <!-- Travelers -->
             <div class="sw-field sw-field-pax">
-                <label class="sw-label" id="sw-label-pax"><i class="fa fa-users"></i> נוסעים</label>
-                <div class="sw-pax-wrap">
-                    <button class="sw-pax-btn" onclick="changePax(1)">+</button>
-                    <span id="sw-pax-count">2</span>
-                    <button class="sw-pax-btn" onclick="changePax(-1)">−</button>
+                <div class="sw-field-inner">
+                    <span class="sw-label" id="sw-label-pax"><i class="fa fa-users"></i> <span id="sw-label-pax-txt">נוסעים</span></span>
+                    <div class="sw-pax-wrap">
+                        <button class="sw-pax-btn" onclick="changePax(-1)" aria-label="הפחת">−</button>
+                        <span id="sw-pax-count">2</span>
+                        <button class="sw-pax-btn" onclick="changePax(1)" aria-label="הוסף">+</button>
+                    </div>
                 </div>
             </div>
 
-            <button class="sw-search-btn" onclick="doSearch()">
-                <i class="fa fa-search"></i>
-                <span id="sw-btn-txt">חפשו עכשיו</span>
-            </button>
+            <div class="sw-btn-wrap">
+                <button class="sw-search-btn" onclick="doSearch()">
+                    <i class="fa fa-search"></i>
+                    <span id="sw-btn-txt">חפשו עכשיו</span>
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Set min date to today
+        // ===== Search Widget =====
+        var _swDest = '';
+        var _swDateFrom = '';
+        var _swDateTo = '';
+        var swPax = 2;
+
         (function(){
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementById('sw-date-from').min = today;
-            document.getElementById('sw-date-to').min = today;
-            document.getElementById('sw-date-from').value = today;
+            var today = new Date();
+            var todayStr = today.toISOString().split('T')[0];
+            document.getElementById('sw-date-from').min = todayStr;
+            document.getElementById('sw-date-to').min = todayStr;
         })();
 
-        var swPax = 2;
+        function fmtDate(val) {
+            if (!val) return 'dd/mm/yyyy';
+            var p = val.split('-');
+            return p[2]+'/'+p[1]+'/'+p[0];
+        }
+
+        function toggleDestDropdown() {
+            var dd = document.getElementById('sw-dropdown');
+            var field = document.getElementById('sw-dest-field');
+            var ch = document.getElementById('sw-dest-chevron');
+            var isOpen = dd.classList.contains('open');
+            closeAllDropdowns();
+            if (!isOpen) {
+                var rect = field.getBoundingClientRect();
+                dd.style.top = (rect.bottom + 6) + 'px';
+                dd.style.right = (window.innerWidth - rect.right) + 'px';
+                dd.style.left = 'auto';
+                if (document.body.dir === 'ltr') {
+                    dd.style.left = rect.left + 'px';
+                    dd.style.right = 'auto';
+                }
+                dd.classList.add('open');
+                ch.classList.add('open');
+            }
+        }
+
+        function selectDest(val) {
+            _swDest = val;
+            document.getElementById('sw-selected-dest').textContent = val;
+            document.getElementById('sw-selected-dest').style.color = 'var(--ink)';
+            closeAllDropdowns();
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.sw-dropdown').forEach(function(d){ d.classList.remove('open'); });
+            document.querySelectorAll('.sw-chevron').forEach(function(c){ c.classList.remove('open'); });
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#sw-dest-field')) closeAllDropdowns();
+        });
+
+        document.getElementById('sw-date-from').addEventListener('change', function() {
+            _swDateFrom = this.value;
+            document.getElementById('sw-display-from').textContent = fmtDate(this.value);
+            document.getElementById('sw-display-from').style.color = 'var(--ink)';
+            if (this.value) {
+                var next = new Date(this.value);
+                next.setDate(next.getDate() + 1);
+                var nextStr = next.toISOString().split('T')[0];
+                document.getElementById('sw-date-to').min = nextStr;
+                if (_swDateTo && _swDateTo <= this.value) {
+                    _swDateTo = nextStr;
+                    document.getElementById('sw-date-to').value = nextStr;
+                    document.getElementById('sw-display-to').textContent = fmtDate(nextStr);
+                }
+            }
+        });
+
+        document.getElementById('sw-date-to').addEventListener('change', function() {
+            _swDateTo = this.value;
+            document.getElementById('sw-display-to').textContent = fmtDate(this.value);
+            document.getElementById('sw-display-to').style.color = 'var(--ink)';
+        });
+
         function changePax(d) {
             swPax = Math.max(1, Math.min(20, swPax + d));
             document.getElementById('sw-pax-count').textContent = swPax;
         }
 
         function doSearch() {
-            var dest = document.getElementById('sw-dest').value;
-            var dateFrom = document.getElementById('sw-date-from').value;
-            var dateTo = document.getElementById('sw-date-to').value;
-            var pax = swPax;
-
             var isHe = (currentLang === 'he');
-            if (!dest) { alert(isHe ? '✈️ אנא בחרו יעד נסיעה' : '✈️ Please select a destination'); return; }
-            if (!dateFrom) { alert(isHe ? '📅 אנא בחרו תאריך יציאה' : '📅 Please select a departure date'); return; }
-
-            function fmt(d) {
-                if (!d) return '';
-                var p = d.split('-');
-                return p[2]+'/'+p[1]+'/'+p[0];
-            }
-
+            if (!_swDest) { alert(isHe ? '✈️ אנא בחרו יעד נסיעה' : '✈️ Please select a destination'); return; }
+            if (!_swDateFrom) { alert(isHe ? '📅 אנא בחרו תאריך יציאה' : '📅 Please select a departure date'); return; }
             var msg = '';
             if (isHe) {
                 msg  = 'שלום אבי! 👋\n\n';
                 msg += 'אני מעוניין/ת לתכנן טיול:\n\n';
-                msg += '🌍 יעד: ' + dest + '\n';
-                msg += '🛫 יציאה: ' + fmt(dateFrom) + '\n';
-                if (dateTo) msg += '🛬 חזרה: ' + fmt(dateTo) + '\n';
-                msg += '👥 נוסעים: ' + pax + '\n\n';
+                msg += '🌍 יעד: ' + _swDest + '\n';
+                msg += '🛫 יציאה: ' + fmtDate(_swDateFrom) + '\n';
+                if (_swDateTo) msg += '🛬 חזרה: ' + fmtDate(_swDateTo) + '\n';
+                msg += '👥 נוסעים: ' + swPax + '\n\n';
                 msg += 'אשמח לקבל הצעת מחיר ותוכנית טיול מפורטת 🙏🌴';
             } else {
                 msg  = 'Hi Avi! 👋\n\n';
-                msg += 'I\'d like to plan a trip:\n\n';
-                msg += '🌍 Destination: ' + dest + '\n';
-                msg += '🛫 Departure: ' + fmt(dateFrom) + '\n';
-                if (dateTo) msg += '🛬 Return: ' + fmt(dateTo) + '\n';
-                msg += '👥 Travelers: ' + pax + '\n\n';
-                msg += 'I\'d love to get a quote and a detailed travel plan 🙏🌴';
+                msg += "I'd like to plan a trip:\n\n";
+                msg += '🌍 Destination: ' + _swDest + '\n';
+                msg += '🛫 Departure: ' + fmtDate(_swDateFrom) + '\n';
+                if (_swDateTo) msg += '🛬 Return: ' + fmtDate(_swDateTo) + '\n';
+                msg += '👥 Travelers: ' + swPax + '\n\n';
+                msg += "I'd love to get a quote and a detailed travel plan 🙏🌴";
             }
-
-            var encoded = encodeURIComponent(msg);
-
-            showWhatsAppChoice(encoded);
+            showWhatsAppChoice(encodeURIComponent(msg));
         }
-
-        // Return date must be after departure date (min = departure + 1 day)
-        document.getElementById('sw-date-from').addEventListener('change', function() {
-            var fromVal = this.value;
-            if (!fromVal) return;
-            // Set return min to day after departure
-            var nextDay = new Date(fromVal);
-            nextDay.setDate(nextDay.getDate() + 1);
-            var nextDayStr = nextDay.toISOString().split('T')[0];
-            var returnEl = document.getElementById('sw-date-to');
-            returnEl.min = nextDayStr;
-            // If already-selected return is before or same as departure, clear it
-            if (returnEl.value && returnEl.value <= fromVal) {
-                returnEl.value = nextDayStr;
-            }
-        });
     </script>
 
     <!-- WhatsApp Choice Dialog -->
@@ -1068,7 +1039,7 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            <p class="eyebrow">מאחורי הקלעים</p>
+            <p class="eyebrow" id="about-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">מאחורי הקלעים</span><span class="eyebrow-bar eb-rtl"></span></p>
             <h2 class="section-title" id="about-title">הסיפור מאחורי האופק</h2>
             <p class="about-subtitle" id="about-subtitle">איך הופכים משמעת של איש ביטחון לתשוקה של הרפתקן בעולם?</p>
             <div class="about-text" id="about-content">
@@ -1096,7 +1067,7 @@
 
     <section class="process-section" id="process">
         <div class="section-head wrap">
-            <p class="eyebrow" id="process-eyebrow">תיק המסע</p>
+            <p class="eyebrow" id="process-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">תיק המסע</span><span class="eyebrow-bar eb-rtl"></span></p>
             <h2 class="section-title" id="proc-title">איך זה עובד?</h2>
             <p class="section-subtitle" id="proc-subtitle">הדרך שלכם לחופשה מושלמת ללא דאגות</p>
         </div>
@@ -1122,7 +1093,7 @@
     <!-- ===== כל חבילות הנופש — קיץ, חגים, חורף ===== -->
     <div class="all-deals-wrapper" id="all-deals">
         <div class="all-deals-intro wrap">
-            <p class="eyebrow" id="all-deals-eyebrow">חבילות נופש 2026</p>
+            <p class="eyebrow" id="all-deals-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">חבילות נופש 2026</span><span class="eyebrow-bar eb-rtl"></span></p>
             <h2 class="section-title" id="all-deals-title">בחרו את החופשה שלכם</h2>
             <p class="section-subtitle" id="all-deals-subtitle">חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳</p>
             <div class="deals-tabs">
@@ -1353,7 +1324,7 @@
 
     <section class="destinations" id="destinations">
         <div class="section-head">
-            <p class="eyebrow">קטלוג יעדים</p>
+            <p class="eyebrow" id="dest-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">קטלוג יעדים</span><span class="eyebrow-bar eb-rtl"></span></p>
             <h2 class="section-title" id="dest-title">החופשות החמות של 2026</h2>
             <p class="section-subtitle" id="dest-subtitle">אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת</p>
         </div>
@@ -1366,7 +1337,7 @@
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
                     <div class="card-meta">
                         <span class="price" id="c1-tag"><i class="fa fa-star" style="color: var(--accent-gold);"></i> חופשת פרימיום בהתאמה אישית מלאה</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="btn-card" target="_blank" id="c1-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1378,7 +1349,7 @@
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
                     <div class="card-meta">
                         <span class="price" id="c2-tag"><i class="fa fa-compass" style="color: var(--accent-gold);"></i> מסע מרתק שנבנה במיוחד עבורכם</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="btn-card" target="_blank" id="c2-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1390,7 +1361,7 @@
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
                     <div class="card-meta">
                         <span class="price" id="c3-tag"><i class="fa fa-plane" style="color: var(--accent-gold);"></i> חופשת בוטיק ללא דאגות</span>
-                        <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
+                        <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="btn-card" target="_blank" id="c3-btn">לפרטים בוואטסאפ <i class="fa fa-arrow-dir"></i></a>
                     </div>
                 </div>
             </div>
@@ -1399,7 +1370,7 @@
 
     <section class="specialties-section" id="specialties">
         <div class="section-head">
-            <p class="eyebrow">התמחויות</p>
+            <p class="eyebrow" id="spec-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">התמחויות</span><span class="eyebrow-bar eb-rtl"></span></p>
             <h2 class="section-title" id="spec-main-title">ההתמחויות המיוחדות שלנו</h2>
             <p class="section-subtitle" id="spec-main-subtitle">כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו</p>
         </div>
@@ -1425,9 +1396,9 @@
     <section class="policy-section" id="policy">
         <div class="policy-container">
             <div class="section-head" style="text-align:right; align-items:flex-start;">
-                <p class="eyebrow">תנאי שירות</p>
-                <h2 class="section-title" id="policy-main-title" style="text-align:right;">מדיניות ביטולים ותנאי שירות</h2>
-                <p class="section-subtitle" id="policy-main-subtitle" style="text-align:right;">חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה</p>
+                <p class="eyebrow" id="policy-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">תנאי שירות</span><span class="eyebrow-bar eb-rtl"></span></p>
+                <h2 class="section-title" id="policy-main-title">מדיניות ביטולים ותנאי שירות</h2>
+                <p class="section-subtitle" id="policy-main-subtitle">חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה</p>
             </div>
 
             <div class="policy-block">
@@ -1450,7 +1421,7 @@
     <section class="faq-section" id="faq">
         <div class="faq-container">
             <div class="section-head">
-                <p class="eyebrow">שאלות נפוצות</p>
+                <p class="eyebrow" id="faq-eyebrow"><span class="eyebrow-bar eb-ltr"></span><span class="eyebrow-txt">שאלות נפוצות</span><span class="eyebrow-bar eb-rtl"></span></p>
                 <h2 class="section-title" id="faq-main-title">שאלות נפוצות</h2>
                 <p class="section-subtitle" id="faq-main-subtitle">כל מה שחשוב לדעת לפני שיוצאים לדרך</p>
             </div>
@@ -1514,7 +1485,7 @@
     </div>
 
     <!-- רכיבים צפים -->
-    <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F" class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+    <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
 
     <div class="accessibility-wrapper">
         <button class="accessibility-btn" id="accBtn" onclick="toggleAccMenu()"><i class="fa fa-universal-access"></i></button>
@@ -1581,7 +1552,7 @@
                     <li><i class="fa fa-plane"></i> <span id="fl-custom">תכנון מסעות בהתאמה אישית</span></li>
                     <li><i class="fa fa-clock-o"></i> <span id="fl-avail">זמינות גבוהה · 7 ימים בשבוע</span></li>
                 </ul>
-                <a href="https://wa.me/972506275616?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%99!" class="footer-cta-btn" target="_blank">
+                <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%98%D7%99%D7%95%D7%9C%20%D7%94%D7%91%D7%90%20%D7%A9%D7%9C%D7%99!'); return false;" class="footer-cta-btn" target="_blank">
                     <i class="fa fa-whatsapp"></i> <span id="fl-cta">שלחו הודעה עכשיו</span>
                 </a>
             </div>
@@ -1608,7 +1579,7 @@
 
         var translations = {
             he: {
-                heroKicker: 'AdvenHorizon Travels · 2026', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'תיק המסע', navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                heroKicker: 'AdvenHorizon Travels · 2026', heroBtn: 'תכננו את המסע שלכם', heroBtn2: 'לחבילות הנופש', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'תיק המסע', navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 dealsSummerTitle: 'קיץ של חוף, שקט וכחול אינסופי', dealsSummerSubtitle: 'חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה',
@@ -1655,7 +1626,7 @@
                 spec1Title: 'טיולי משפחות מורכבים', spec1Text: 'תכנון מסלול בקצב נכון שמתאים גם לילדים וגם למבוגרים, עם התאמה מושלמת של מלונות ואטרקציות משפחתיות כדי שתיהנו מכל רגע בשקט.',
                 spec2Title: 'ירחי דבש וטיולים זוגיים', spec2Text: 'חופשות רומנטיות עם דגש על ריזורטים פרימיום, חוויות קולינריות ייחודיות ורגעים בלתי נשכחים המותאמים במדויק רק לשניכם.',
                 spec3Title: 'טיולי דרכים (Road Trips)', spec3Text: 'בניית מסלולי נהיגה גיאוגרפיים מקיפים, סגירת נקודות עצירה, מלונות בדרך וניהול מלא של הזמנת הרכב המתאים לכם בחו"ל.',
-                policyMainTitle: 'מדיניות ביטולים ותנאי שירות', policyMainSubtitle: 'חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה',
+                aboutEyebrow: 'מאחורי הקלעים', destEyebrow: 'קטלוג יעדים', destTitle: 'החופשות החמות של 2026', destSubtitle: 'אספנו עבורכם את היעדים המרתקים ביותר לחוויה בלתי נשכחת', specEyebrow: 'התמחויות', specTitle: 'ההתמחויות המיוחדות שלנו', specSubtitle: 'כי לכל סוג של חופשה מגיע תכנון וביצוע ייחודי משלו', faqEyebrow: 'שאלות נפוצות', faqTitle: 'שאלות נפוצות', faqSubtitle: 'כל מה שחשוב לדעת לפני שיוצאים לדרך', policyEyebrow: 'תנאי שירות', policyMainTitle: 'מדיניות ביטולים ותנאי שירות', policyMainSubtitle: 'חשוב לנו שתצאו לדרך בביטחון מלא, תוך הבנת תנאי ההזמנה',
                 pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> כללי ביטול עסקה (חוק הגנת הצרכן)', pol1Desc: 'בהתאם לחוק הגנת הצרכן הישראלי, ניתן לבטל עסקת שירותי תיירות בתוך 14 ימים מיום עשיית העסקה, ובלבד שהביטול ייעשה לפחות 7 ימי עבודה קודם למועד מתן השירות. דמי הביטול במסגרת זו יהיו בגובה 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).',
                 pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> ביטולים ושינויים מול ספקי תיירות בחו"ל', pol2Desc: 'לאחר חלוף תקופת הזמן הקבועה בחוק הגנת הצרכן, תנאי הביטול, השינוי או השחזור של טיסות, מלונות, רכבים ואטרקציות יהיו כפופים לחלוטין למדיניות של ספקי השירות בפועל (חברות התעופה, הריזורטים וסוכני השטח). אנו ב-AdvenHorizon Travels נשקף לכם את תנאי הביטול של כל נכס תיירותי עוד במעמד ההזמנה.',
                 pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> המלצה חמה: ביטוח נסיעות וביטוח ביטול', pol3Desc: 'מאחר וחופשות פרימיום ותכנון מסלולים מורכבים כרוכים בעלויות מראש, אנו מחייבים וממליצים לכל לקוחותינו לרכוש ביטוח נסיעות מקיף לחו"ל הכולל הרחבה רפואית והרחבת כבודה, מיד עם סגירת הטיול. כמו כן, מומלץ לשקול פוליסת ביטוח ייעודית לביטול טיסה מכל סיבה שהיא.',
@@ -1666,7 +1637,7 @@
                 accMenuTitle: 'תפריט נגישות', accOptText: '<i class="fa fa-text-height"></i> הגדלת גופן', accOptContrast: '<i class="fa fa-adjust"></i> ניגודיות גבוהה', accOptLinks: '<i class="fa fa-link"></i> הדגשת קישורים', accOptReset: '<i class="fa fa-refresh"></i> איפוס נגישות',
                 cookieMsg: 'אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.', cookieBtnTxt: 'מאשר/ת',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
-                swLabelDest: 'יעד נסיעה', swPlaceholder: 'בחרו יעד...', swLabelFrom: 'תאריך יציאה',
+                swLabelDest: 'יעד נסיעה', swPlaceholder: 'בחרו יעד...', swGrpSummer: 'חבילות קיץ', swGrpHolidays: 'חבילות חגים', swGrpWinter: 'חבילות חורף', swGrpMore: 'יעדים נוספים', swLabelFrom: 'תאריך יציאה',
                 swLabelTo: 'תאריך חזרה', swLabelPax: 'נוסעים', swBtnTxt: 'חפשו עכשיו',
                 allDealsEyebrow: 'חבילות נופש 2026', allDealsTitle: 'בחרו את החופשה שלכם', allDealsSubtitle: 'חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳',
                 tabSummer: 'קיץ', tabHolidays: 'חגים', tabWinter: 'חורף',
@@ -1676,7 +1647,7 @@
                 flCustom: 'תכנון מסעות בהתאמה אישית', flAvail: 'זמינות גבוהה · 7 ימים בשבוע', flCta: 'שלחו הודעה עכשיו',
             },
             en: {
-                heroKicker: 'AdvenHorizon Travels · 2026', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'The Journey', navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                heroKicker: 'AdvenHorizon Travels · 2026', heroBtn: 'Plan Your Journey', heroBtn2: 'Vacation Packages', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'The Journey', navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 dealsSummerTitle: 'A Summer of Beaches, Calm & Endless Blue', dealsSummerSubtitle: 'Turquoise waters, unforgettable sunsets, and a few days off you will remember all year',
@@ -1723,7 +1694,7 @@
                 spec1Title: 'Complex Family Vacations', spec1Text: 'Designing balanced itineraries suitable for both children and adults, with flawless matching of family-focused boutique hotels and attractions.',
                 spec2Title: 'Honeymoons & Romantic Escapes', spec2Text: 'Romantic getaways with an emphasis on premium resorts, unique culinary experiences, and unforgettable moments tailored precisely for the two of you.',
                 spec3Title: 'Bespoke Road Trips', spec3Text: 'Building comprehensive geographic driving routes, locking in scenic stops, hand-picked hotels on the way, and full management of your ideal car rental abroad.',
-                policyMainTitle: 'Cancellation & Service Policies', policyMainSubtitle: 'It is important to us that you travel with absolute confidence, understanding the booking terms',
+                aboutEyebrow: 'Behind The Scenes', destEyebrow: 'Destination Catalog', destTitle: 'Hottest Vacations of 2026', destSubtitle: 'We have gathered the most fascinating destinations for an unforgettable experience', specEyebrow: 'Specialties', specTitle: 'Our Special Expertise', specSubtitle: 'Because every type of vacation deserves unique planning and execution', faqEyebrow: 'FAQ', faqTitle: 'Frequently Asked Questions', faqSubtitle: 'Everything you need to know before you go', policyEyebrow: 'Terms of Service', policyMainTitle: 'Cancellation & Service Policies', policyMainSubtitle: 'It is important to us that you travel with absolute confidence, understanding the booking terms',
                 pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> Standard Cancellation Rules (Consumer Protection Law)', pol1Desc: 'In accordance with the Israeli Consumer Protection Law, a tourism transaction can be canceled within 14 days from the booking date, provided that the cancellation is made at least 7 business days prior to the departure date. The cancellation fee under this framework will be 5% of the transaction value or 100 ILS (whichever is lower).',
                 pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Cancellations & Changes with International Providers', pol2Desc: 'After the period stipulated by local consumer law has passed, all cancellation, amendment, or rebooking conditions for flights, lodging, cars, and attractions are fully subject to the strict policies of the active providers (airlines, resorts, and ground operators). We always explicitly transparentize these details before finalized booking.',
                 pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> Critical Recommendation: Comprehensive Travel Insurance', pol3Desc: 'Since bespoke planning and long-haul expeditions involve advance commitments, we highly mandate and advise all travelers to purchase premium international travel insurance including robust medical and baggage extensions immediately upon confirmation. A dedicated trip cancellation-for-any-reason policy is recommended.',
@@ -1734,7 +1705,7 @@
                 accMenuTitle: 'Accessibility Menu', accOptText: '<i class="fa fa-text-height"></i> Enlarge Text', accOptContrast: '<i class="fa fa-adjust"></i> High Contrast', accOptLinks: '<i class="fa fa-link"></i> Highlight Links', accOptReset: '<i class="fa fa-refresh"></i> Reset Accessibility',
                 cookieMsg: 'This website uses cookies to ensure you get the best experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use.', cookieBtnTxt: 'Accept',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
-                swLabelDest: 'Destination', swPlaceholder: 'Choose destination...', swLabelFrom: 'Departure Date',
+                swLabelDest: 'Destination', swPlaceholder: 'Choose destination...', swGrpSummer: 'Summer Packages', swGrpHolidays: 'Holiday Packages', swGrpWinter: 'Winter Packages', swGrpMore: 'More Destinations', swLabelFrom: 'Departure Date',
                 swLabelTo: 'Return Date', swLabelPax: 'Travelers', swBtnTxt: 'Search Now',
                 allDealsEyebrow: 'Vacation Packages 2026', allDealsTitle: 'Choose Your Vacation', allDealsSubtitle: 'Ready packages for summer, holidays & winter — fully planned from A to Z',
                 tabSummer: 'Summer', tabHolidays: 'Holidays', tabWinter: 'Winter',
@@ -1781,7 +1752,7 @@
             setText('lang-btn-mobile', t.langBtn, true);
             setText('hero-title', t.heroTitle);
             setText('hero-subtitle', t.heroSubtitle);
-            setText('hero-btn', t.heroBtn);
+            setText('hero-btn-txt', t.heroBtn);
             
             
             setText('badge-mykonos', t.badgeMykonos);
@@ -1873,6 +1844,17 @@
             setText('spec3-title', t.spec3Title);
             setText('spec3-text', t.spec3Text);
             
+            setText('about-eyebrow', t.aboutEyebrow);
+            setText('dest-eyebrow', t.destEyebrow);
+            setText('dest-title', t.destTitle);
+            setText('dest-subtitle', t.destSubtitle);
+            setText('spec-eyebrow', t.specEyebrow);
+            setText('spec-main-title', t.specTitle);
+            setText('spec-main-subtitle', t.specSubtitle);
+            setText('faq-eyebrow', t.faqEyebrow);
+            setText('faq-main-title', t.faqTitle);
+            setText('faq-main-subtitle', t.faqSubtitle);
+            setText('policy-eyebrow', t.policyEyebrow);
             setText('policy-main-title', t.policyMainTitle);
             setText('policy-main-subtitle', t.policyMainSubtitle);
             setText('pol1-title', t.pol1Title, true);
@@ -1901,13 +1883,21 @@
             setText('footer-copy', t.footerCopy);
 
             // Search widget
-            setText('sw-label-dest', t.swLabelDest);
+            setText('sw-label-dest-txt', t.swLabelDest);
+            setText('sw-grp-summer', t.swGrpSummer);
+            setText('sw-grp-holidays', t.swGrpHolidays);
+            setText('sw-grp-winter', t.swGrpWinter);
+            setText('sw-grp-more', t.swGrpMore);
+            // Reset placeholder if nothing selected
+            var selDest = document.getElementById('sw-selected-dest');
+            if (selDest && !_swDest) selDest.textContent = t.swPlaceholder;
             setText('sw-placeholder', t.swPlaceholder);
-            setText('sw-label-from', t.swLabelFrom);
-            setText('sw-label-to', t.swLabelTo);
-            setText('sw-label-pax', t.swLabelPax);
+            setText('sw-label-from-txt', t.swLabelFrom);
+            setText('sw-label-to-txt', t.swLabelTo);
+            setText('sw-label-pax-txt', t.swLabelPax);
             setText('sw-btn-txt', t.swBtnTxt);
             setText('hero-kicker-txt', t.heroKicker);
+            setText('hero-btn-2-txt', t.heroBtn2);
             setText('footer-tagline-txt', t.footerTagline);
             setText('process-eyebrow', t.processEyebrow);
             setText('all-deals-eyebrow', t.allDealsEyebrow);
