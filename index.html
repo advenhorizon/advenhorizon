@@ -825,38 +825,7 @@
                         <span class="sw-selected-txt" id="sw-selected-dest">בחרו יעד...</span>
                     </div>
                 </div>
-                <div class="sw-dropdown" id="sw-dropdown">
-                    <div class="sw-dropdown-group">🌊 <strong id="sw-grp-summer">חבילות קיץ</strong></div>
-                    <div class="sw-dropdown-item" onclick="selectDest('איה נאפה, קפריסין')">איה נאפה, קפריסין</div>
-                    <div class="sw-dropdown-group">✡️ <strong id="sw-grp-holidays">חבילות חגים</strong></div>
-                    <div class="sw-dropdown-item" onclick="selectDest('מיקונוס, יוון')">מיקונוס, יוון</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('פאפוס, קפריסין')">פאפוס, קפריסין</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('לאס וגאס, ארה\'ב')">לאס וגאס, ארה"ב</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('מינכן, גרמניה')">מינכן, גרמניה</div>
-                    <div class="sw-dropdown-group">❄️ <strong id="sw-grp-winter">חבילות חורף</strong></div>
-                    <div class="sw-dropdown-item" onclick="selectDest('פראג, צ\'כיה')">פראג, צ'כיה</div>
-                    <div class="sw-dropdown-group">✈️ <strong id="sw-grp-more">יעדים נוספים</strong></div>
-                    <div class="sw-dropdown-item" onclick="selectDest('תאילנד')">תאילנד</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('האיים המלדיביים')">האיים המלדיביים</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('זנזיבר')">זנזיבר</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('יפן')">יפן</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('וייטנאם')">וייטנאם</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('ניו יורק, ארה\'ב')">ניו יורק, ארה"ב</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('לוס אנג\'לס, ארה\'ב')">לוס אנג'לס, ארה"ב</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('לונדון, אנגליה')">לונדון, אנגליה</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('פריז, צרפת')">פריז, צרפת</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('רומא, איטליה')">רומא, איטליה</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('ברצלונה, ספרד')">ברצלונה, ספרד</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('אתונה, יוון')">אתונה, יוון</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('דובאי, איחוד האמירויות')">דובאי, איחוד האמירויות</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('בנגקוק, תאילנד')">בנגקוק, תאילנד</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('באלי, אינדונזיה')">באלי, אינדונזיה</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('אמסטרדם, הולנד')">אמסטרדם, הולנד</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('ברלין, גרמניה')">ברלין, גרמניה</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('וינה, אוסטריה')">וינה, אוסטריה</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('לאוס')">לאוס</div>
-                    <div class="sw-dropdown-item" onclick="selectDest('יעד אחר')">יעד אחר</div>
-                </div>
+                <div class="sw-dropdown" id="sw-dropdown"></div>
             </div>
 
             <div class="sw-divider"></div>
@@ -905,7 +874,95 @@
     </div>
 
     <script>
-        // ===== Search Widget =====
+        // ===== Bilingual destination data =====
+        var destData = {
+            he: [
+                { group: '🌊 חבילות קיץ' },
+                { val: 'איה נאפה, קפריסין', label: 'איה נאפה, קפריסין' },
+                { group: '✡️ חבילות חגים' },
+                { val: 'מיקונוס, יוון', label: 'מיקונוס, יוון' },
+                { val: 'פאפוס, קפריסין', label: 'פאפוס, קפריסין' },
+                { val: 'לאס וגאס, ארה"ב', label: 'לאס וגאס, ארה"ב' },
+                { val: 'מינכן, גרמניה', label: 'מינכן, גרמניה' },
+                { group: '❄️ חבילות חורף' },
+                { val: 'פראג, צ\'כיה', label: 'פראג, צ\'כיה' },
+                { group: '✈️ יעדים נוספים' },
+                { val: 'תאילנד', label: 'תאילנד' },
+                { val: 'האיים המלדיביים', label: 'האיים המלדיביים' },
+                { val: 'זנזיבר', label: 'זנזיבר' },
+                { val: 'יפן', label: 'יפן' },
+                { val: 'וייטנאם', label: 'וייטנאם' },
+                { val: 'ניו יורק, ארה"ב', label: 'ניו יורק, ארה"ב' },
+                { val: 'לוס אנג\'לס, ארה"ב', label: 'לוס אנג\'לס, ארה"ב' },
+                { val: 'לונדון, אנגליה', label: 'לונדון, אנגליה' },
+                { val: 'פריז, צרפת', label: 'פריז, צרפת' },
+                { val: 'רומא, איטליה', label: 'רומא, איטליה' },
+                { val: 'ברצלונה, ספרד', label: 'ברצלונה, ספרד' },
+                { val: 'אתונה, יוון', label: 'אתונה, יוון' },
+                { val: 'דובאי, איחוד האמירויות', label: 'דובאי, איחוד האמירויות' },
+                { val: 'בנגקוק, תאילנד', label: 'בנגקוק, תאילנד' },
+                { val: 'באלי, אינדונזיה', label: 'באלי, אינדונזיה' },
+                { val: 'אמסטרדם, הולנד', label: 'אמסטרדם, הולנד' },
+                { val: 'ברלין, גרמניה', label: 'ברלין, גרמניה' },
+                { val: 'וינה, אוסטריה', label: 'וינה, אוסטריה' },
+                { val: 'לאוס', label: 'לאוס' },
+                { val: 'יעד אחר', label: 'יעד אחר' }
+            ],
+            en: [
+                { group: '🌊 Summer Packages' },
+                { val: 'Ayia Napa, Cyprus', label: 'Ayia Napa, Cyprus' },
+                { group: '✡️ Holiday Packages' },
+                { val: 'Mykonos, Greece', label: 'Mykonos, Greece' },
+                { val: 'Paphos, Cyprus', label: 'Paphos, Cyprus' },
+                { val: 'Las Vegas, USA', label: 'Las Vegas, USA' },
+                { val: 'Munich, Germany', label: 'Munich, Germany' },
+                { group: '❄️ Winter Packages' },
+                { val: 'Prague, Czech Republic', label: 'Prague, Czech Republic' },
+                { group: '✈️ More Destinations' },
+                { val: 'Thailand', label: 'Thailand' },
+                { val: 'Maldives', label: 'Maldives' },
+                { val: 'Zanzibar', label: 'Zanzibar' },
+                { val: 'Japan', label: 'Japan' },
+                { val: 'Vietnam', label: 'Vietnam' },
+                { val: 'New York, USA', label: 'New York, USA' },
+                { val: 'Los Angeles, USA', label: 'Los Angeles, USA' },
+                { val: 'London, England', label: 'London, England' },
+                { val: 'Paris, France', label: 'Paris, France' },
+                { val: 'Rome, Italy', label: 'Rome, Italy' },
+                { val: 'Barcelona, Spain', label: 'Barcelona, Spain' },
+                { val: 'Athens, Greece', label: 'Athens, Greece' },
+                { val: 'Dubai, UAE', label: 'Dubai, UAE' },
+                { val: 'Bangkok, Thailand', label: 'Bangkok, Thailand' },
+                { val: 'Bali, Indonesia', label: 'Bali, Indonesia' },
+                { val: 'Amsterdam, Netherlands', label: 'Amsterdam, Netherlands' },
+                { val: 'Berlin, Germany', label: 'Berlin, Germany' },
+                { val: 'Vienna, Austria', label: 'Vienna, Austria' },
+                { val: 'Laos', label: 'Laos' },
+                { val: 'Other destination', label: 'Other destination' }
+            ]
+        };
+
+        function buildDropdown(lang) {
+            var dd = document.getElementById('sw-dropdown');
+            var items = destData[lang] || destData['he'];
+            var html = '';
+            items.forEach(function(item) {
+                if (item.group) {
+                    html += '<div class="sw-dropdown-group">' + item.group + '</div>';
+                } else {
+                    html += '<div class="sw-dropdown-item" onclick="selectDest(\'' + item.val.replace(/'/g, "\\'") + '\')">' + item.label + '</div>';
+                }
+            });
+            dd.innerHTML = html;
+            // Reset selected text if nothing chosen
+            if (!_swDest) {
+                var t = translations[lang];
+                document.getElementById('sw-selected-dest').textContent = t ? t.swPlaceholder : 'בחרו יעד...';
+            }
+        }
+
+        // Build on page load
+        document.addEventListener('DOMContentLoaded', function() { buildDropdown('he'); });
         var _swDest = '';
         var _swDateFrom = '';
         var _swDateTo = '';
@@ -1932,6 +1989,10 @@
             setText('sw-label-pax-txt', t.swLabelPax);
             setText('sw-btn-txt', t.swBtnTxt);
             setText('hero-kicker-txt', t.heroKicker);
+            // Rebuild destination dropdown in new language
+            buildDropdown(currentLang);
+            _swDest = ''; // reset selection
+
             // Update mobile nav lang button
             var mobileNavBtn = document.getElementById('lang-btn-nav');
             if (mobileNavBtn) mobileNavBtn.innerHTML = '<i class="fa fa-globe"></i> ' + (currentLang === 'he' ? 'English' : 'עברית');
@@ -2119,3 +2180,4 @@
     </script>
 </body>
 </html>
+
