@@ -1122,6 +1122,13 @@
             _waEncoded = '';
         }
 
+        // Close dropdown on page scroll (but not when scrolling inside the dropdown)
+        window.addEventListener('scroll', function(e) {
+            if (!e.target.closest || !e.target.closest('#sw-dropdown')) {
+                closeAllDropdowns();
+            }
+        }, true);
+
         // Close on overlay click
         document.getElementById('waChoiceOverlay').addEventListener('click', function(e) {
             if (e.target === this) waChoiceClose();
