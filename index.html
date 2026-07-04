@@ -11,6 +11,7 @@
     </script>
 
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#0050AA">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AdvenHorizon Travels | מעבר לטיול הרגיל</title>
 
@@ -694,8 +695,11 @@
                 width: 100%;
                 justify-content: flex-end;
                 gap: 16px;
+                flex-direction: row-reverse;
             }
-            body[dir="ltr"] .sw-pax-wrap { justify-content: flex-start; }
+            body[dir="ltr"] .sw-pax-wrap { justify-content: flex-start; flex-direction: row; }
+            .sw-select-wrap { text-align: right; }
+            body[dir="ltr"] .sw-select-wrap { text-align: left; }
             .sw-pax-btn { width: 32px; height: 32px; font-size: 1.1rem; }
             .sw-pax-wrap span { font-size: 1.15rem; }
             .sw-search-btn {
@@ -838,7 +842,7 @@
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
         <div class="hero-inner">
-            <p class="hero-kicker"><i class="fa fa-plane"></i> AdvenHorizon Travels · 2026</p>
+            <p class="hero-kicker"><i class="fa fa-plane"></i> <span id="hero-kicker-txt">AdvenHorizon Travels · 2026</span></p>
             <h1 id="hero-title">AdvenHorizon Travels</h1>
             <p id="hero-subtitle">BEYOND ORDINARY TRAVEL</p>
             <div class="hero-cta-wrap">
@@ -901,16 +905,16 @@
 
             <div class="sw-divider"></div>
 
-            <div class="sw-field">
-                <label class="sw-label" id="sw-label-from"><i class="fa fa-calendar"></i> תאריך יציאה</label>
-                <input type="date" id="sw-date-from" class="sw-date" min="">
+            <div class="sw-field" onclick="try{document.getElementById('sw-date-from').showPicker()}catch(e){document.getElementById('sw-date-from').click()}" style="cursor:pointer;">
+                <label class="sw-label" id="sw-label-from" style="cursor:pointer;pointer-events:none;"><i class="fa fa-calendar"></i> תאריך יציאה</label>
+                <input type="date" id="sw-date-from" class="sw-date" min="" style="cursor:pointer;">
             </div>
 
             <div class="sw-divider"></div>
 
-            <div class="sw-field">
-                <label class="sw-label" id="sw-label-to"><i class="fa fa-calendar-check-o"></i> תאריך חזרה</label>
-                <input type="date" id="sw-date-to" class="sw-date" min="">
+            <div class="sw-field" onclick="try{document.getElementById('sw-date-to').showPicker()}catch(e){document.getElementById('sw-date-to').click()}" style="cursor:pointer;">
+                <label class="sw-label" id="sw-label-to" style="cursor:pointer;pointer-events:none;"><i class="fa fa-calendar-check-o"></i> תאריך חזרה</label>
+                <input type="date" id="sw-date-to" class="sw-date" min="" style="cursor:pointer;">
             </div>
 
             <div class="sw-divider"></div>
@@ -952,34 +956,112 @@
             var dateTo = document.getElementById('sw-date-to').value;
             var pax = swPax;
 
-            if (!dest) { alert('אנא בחרו יעד נסיעה'); return; }
-            if (!dateFrom) { alert('אנא בחרו תאריך יציאה'); return; }
+            var isHe = (currentLang === 'he');
+            if (!dest) { alert(isHe ? '✈️ אנא בחרו יעד נסיעה' : '✈️ Please select a destination'); return; }
+            if (!dateFrom) { alert(isHe ? '📅 אנא בחרו תאריך יציאה' : '📅 Please select a departure date'); return; }
 
-            // Format dates nicely
             function fmt(d) {
                 if (!d) return '';
                 var p = d.split('-');
                 return p[2]+'/'+p[1]+'/'+p[0];
             }
 
-            var isHe = (currentLang === 'he');
-            var msg = isHe ? 'שלום אבי! 👋\n\n' : 'Hi Avi! 👋\n\n';
-            msg += isHe ? 'אני מעוניין/ת לתכנן טיול:\n\n' : 'I would like to plan a trip:\n\n';
-            msg += '✈️ ' + (isHe ? 'יעד' : 'Destination') + ': ' + dest + '\n';
-            msg += '📅 ' + (isHe ? 'יציאה' : 'Departure') + ': ' + fmt(dateFrom) + '\n';
-            if (dateTo) msg += '📅 ' + (isHe ? 'חזרה' : 'Return') + ': ' + fmt(dateTo) + '\n';
-            msg += '👥 ' + (isHe ? 'מספר נוסעים' : 'Travelers') + ': ' + pax + '\n\n';
-            msg += isHe ? 'אשמח לקבל הצעת מחיר ותוכנית טיול 🙏' : 'I would love to get a quote and travel plan 🙏';
+            var msg = '';
+            if (isHe) {
+                msg  = 'שלום אבי! 👋\n\n';
+                msg += 'אני מעוניין/ת לתכנן טיול:\n\n';
+                msg += '🌍 יעד: ' + dest + '\n';
+                msg += '🛫 יציאה: ' + fmt(dateFrom) + '\n';
+                if (dateTo) msg += '🛬 חזרה: ' + fmt(dateTo) + '\n';
+                msg += '👥 נוסעים: ' + pax + '\n\n';
+                msg += 'אשמח לקבל הצעת מחיר ותוכנית טיול מפורטת 🙏🌴';
+            } else {
+                msg  = 'Hi Avi! 👋\n\n';
+                msg += 'I\'d like to plan a trip:\n\n';
+                msg += '🌍 Destination: ' + dest + '\n';
+                msg += '🛫 Departure: ' + fmt(dateFrom) + '\n';
+                if (dateTo) msg += '🛬 Return: ' + fmt(dateTo) + '\n';
+                msg += '👥 Travelers: ' + pax + '\n\n';
+                msg += 'I\'d love to get a quote and a detailed travel plan 🙏🌴';
+            }
 
-            window.open('https://wa.me/972506275616?text=' + encodeURIComponent(msg), '_blank');
+            var encoded = encodeURIComponent(msg);
+
+            showWhatsAppChoice(encoded);
         }
 
-        // Ensure return date is after departure
+        // Return date must be after departure date (min = departure + 1 day)
         document.getElementById('sw-date-from').addEventListener('change', function() {
-            document.getElementById('sw-date-to').min = this.value;
-            if (document.getElementById('sw-date-to').value && document.getElementById('sw-date-to').value < this.value) {
-                document.getElementById('sw-date-to').value = this.value;
+            var fromVal = this.value;
+            if (!fromVal) return;
+            // Set return min to day after departure
+            var nextDay = new Date(fromVal);
+            nextDay.setDate(nextDay.getDate() + 1);
+            var nextDayStr = nextDay.toISOString().split('T')[0];
+            var returnEl = document.getElementById('sw-date-to');
+            returnEl.min = nextDayStr;
+            // If already-selected return is before or same as departure, clear it
+            if (returnEl.value && returnEl.value <= fromVal) {
+                returnEl.value = nextDayStr;
             }
+        });
+    </script>
+
+    <!-- WhatsApp Choice Dialog -->
+    <div id="waChoiceOverlay" style="display:none; position:fixed; inset:0; background:rgba(11,31,58,0.65); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:#fff; border-radius:20px; max-width:400px; width:100%; box-shadow:0 24px 60px rgba(0,62,138,0.25); overflow:hidden; animation:waPop 0.3s cubic-bezier(.4,0,.2,1);">
+            <div style="background:linear-gradient(135deg,#003E8A,#0057B8); padding:24px 28px; text-align:center;">
+                <div style="width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.8rem;">
+                    <i class="fa fa-whatsapp" style="color:#fff;"></i>
+                </div>
+                <h3 style="color:#fff;font-size:1.2rem;margin:0;font-family:'Poppins',sans-serif;">פתח את WhatsApp</h3>
+                <p style="color:rgba(255,255,255,0.75);font-size:0.85rem;margin:6px 0 0;">בחר כיצד לפתוח את השיחה</p>
+            </div>
+            <div style="padding:24px 28px; display:flex; flex-direction:column; gap:12px;">
+                <button onclick="waChoiceApp()" style="background:linear-gradient(135deg,#25D366,#20BA5A);color:#fff;border:none;padding:14px 20px;border-radius:100px;font-size:0.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Heebo',sans-serif;transition:all 0.2s;">
+                    <i class="fa fa-desktop"></i> פתח באפליקציה המותקנת
+                </button>
+                <button onclick="waChoiceWeb()" style="background:#f0f6ff;color:#0057B8;border:1.5px solid rgba(0,87,184,0.2);padding:14px 20px;border-radius:100px;font-size:0.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Heebo',sans-serif;transition:all 0.2s;">
+                    <i class="fa fa-chrome"></i> פתח בדפדפן
+                </button>
+                <button onclick="waChoiceClose()" style="background:transparent;color:#6B6F66;border:none;padding:10px;font-size:0.88rem;cursor:pointer;font-family:'Heebo',sans-serif;">
+                    ביטול
+                </button>
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes waPop { from { transform:scale(0.9); opacity:0; } to { transform:scale(1); opacity:1; } }
+        #waChoiceOverlay.active { display:flex !important; }
+    </style>
+
+    <script>
+        var _waEncoded = '';
+
+        function showWhatsAppChoice(encoded) {
+            _waEncoded = encoded;
+            var overlay = document.getElementById('waChoiceOverlay');
+            overlay.style.display = 'flex';
+        }
+
+        function waChoiceApp() {
+            window.location.href = 'whatsapp://send?phone=972506275616&text=' + _waEncoded;
+            waChoiceClose();
+        }
+
+        function waChoiceWeb() {
+            window.open('https://wa.me/972506275616?text=' + _waEncoded, '_blank');
+            waChoiceClose();
+        }
+
+        function waChoiceClose() {
+            document.getElementById('waChoiceOverlay').style.display = 'none';
+            _waEncoded = '';
+        }
+
+        // Close on overlay click
+        document.getElementById('waChoiceOverlay').addEventListener('click', function(e) {
+            if (e.target === this) waChoiceClose();
         });
     </script>
 
@@ -1013,7 +1095,7 @@
 
     <section class="process-section" id="process">
         <div class="section-head wrap">
-            <p class="eyebrow">תיק המסע</p>
+            <p class="eyebrow" id="process-eyebrow">תיק המסע</p>
             <h2 class="section-title" id="proc-title">איך זה עובד?</h2>
             <p class="section-subtitle" id="proc-subtitle">הדרך שלכם לחופשה מושלמת ללא דאגות</p>
         </div>
@@ -1039,7 +1121,7 @@
     <!-- ===== כל חבילות הנופש — קיץ, חגים, חורף ===== -->
     <div class="all-deals-wrapper" id="all-deals">
         <div class="all-deals-intro wrap">
-            <p class="eyebrow">חבילות נופש 2026</p>
+            <p class="eyebrow" id="all-deals-eyebrow">חבילות נופש 2026</p>
             <h2 class="section-title" id="all-deals-title">בחרו את החופשה שלכם</h2>
             <p class="section-subtitle" id="all-deals-subtitle">חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳</p>
             <div class="deals-tabs">
@@ -1459,7 +1541,7 @@
                     <span class="footer-logo-icon"><i class="fa fa-paper-plane"></i></span>
                 </div>
                 <h3 class="footer-brand-name">AdvenHorizon<span> Travels</span></h3>
-                <p class="footer-tagline">Beyond Ordinary Travel</p>
+                <p class="footer-tagline" id="footer-tagline-txt">Beyond Ordinary Travel</p>
                 <div class="footer-socials">
                     <a href="https://www.facebook.com/profile.php?id=61590115097548" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
                     <a href="https://www.instagram.com/advenhorizontravels" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
@@ -1525,7 +1607,7 @@
 
         var translations = {
             he: {
-                navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                heroKicker: 'AdvenHorizon Travels · 2026', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'תיק המסע', navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
                 langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 dealsSummerTitle: 'קיץ של חוף, שקט וכחול אינסופי', dealsSummerSubtitle: 'חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה',
@@ -1585,7 +1667,7 @@
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
                 swLabelDest: 'יעד נסיעה', swPlaceholder: 'בחרו יעד...', swLabelFrom: 'תאריך יציאה',
                 swLabelTo: 'תאריך חזרה', swLabelPax: 'נוסעים', swBtnTxt: 'חפשו עכשיו',
-                allDealsTitle: 'בחרו את החופשה שלכם', allDealsSubtitle: 'חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳',
+                allDealsEyebrow: 'חבילות נופש 2026', allDealsTitle: 'בחרו את החופשה שלכם', allDealsSubtitle: 'חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳',
                 tabSummer: 'קיץ', tabHolidays: 'חגים', tabWinter: 'חורף',
                 footerTitleNav: 'ניווט מהיר', footerTitleInfo: 'מידע נוסף', footerTitleContact: 'צור קשר',
                 flAbout: 'הסיפור שלנו', flProcess: 'איך זה עובד', flSummer: 'חבילות קיץ', flHolidays: 'חבילות חגים', flWinter: 'חבילות חורף',
@@ -1593,7 +1675,7 @@
                 flCustom: 'תכנון מסעות בהתאמה אישית', flAvail: 'זמינות גבוהה · 7 ימים בשבוע', flCta: 'שלחו הודעה עכשיו',
             },
             en: {
-                navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                heroKicker: 'AdvenHorizon Travels · 2026', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'The Journey', navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
                 langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 dealsSummerTitle: 'A Summer of Beaches, Calm & Endless Blue', dealsSummerSubtitle: 'Turquoise waters, unforgettable sunsets, and a few days off you will remember all year',
@@ -1653,7 +1735,7 @@
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
                 swLabelDest: 'Destination', swPlaceholder: 'Choose destination...', swLabelFrom: 'Departure Date',
                 swLabelTo: 'Return Date', swLabelPax: 'Travelers', swBtnTxt: 'Search Now',
-                allDealsTitle: 'Choose Your Vacation', allDealsSubtitle: 'Ready packages for summer, holidays & winter — fully planned from A to Z',
+                allDealsEyebrow: 'Vacation Packages 2026', allDealsTitle: 'Choose Your Vacation', allDealsSubtitle: 'Ready packages for summer, holidays & winter — fully planned from A to Z',
                 tabSummer: 'Summer', tabHolidays: 'Holidays', tabWinter: 'Winter',
                 footerTitleNav: 'Quick Links', footerTitleInfo: 'More Info', footerTitleContact: 'Contact Us',
                 flAbout: 'Our Story', flProcess: 'How It Works', flSummer: 'Summer Packages', flHolidays: 'Holiday Packages', flWinter: 'Winter Packages',
@@ -1683,9 +1765,6 @@
             setText('nav-about', t.navAbout);
             setText('nav-process', t.navProcess);
             setText('nav-deals-label', t.navDealsLabel);
-            setText('nav-deals-summer', t.navDealsSummer);
-            setText('nav-deals-holidays', t.navDealsHolidays);
-            setText('nav-deals-winter', t.navDealsWinter);
             setText('nav-destinations', t.navDestinations);
             setText('nav-specialties', t.navSpecialties);
             setText('nav-policy', t.navPolicy);
@@ -1703,12 +1782,6 @@
             setText('hero-subtitle', t.heroSubtitle);
             setText('hero-btn', t.heroBtn);
             
-            setText('deals-summer-title', t.dealsSummerTitle);
-            setText('deals-summer-subtitle', t.dealsSummerSubtitle);
-            setText('deals-holidays-title', t.dealsHolidaysTitle);
-            setText('deals-holidays-subtitle', t.dealsHolidaysSubtitle);
-            setText('deals-winter-title', t.dealsWinterTitle);
-            setText('deals-winter-subtitle', t.dealsWinterSubtitle);
             
             setText('badge-mykonos', t.badgeMykonos);
             setText('deal-title-mykonos', t.dealTitleMykonos);
@@ -1833,6 +1906,10 @@
             setText('sw-label-to', t.swLabelTo);
             setText('sw-label-pax', t.swLabelPax);
             setText('sw-btn-txt', t.swBtnTxt);
+            setText('hero-kicker-txt', t.heroKicker);
+            setText('footer-tagline-txt', t.footerTagline);
+            setText('process-eyebrow', t.processEyebrow);
+            setText('all-deals-eyebrow', t.allDealsEyebrow);
             setText('all-deals-title', t.allDealsTitle);
             setText('all-deals-subtitle', t.allDealsSubtitle);
             setText('tab-summer-txt', t.tabSummer);
@@ -1855,8 +1932,6 @@
             setText('footer-title-info', t.footerTitleInfo);
             setText('footer-title-contact', t.footerTitleContact);
 
-            // Search widget WhatsApp message language
-            currentSearchLang = currentLang;
 
             document.getElementById('deal-specs-mykonos').innerHTML = t.dealSpecsMykonos;
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
@@ -1933,10 +2008,11 @@
                           "👤 שם מלא: " + firstName + " " + lastName + "\n" +
                           "📞 טלפון: " + phone + "\n" +
                           "📧 מייל: " + email + "\n\n" +
-                          "✈️ פרטי החבילה המבוקשת:\n" + dealInfoStr;
+                          "🌍 פרטי החבילה המבוקשת:\n" + dealInfoStr;
                           
             var encodedMessage = encodeURIComponent(message);
-            window.open("https://wa.me/972506275616?text=" + encodedMessage, "_blank");
+
+            showWhatsAppChoice(encodedMessage);
             closeLeadModal();
             document.getElementById('dealForm').reset();
         }
@@ -2003,5 +2079,15 @@
             if (e.target === modal) { closeLeadModal(); }
         });
     </script>
+    <script>
+        // Smooth scroll for iOS
+        document.querySelectorAll('a[href^="#"]').forEach(function(a){
+            a.addEventListener('click', function(e){
+                var target = document.querySelector(this.getAttribute('href'));
+                if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+            });
+        });
+    </script>
 </body>
 </html>
+
