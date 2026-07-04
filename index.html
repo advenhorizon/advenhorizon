@@ -52,9 +52,9 @@
             --radius-btn:  100px;
         }
 
-        html, body { overflow-x: hidden; }
         html { font-size: 100%; scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { overflow-x: hidden; }
         body { overflow-x: hidden; }
 
         body {
@@ -247,14 +247,11 @@
             width:min(1100px,96vw); margin:0 auto; background:#fff; border-radius:20px;
             box-shadow:0 20px 56px rgba(0,62,138,0.18),0 0 0 1px rgba(0,87,184,0.1);
             display:flex; align-items:stretch; position:relative; z-index:10;
-            overflow:hidden; /* clips button corners correctly */
+            overflow:visible;
             flex-direction: row;
         }
         body[dir="ltr"] .search-widget { flex-direction: row-reverse; }
-        /* dropdown must escape overflow:hidden via position:fixed */
-        .sw-dropdown {
-            position:fixed !important;
-        }
+
         .sw-field { flex:1; display:flex; flex-direction:column; justify-content:center; padding:14px 18px; gap:6px; min-width:0; position:relative; direction:rtl; }
         body[dir="ltr"] .sw-field { direction:ltr; }
         .sw-field-inner { display:flex; flex-direction:column; gap:5px; width:100%; }
@@ -983,19 +980,14 @@
 
         function toggleDestDropdown() {
             var dd = document.getElementById('sw-dropdown');
-            var field = document.getElementById('sw-dest-field');
             var ch = document.getElementById('sw-dest-chevron');
             var isOpen = dd.classList.contains('open');
             closeAllDropdowns();
             if (!isOpen) {
-                var rect = field.getBoundingClientRect();
-                dd.style.top = (rect.bottom + 6) + 'px';
-                dd.style.right = (window.innerWidth - rect.right) + 'px';
-                dd.style.left = 'auto';
-                if (document.body.dir === 'ltr') {
-                    dd.style.left = rect.left + 'px';
-                    dd.style.right = 'auto';
-                }
+                // Reset fixed positioning - use natural absolute positioning
+                dd.style.top = '';
+                dd.style.right = '';
+                dd.style.left = '';
                 dd.classList.add('open');
                 ch.classList.add('open');
             }
@@ -2180,3 +2172,4 @@
     </script>
 </body>
 </html>
+
