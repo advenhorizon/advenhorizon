@@ -52,7 +52,7 @@
             --radius-btn:  100px;
         }
 
-        html { font-size: 100%; scroll-behavior: smooth; }
+        html { font-size: 100%; scroll-behavior: smooth; overscroll-behavior-x: none; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { max-width: 100%; overflow-x: hidden; }
 
@@ -267,7 +267,7 @@
         .sw-selected-txt { font-size:0.92rem; font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
         .sw-chevron { color:var(--blue); font-size:0.7rem; flex-shrink:0; transition:transform 0.2s; }
         .sw-chevron.open { transform:rotate(180deg); }
-        .sw-dropdown { display:none; position:fixed; background:#fff; border-radius:14px; box-shadow:0 16px 48px rgba(0,62,138,0.2); border:1.5px solid var(--line); min-width:250px; max-height:300px; overflow-y:auto; z-index:99999; }
+        .sw-dropdown { display:none; position:fixed; background:#fff; border-radius:14px; box-shadow:0 16px 48px rgba(0,62,138,0.2); border:1.5px solid var(--line); min-width:250px; max-width:calc(100vw - 32px); max-height:300px; overflow-y:auto; overflow-x:hidden; z-index:99999; }
         .sw-dropdown.open { display:block; }
         .sw-dropdown.open { display:block; }
         .sw-dropdown-group { padding:10px 16px 4px; font-size:0.7rem; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:0.06em; text-align:right; }
@@ -407,7 +407,7 @@
         .ticket-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--blue); }
 
         .deal-gallery-wrapper { position:relative; width:100%; height:240px; overflow:hidden; background:var(--ink); }
-        .deal-gallery-container { width:100%; height:100%; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; }
+        .deal-gallery-container { width:100%; height:100%; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
         .deal-gallery-container::-webkit-scrollbar { display:none; }
         .deal-gallery-img { min-width:100%; height:100%; background-size:cover; background-position:center; scroll-snap-align:start; flex-shrink:0; }
         .gallery-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); color:var(--blue); border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; z-index:10; transition:var(--transition); direction:ltr; unicode-bidi:bidi-override; box-shadow:var(--shadow-sm); }
@@ -677,7 +677,14 @@
             .deals-tab { padding:8px 14px; font-size:0.8rem; }
             .deals-section.deals-tab-content { padding:0 12px 16px; }
             .deals-grid-wrap { gap:16px; }
-            .ticket-card { border-radius:14px; }
+            .ticket-card:hover { transform:none; }
+            .card:hover { transform:none; }
+            .specialty-card:hover { transform:none; }
+            .all-deals-wrapper { overflow-x:hidden; }
+            .deals-grid-wrap { overflow-x:hidden; }
+            .ticket-card { overflow:hidden; max-width:100%; }
+            .deal-gallery-wrapper { overflow:hidden; touch-action:pan-y; }
+            .deal-gallery-container { touch-action:pan-x; overflow-x:auto; }
             .deal-gallery-wrapper { height:200px; }
             .deal-card-body { padding:18px 16px; }
             .deal-card-body h3 { font-size:1.05rem; }
@@ -986,13 +993,25 @@
             closeAllDropdowns();
             if (!isOpen) {
                 var rect = field.getBoundingClientRect();
+                var isLtr = document.body.getAttribute('dir') === 'ltr';
                 dd.style.top = (rect.bottom + 4) + 'px';
                 dd.style.width = Math.max(rect.width, 260) + 'px';
-                if (document.body.getAttribute('dir') === 'ltr') {
-                    dd.style.left = rect.left + 'px';
+                if (isLtr) {
+                    var left = rect.left;
+                    // Make sure it doesn't go off right edge
+                    var ddWidth = Math.max(rect.width, 260);
+                    if (left + ddWidth > window.innerWidth - 8) {
+                        left = window.innerWidth - ddWidth - 8;
+                    }
+                    dd.style.left = Math.max(8, left) + 'px';
                     dd.style.right = 'auto';
                 } else {
-                    dd.style.right = (window.innerWidth - rect.right) + 'px';
+                    var right = window.innerWidth - rect.right;
+                    var ddWidth = Math.max(rect.width, 260);
+                    if (right + ddWidth > window.innerWidth - 8) {
+                        right = window.innerWidth - ddWidth - 8;
+                    }
+                    dd.style.right = Math.max(8, right) + 'px';
                     dd.style.left = 'auto';
                 }
                 dd.classList.add('open');
@@ -1207,8 +1226,8 @@
                 <div class="ticket-card">
                     <span class="deal-card-badge" id="badge-ayianapa">דיל זוגי קיץ 2026</span>
                     <div class="deal-gallery-wrapper">
-                        <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                        <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                        <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                        <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                         <div class="deal-gallery-container">
                             <div class="deal-gallery-img" style="background-image: url('איה נאפה.jpg');"></div>
                             <div class="deal-gallery-img" style="background-image: url('איה נאפה 1.jpg');"></div>
@@ -1248,8 +1267,8 @@
             <div class="ticket-card">
                 <span class="deal-card-badge" id="badge-mykonos">חול המועד סוכות</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
@@ -1281,8 +1300,8 @@
             <div class="ticket-card">
                 <span class="deal-card-badge" id="badge-paphos">נופש משפחתי כשר</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
@@ -1311,8 +1330,8 @@
             <div class="ticket-card">
                 <span class="deal-card-badge" id="badge-vegas">חול המועד בארה"ב</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
@@ -1342,8 +1361,8 @@
             <div class="ticket-card">
                 <span class="deal-card-badge" id="badge-munich">אוקטוברפסט 2026</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('מינכן 1.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('מינכן 2.jpg');"></div>
@@ -1382,8 +1401,8 @@
             <div class="ticket-card">
                 <span class="deal-card-badge" id="badge-prague">כריסטמס 2026</span>
                 <div class="deal-gallery-wrapper">
-                    <button class="gallery-arrow g-arrow-right" onclick="scrollGallery(this, 1)">&#10095;</button>
-                    <button class="gallery-arrow g-arrow-left" onclick="scrollGallery(this, -1)">&#10094;</button>
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
                         <div class="deal-gallery-img" style="background-image: url('פראג 1.jpg');"></div>
                         <div class="deal-gallery-img" style="background-image: url('פראג 2.jpg');"></div>
@@ -2038,11 +2057,8 @@
         }
 
         function scrollGallery(buttonEl, screenDirection) {
-            // screenDirection: -1 = show the image to the left, 1 = show the image to the right.
-            // Uses on-screen geometry instead of scrollLeft sign tricks, because browsers
-            // disagree on the sign of scrollLeft in RTL containers. The current position is
-            // cached on the container so repeated clicks don't re-read geometry mid-animation.
-            var wrapper = buttonEl.parentElement;
+            if (window.event) { window.event.stopPropagation(); window.event.preventDefault(); }
+            var wrapper = buttonEl.closest('.deal-gallery-wrapper');
             var container = wrapper.querySelector('.deal-gallery-container');
             if (!container) return;
             var images = Array.prototype.slice.call(container.querySelectorAll('.deal-gallery-img'));
@@ -2077,7 +2093,9 @@
             container.__galleryPos = pos;
             var targetIdx = visualOrder[pos];
 
-            images[targetIdx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            var targetImage = images[targetIdx];
+            var scrollLeft = targetImage.offsetLeft;
+            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
         }
 
         function openLeadModal(dealKey) {
