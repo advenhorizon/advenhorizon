@@ -52,9 +52,9 @@
             --radius-btn:  100px;
         }
 
+        html, body { overflow-x: hidden; }
         html { font-size: 100%; scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { overflow-x: clip; }
         body { overflow-x: hidden; }
 
         body {
@@ -624,7 +624,8 @@
             /* ===== NAV ===== */
             .nav-container { padding:10px 16px; }
             .logo-img { height:36px; }
-            header { position:sticky !important; top:0; z-index:9999; }
+            header { position:fixed !important; top:0; left:0; right:0; z-index:9999; }
+            body { padding-top:62px; } /* compensate for fixed header height */
             .nav-right-side { display:none; }
             .nav-mobile-lang { display:none; }
             .nav-mobile-title { display:flex; align-items:center; flex:1; justify-content:center; }
