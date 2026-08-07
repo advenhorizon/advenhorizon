@@ -24,6 +24,30 @@
     <meta property="og:image" content="710253020_122102817603337169_4083674208247026205_n.jpg">
     <meta property="og:type" content="website">
 
+    <!--
+        Structured data (Schema.org) so Google can better understand and display this business.
+        IMPORTANT: replace "url" below with the real live domain once the site is uploaded -
+        without the correct domain, Google may not be able to connect this markup to the page.
+        If you have a real business address, adding an "address" (PostalAddress) field here
+        will also help local search / Google Maps results.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "AdvenHorizon Travels",
+        "image": "710253020_122102817603337169_4083674208247026205_n.jpg",
+        "description": "תכנון חופשות פרימיום, טיולי משפחות, ירח דבש וטיולי עומק בהתאמה אישית עם אבי.",
+        "telephone": "+972506275616",
+        "priceRange": "$$",
+        "areaServed": "IL",
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61590115097548",
+            "https://www.instagram.com/advenhorizontravels"
+        ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -127,6 +151,7 @@
         .nav-container { max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; gap:16px; }
         .logo-area { display:flex; align-items:center; gap:10px; }
         .logo-img { height:46px; width:auto; object-fit:contain; border-radius:50%; }
+        .logo-img-fallback { height:46px; width:46px; border-radius:50%; background:var(--blue-xlight); color:var(--blue); align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
         .logo-wordmark { font-family:'Heebo',sans-serif; font-weight:800; font-size:1.15rem; color:var(--blue-dark); white-space:nowrap; }
         .logo-wordmark span { color:var(--sky); }
 
@@ -177,6 +202,7 @@
             .nav-toggle { display:flex; align-items:center; justify-content:center; }
             .mobile-nav { display:flex; }
             .logo-img { height:38px; }
+            .logo-img-fallback { height:38px; width:38px; }
             .logo-wordmark { font-size:0.95rem; }
         }
 
@@ -409,7 +435,7 @@
         .deal-gallery-wrapper { position:relative; width:100%; height:240px; overflow:hidden; background:var(--ink); }
         .deal-gallery-container { width:100%; height:100%; display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior-x:contain; overscroll-behavior-y:auto; -webkit-overflow-scrolling:touch; }
         .deal-gallery-container::-webkit-scrollbar { display:none; }
-        .deal-gallery-img { min-width:100%; height:100%; background-size:cover; background-position:center; scroll-snap-align:start; flex-shrink:0; }
+        .deal-gallery-img { min-width:100%; height:100%; object-fit:cover; object-position:center; scroll-snap-align:start; flex-shrink:0; display:block; }
         .gallery-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.9); color:var(--blue); border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; z-index:10; transition:var(--transition); direction:ltr; unicode-bidi:bidi-override; box-shadow:var(--shadow-sm); }
         .gallery-arrow:hover { background:var(--blue); color:var(--white); }
         .g-arrow-right { right:10px; } .g-arrow-left { left:10px; }
@@ -459,7 +485,7 @@
         .grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr)); gap:28px; }
         .card { background:var(--white); border-radius:18px; overflow:hidden; border:1.5px solid var(--line); transition:var(--transition); }
         .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--blue); }
-        .card-img { height:220px; background-size:cover; background-position:center; }
+        .card-img { height:220px; width:100%; object-fit:cover; object-position:center; display:block; }
         .card-content { padding:26px; }
         .card-title { font-size:1.18rem; margin-bottom:10px; }
         .card-text { color:var(--slate); font-size:0.92rem; margin-bottom:20px; min-height:70px; }
@@ -621,6 +647,7 @@
             /* ===== NAV ===== */
             .nav-container { padding:10px 16px; }
             .logo-img { height:36px; }
+            .logo-img-fallback { height:36px; width:36px; }
             header { position:fixed !important; top:0; left:0; right:0; width:100%; z-index:9999; }
             body { padding-top:60px; overflow-x:hidden; }
             body { padding-top:0; }
@@ -750,7 +777,9 @@
     <header>
         <div class="nav-container">
             <div class="logo-area">
-                <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="logo-img">
+                <img src="710253020_122102817603337169_4083674208247026205_n.jpg" alt="AdvenHorizon Travels" class="logo-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-img-fallback" style="display:none;"><i class="fa fa-paper-plane"></i></div>
             </div>
             <!-- Mobile center: site name -->
             <div class="nav-mobile-title">
@@ -810,8 +839,11 @@
                 <a href="#" onclick="showWhatsAppChoice('%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%21%20%E2%9C%88%EF%B8%8F%F0%9F%8C%B4%0A%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9C%D7%90%D7%AA%D7%A8%20AdvenHorizon%20Travels%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%A0%D7%95%D7%A4%D7%A9%20%D7%95%D7%98%D7%99%D7%A1%D7%95%D7%AA.%0A%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8%3F%20%F0%9F%99%8F'); return false;" class="btn-hero-primary" target="_blank" id="hero-btn">
                     <i class="fa fa-whatsapp"></i> <span id="hero-btn-txt">תכננו את המסע שלכם</span>
                 </a>
-                <a href="#all-deals" class="btn-hero-secondary" id="hero-btn-2">
+                <a href="#all-deals" class="btn-hero-primary" id="hero-btn-2">
                     <i class="fa fa-th-large"></i> <span id="hero-btn-2-txt">לחבילות הנופש</span>
+                </a>
+                <a href="https://www.getyourguide.com/?partner_id=VYVTJPQ&amp;cmp=share_to_earn" class="btn-hero-primary" target="_blank" rel="noopener" id="hero-btn-3">
+                    <i class="fa fa-ticket"></i> <span id="hero-btn-3-txt">הזמנת אטרקציות ומלונות</span>
                 </a>
             </div>
         </div>
@@ -825,12 +857,12 @@
             <div class="sw-field" id="sw-dest-field">
                 <div class="sw-field-inner">
                     <span class="sw-label" id="sw-label-dest"><i class="fa fa-map-marker"></i> <span id="sw-label-dest-txt">יעד נסיעה</span></span>
-                    <div class="sw-custom-select" onclick="toggleDestDropdown()">
-                        <i class="fa fa-chevron-down sw-chevron" id="sw-dest-chevron"></i>
+                    <div class="sw-custom-select" id="sw-dest-trigger" onclick="toggleDestDropdown()" onkeydown="handleDestTriggerKeydown(event)" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="sw-dropdown" tabindex="0">
+                        <i class="fa fa-chevron-down sw-chevron" id="sw-dest-chevron" aria-hidden="true"></i>
                         <span class="sw-selected-txt" id="sw-selected-dest">בחרו יעד...</span>
                     </div>
                 </div>
-                <div class="sw-dropdown" id="sw-dropdown"></div>
+                <div class="sw-dropdown" id="sw-dropdown" role="listbox" aria-label="יעד נסיעה" onkeydown="handleDestListKeydown(event)"></div>
             </div>
 
             <div class="sw-divider"></div>
@@ -964,6 +996,8 @@
                     var itemEl = document.createElement('div');
                     itemEl.className = 'sw-dropdown-item';
                     itemEl.textContent = item.label;
+                    itemEl.setAttribute('role', 'option');
+                    itemEl.setAttribute('tabindex', '-1');
                     itemEl.addEventListener('click', function() { selectDest(item.val); });
                     dd.appendChild(itemEl);
                 }
@@ -1038,6 +1072,8 @@
                 }
                 dd.classList.add('open');
                 ch.classList.add('open');
+                var trigger = document.getElementById('sw-dest-trigger');
+                if (trigger) trigger.setAttribute('aria-expanded', 'true');
             }
         }
 
@@ -1051,6 +1087,60 @@
         function closeAllDropdowns() {
             document.querySelectorAll('.sw-dropdown').forEach(function(d){ d.classList.remove('open'); });
             document.querySelectorAll('.sw-chevron').forEach(function(c){ c.classList.remove('open'); });
+            var trigger = document.getElementById('sw-dest-trigger');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        // ===== Keyboard accessibility for the custom destination combobox =====
+        function handleDestTriggerKeydown(event) {
+            var key = event.key;
+            if (key === 'Enter' || key === ' ' || key === 'Spacebar' || key === 'ArrowDown' || key === 'Down') {
+                event.preventDefault();
+                var dd = document.getElementById('sw-dropdown');
+                var wasOpen = dd.classList.contains('open');
+                if (!wasOpen) {
+                    toggleDestDropdown();
+                    var first = dd.querySelector('.sw-dropdown-item');
+                    if (first) first.focus();
+                }
+            } else if (key === 'Escape' || key === 'Esc') {
+                closeAllDropdowns();
+            }
+        }
+
+        function handleDestListKeydown(event) {
+            var key = event.key;
+            var dd = document.getElementById('sw-dropdown');
+            var items = Array.prototype.slice.call(dd.querySelectorAll('.sw-dropdown-item'));
+            if (!items.length) return;
+            var currentIndex = items.indexOf(document.activeElement);
+
+            if (key === 'ArrowDown' || key === 'Down') {
+                event.preventDefault();
+                var next = items[currentIndex + 1] || items[0];
+                next.focus();
+            } else if (key === 'ArrowUp' || key === 'Up') {
+                event.preventDefault();
+                var prev = items[currentIndex - 1] || items[items.length - 1];
+                prev.focus();
+            } else if (key === 'Home') {
+                event.preventDefault();
+                items[0].focus();
+            } else if (key === 'End') {
+                event.preventDefault();
+                items[items.length - 1].focus();
+            } else if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+                event.preventDefault();
+                if (currentIndex > -1) items[currentIndex].click();
+            } else if (key === 'Escape' || key === 'Esc') {
+                event.preventDefault();
+                closeAllDropdowns();
+                var trigger = document.getElementById('sw-dest-trigger');
+                if (trigger) trigger.focus();
+            } else if (key === 'Tab') {
+                // Tabbing away from the list should close it, same as clicking outside.
+                closeAllDropdowns();
+            }
         }
 
         document.addEventListener('click', function(e) {
@@ -1251,17 +1341,17 @@
                         <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                         <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                         <div class="deal-gallery-container">
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 1.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 2.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 3.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 4.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 5.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 6.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 7.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 8.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 9.jpg');"></div>
-                            <div class="deal-gallery-img" style="background-image: url('איה נאפה 10.jpg');"></div>
+                            <img class="deal-gallery-img" src="איה נאפה.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 1.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 2.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 3.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 4.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 5.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 6.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 7.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 8.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 9.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                            <img class="deal-gallery-img" src="איה נאפה 10.jpg" alt="חופשת פרימיום באיה נאפה - תמונה 11" loading="lazy" onerror="this.style.display='none'">
                         </div>
                     </div>
                     <div class="ticket-perforation"></div>
@@ -1292,16 +1382,16 @@
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('734424860.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734425461.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424826.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('734424853.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129557766.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601132.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600959.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88601215.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('88600950.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('129560364.jpg');"></div>
+                        <img class="deal-gallery-img" src="734424860.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="734425461.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="734424826.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="734424853.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="129557766.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="88601132.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="88600959.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="88601215.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="88600950.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="129560364.jpg" alt="חופשת יוקרה בלתי נשכחת במיקונוס - תמונה 10" loading="lazy" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="ticket-perforation"></div>
@@ -1325,13 +1415,13 @@
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פאפוס 6.jpg');"></div>
+                        <img class="deal-gallery-img" src="פאפוס.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 1.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 2.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 3.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 4.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 5.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פאפוס 6.jpg" alt="נופש משפחתי בסוכות בפאפוס - תמונה 7" loading="lazy" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="ticket-perforation"></div>
@@ -1355,14 +1445,14 @@
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('וגאס.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('וגאס 7.jpg');"></div>
+                        <img class="deal-gallery-img" src="וגאס.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 1.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 2.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 3.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 4.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 5.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 6.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="וגאס 7.jpg" alt="חול המועד סוכות בלאס וגאס - תמונה 8" loading="lazy" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="ticket-perforation"></div>
@@ -1386,17 +1476,17 @@
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 7.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 8.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 9.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 10.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('מינכן 11.jpg');"></div>
+                        <img class="deal-gallery-img" src="מינכן 1.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 2.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 3.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 4.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 5.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 6.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 7.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 8.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 9.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 10.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="מינכן 11.jpg" alt="פסטיבל הבירה במינכן 2026 - תמונה 11" loading="lazy" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="ticket-perforation"></div>
@@ -1426,19 +1516,19 @@
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
                     <div class="deal-gallery-container">
-                        <div class="deal-gallery-img" style="background-image: url('פראג 1.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 2.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 3.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 4.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 5.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 6.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 7.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 8.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 9.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 10.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 11.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 12.jpg');"></div>
-                        <div class="deal-gallery-img" style="background-image: url('פראג 13.jpg');"></div>
+                        <img class="deal-gallery-img" src="פראג 1.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 2.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 3.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 4.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 5.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 6.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 7.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 8.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 9.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 10.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 11.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 11" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 12.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 12" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="פראג 13.jpg" alt="חופשת כריסטמס קסומה בפראג - תמונה 13" loading="lazy" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="ticket-perforation"></div>
@@ -1470,7 +1560,7 @@
 
         <div class="grid">
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80');"></div>
+                <img class="card-img" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="חופשות בטן-גב אקזוטיות - חוף טרופי" loading="lazy" onerror="this.style.display='none'">
                 <div class="card-content">
                     <h3 class="card-title" id="c1-title">חופשות בטן-גב אקזוטיות</h3>
                     <p class="card-text" id="c1-text">חופשים לבנים וריזורטים יוקרתיים בתאילנד, לאוס, האיים המלדיביים וזנזיבר המציעים שקט אמיתי וניתוק מלא מהשגרה.</p>
@@ -1482,7 +1572,7 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80');"></div>
+                <img class="card-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="טיולי הרפתקאות, תרבות וטבע" loading="lazy" onerror="this.style.display='none'">
                 <div class="card-content">
                     <h3 class="card-title" id="c2-title">טיולי הרפתקאות, תרבות וטבע</h3>
                     <p class="card-text" id="c2-text">מסעות עומק מרתקים בנופים המהפנטים של ויאטנם או ביפן הקסומה, המשלבים בין טבע פראי, מסורת עתיקה וקדמה.</p>
@@ -1494,7 +1584,7 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80');"></div>
+                <img class="card-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="חופשות אורבניות ויעדי קיץ מובילים" loading="lazy" onerror="this.style.display='none'">
                 <div class="card-content">
                     <h3 class="card-title" id="c3-title">חופשות אורבניות ויעדי קיץ מובילים</h3>
                     <p class="card-text" id="c3-text">תרבות, שופינג וקולינריה בניו יורק, לוס אנג'לס ולונדון, לצד חופשות קיץ אירופאיות שטופות שמש ביוון, איטליה וספרד.</p>
@@ -1719,6 +1809,7 @@
         var translations = {
             he: {
                 heroKicker: 'AdvenHorizon Travels · 2026', heroBtn: 'תכננו את המסע שלכם', heroBtn2: 'לחבילות הנופש', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'תיק המסע', navAbout: 'הסיפור שלנו', navProcess: 'איך זה עובד', navDealsLabel: 'חבילות נופש', navDealsSummer: 'קיץ', navDealsHolidays: 'חגים', navDealsWinter: 'חורף', navDestinations: 'יעדים חמים', navSpecialties: 'התמחויות', navPolicy: 'מדיניות ביטולים', navFaq: 'שאלות נפוצות',
+                heroBtn3: 'הזמנת אטרקציות ומלונות',
                 langBtn: '<i class="fa fa-globe"></i> English',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'תכננו את המסע שלכם',
                 dealsSummerTitle: 'קיץ של חוף, שקט וכחול אינסופי', dealsSummerSubtitle: 'חופים תכולים, שקיעות בלתי נשכחות וחופשה שתזכרו לאורך כל השנה',
@@ -1787,6 +1878,7 @@
             },
             en: {
                 heroKicker: 'AdvenHorizon Travels · 2026', heroBtn: 'Plan Your Journey', heroBtn2: 'Vacation Packages', footerTagline: 'Beyond Ordinary Travel', processEyebrow: 'The Journey', navAbout: 'Our Story', navProcess: 'How It Works', navDealsLabel: 'Vacation Packages', navDealsSummer: 'Summer', navDealsHolidays: 'Holidays', navDealsWinter: 'Winter', navDestinations: 'Trending Destinations', navSpecialties: 'Our Specialties', navPolicy: 'Cancellation Policy', navFaq: 'FAQ',
+                heroBtn3: 'Book Attractions & Hotels',
                 langBtn: '<i class="fa fa-globe"></i> עברית',
                 heroTitle: 'AdvenHorizon Travels', heroSubtitle: 'BEYOND ORDINARY TRAVEL', heroBtn: 'Plan Your Journey',
                 dealsSummerTitle: 'A Summer of Beaches, Calm & Endless Blue', dealsSummerSubtitle: 'Turquoise waters, unforgettable sunsets, and a few days off you will remember all year',
@@ -1880,6 +1972,7 @@
             setText('nav-specialties', t.navSpecialties);
             setText('nav-policy', t.navPolicy);
             setText('nav-faq', t.navFaq);
+            setText('hero-btn-3-txt', t.heroBtn3);
             setText('mnav-about', t.navAbout);
             setText('mnav-process', t.navProcess);
             setText('mnav-deals', t.navDealsLabel);
