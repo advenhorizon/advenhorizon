@@ -450,6 +450,7 @@
             box-shadow:0 4px 12px rgba(0,87,184,0.3);
         }
         body[dir="rtl"] .deal-card-badge { right:auto; left:14px; }
+        .deal-card-badge-standalone { position:static; display:inline-block; margin:18px 20px 0; }
 
         .ticket-perforation { position:relative; height:0; border-top:2px dashed rgba(0,87,184,0.15); margin:0 20px; }
         .ticket-perforation::before,.ticket-perforation::after { content:''; position:absolute; top:-10px; width:20px; height:20px; border-radius:50%; background:var(--off-white); }
@@ -464,7 +465,7 @@
         .deal-card-specs p { display:flex; align-items:baseline; gap:8px; font-size:0.87rem; color:var(--slate); margin-bottom:6px; line-height:1.5; }
         .deal-card-specs strong { color:var(--ink); font-weight:700; }
         .deal-card-specs i { width:16px; text-align:center; flex-shrink:0; color:var(--blue); }
-        .deal-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:20px; padding-top:18px; border-top:1.5px dashed rgba(0,87,184,0.15); }
+        .deal-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:auto; padding-top:18px; border-top:1.5px dashed rgba(0,87,184,0.15); }
         .deal-card-price { display:flex; flex-direction:column; }
         .deal-card-price .amount { font-weight:800; font-size:1.6rem; color:var(--blue); }
         .deal-card-price .label { font-size:0.72rem; color:var(--slate); }
@@ -1410,9 +1411,7 @@
                 <div class="deal-gallery-wrapper tall-wrapper">
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="בלאק פריידי פראג.jpg" alt="מבצע בלאק פריידי מטורף לפראג" loading="lazy" onerror="this.style.display='none'">
-                        <img class="deal-gallery-img" src="בלאק פריידי פראג 1.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="deal-gallery-container">                        <img class="deal-gallery-img" src="בלאק פריידי פראג 1.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 1" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי פראג 2.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 2" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי פראג 3.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 3" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי פראג 4.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 4" loading="lazy" onerror="this.style.display='none'">
@@ -1445,9 +1444,7 @@
                 <div class="deal-gallery-wrapper tall-wrapper">
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="בלאק פריידי אתונה.jpg" alt="חופשה יוקרתית לזוג באתונה" loading="lazy" onerror="this.style.display='none'">
-                        <img class="deal-gallery-img" src="בלאק פריידי אתונה 1.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="deal-gallery-container">                        <img class="deal-gallery-img" src="בלאק פריידי אתונה 1.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי אתונה 2.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 2" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי אתונה 3.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 3" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי אתונה 4.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 4" loading="lazy" onerror="this.style.display='none'">
@@ -1487,9 +1484,7 @@
                 <div class="deal-gallery-wrapper tall-wrapper">
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="בלאק פריידי מינכן.jpg" alt="דיל לחופשה מושלמת במינכן" loading="lazy" onerror="this.style.display='none'">
-                        <img class="deal-gallery-img" src="בלאק פריידי מינכן 1.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="deal-gallery-container">                        <img class="deal-gallery-img" src="בלאק פריידי מינכן 1.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 1" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי מינכן 2.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 2" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי מינכן 3.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 3" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי מינכן 4.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 4" loading="lazy" onerror="this.style.display='none'">
@@ -1520,9 +1515,7 @@
                 <div class="deal-gallery-wrapper tall-wrapper">
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="בלאק פריידי וורשה.jpg" alt="דיל מיוחד לסוף שבוע קניות בוורשה" loading="lazy" onerror="this.style.display='none'">
-                        <img class="deal-gallery-img" src="בלאק פריידי וורשה 1.jpg" alt="מלון וורשה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="deal-gallery-container">                        <img class="deal-gallery-img" src="בלאק פריידי וורשה 1.jpg" alt="מלון וורשה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי וורשה 2.jpg" alt="מלון וורשה - תמונה 2" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי וורשה 3.jpg" alt="מלון וורשה - תמונה 3" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי וורשה 4.jpg" alt="מלון וורשה - תמונה 4" loading="lazy" onerror="this.style.display='none'">
@@ -1561,9 +1554,7 @@
                 <div class="deal-gallery-wrapper tall-wrapper">
                     <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
                     <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="בלאק פריידי לונדון.jpg" alt="סופ״ש בלאק פריידי בלונדון" loading="lazy" onerror="this.style.display='none'">
-                        <img class="deal-gallery-img" src="בלאק פריידי לונדון 1.jpg" alt="Holiday Inn Express, לונדון - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                    <div class="deal-gallery-container">                        <img class="deal-gallery-img" src="בלאק פריידי לונדון 1.jpg" alt="Holiday Inn Express, לונדון - תמונה 1" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי לונדון 2.jpg" alt="Holiday Inn Express, לונדון - תמונה 2" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי לונדון 3.jpg" alt="Holiday Inn Express, לונדון - תמונה 3" loading="lazy" onerror="this.style.display='none'">
                         <img class="deal-gallery-img" src="בלאק פריידי לונדון 4.jpg" alt="Holiday Inn Express, לונדון - תמונה 4" loading="lazy" onerror="this.style.display='none'">
@@ -1729,13 +1720,7 @@
                 </div>
             </div>
             <div class="ticket-card">
-                <span class="deal-card-badge" id="badge-tbilisi">חופשת סוכות 2026</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="סוכות טביליסי.jpg" alt="חופשה מיוחדת בטביליסי, גאורגיה" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-tbilisi">חופשת סוכות 2026</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-tbilisi">חופשה מיוחדת בטביליסי, גאורגיה</h3>
                     <div class="deal-card-hotel" id="deal-hotel-tbilisi"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון Fain Astoria — חדר סטנדרט, לינה וארוחת בוקר</div>
@@ -1749,13 +1734,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-madrid">חופשת חנוכה 2026</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה מדריד.jpg" alt="חופשת חנוכה קסומה לחג המולד במדריד" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-madrid">חופשת חנוכה 2026</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-madrid">חופשת חנוכה קסומה לחג המולד במדריד</h3>
                     <div class="deal-card-hotel" id="deal-hotel-madrid"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Pestana Collection Plaza Mayor — חדר Classic + ארוחת בוקר, ביטול חינם עד 4.12</div>
@@ -1769,13 +1748,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-zanzibar">מבצע חנוכה</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה זנזיבר.jpg" alt="מבצע חנוכה לזנזיבר — קיוונגווה ביץ׳ ריזורט" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-zanzibar">מבצע חנוכה</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-zanzibar">מבצע חנוכה לזנזיבר — קיוונגווה ביץ׳ ריזורט</h3>
                     <div class="deal-card-hotel" id="deal-hotel-zanzibar"><i class="fa fa-star" style="color: var(--accent-gold);"></i> Kiwengwa Beach Resort — חדר סטנדרט זוגי + ארוחת בוקר (דירוג 8.8)</div>
@@ -1789,13 +1762,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-prague-kosher">חופשת חנוכה — מלון כשר</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה פראג כשר.jpg" alt="חופשת חנוכה במלון כשר בפראג" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-prague-kosher">חופשת חנוכה — מלון כשר</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-prague-kosher">חופשת חנוכה במלון כשר בפראג</h3>
                     <div class="deal-card-hotel" id="deal-hotel-prague-kosher"><i class="fa fa-star" style="color: var(--accent-gold);"></i> King David Prague Kosher Hotel — חדר Deluxe, חצי פנסיון</div>
@@ -1809,13 +1776,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-budapest-emerald">חופשת חנוכה 2026</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה בודפשט אמרלד.jpg" alt="פוגשת הכנות לחג המולד בבודפשט" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-budapest-emerald">חופשת חנוכה 2026</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-budapest-emerald">פוגשת הכנות לחג המולד בבודפשט</h3>
                     <div class="deal-card-hotel" id="deal-hotel-budapest-emerald"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Emerald Hotel — חדר Corner + ארוחת בוקר, ביטול חינם עד 3.12</div>
@@ -1829,13 +1790,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-budapest-marriott">קסם חג המולד</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה בודפשט מריוט.jpg" alt="קסם חג המולד בבודפשט — מריוט" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-budapest-marriott">קסם חג המולד</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-budapest-marriott">קסם חג המולד בבודפשט — מריוט</h3>
                     <div class="deal-card-hotel" id="deal-hotel-budapest-marriott"><i class="fa fa-star" style="color: var(--accent-gold);"></i> Marriott Hotel — בלב העיר, דירוג 9 מצוין</div>
@@ -1849,13 +1804,7 @@
                     </div>
                 </div>
             </div><div class="ticket-card">
-                <span class="deal-card-badge" id="badge-london-hanukkah">חופשת חנוכה 2026</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="חנוכה לונדון.jpg" alt="פוגשת הכנות לחג מולד בלונדון" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-london-hanukkah">חופשת חנוכה 2026</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-london-hanukkah">פוגשת הכנות לחג מולד בלונדון</h3>
                     <div class="deal-card-hotel" id="deal-hotel-london-hanukkah"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> The Park City Grand Plaza Kensington — חדר Plaza Executive Double</div>
@@ -1912,13 +1861,7 @@
                 </div>
             </div>
             <div class="ticket-card">
-                <span class="deal-card-badge" id="badge-berlin">מבצע מיוחד בדצמבר</span>
-                <div class="deal-gallery-wrapper tall-wrapper">
-                    <div class="deal-gallery-container">
-                        <img class="deal-gallery-img flyer-img" src="ברלין דצמבר.jpg" alt="חופשה בלתי נשכחת בברלין" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                </div>
-                <div class="ticket-perforation"></div>
+                <span class="deal-card-badge deal-card-badge-standalone" id="badge-berlin">מבצע מיוחד בדצמבר</span>                <div class="ticket-perforation"></div>
                 <div class="deal-card-body">
                     <h3 id="deal-title-berlin">חופשה בלתי נשכחת בברלין</h3>
                     <div class="deal-card-hotel" id="deal-hotel-berlin"><i class="fa fa-building" style="color: var(--accent-gold);"></i> Mercure Berlin City West — חדר סטנדרט זוגי + ארוחת בוקר</div>
