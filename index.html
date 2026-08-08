@@ -1326,13 +1326,18 @@
             <h2 class="section-title" id="all-deals-title">בחרו את החופשה שלכם</h2>
             <p class="section-subtitle" id="all-deals-subtitle">חבילות מוכנות לקיץ, לחגים ולחורף — הכל בתכנון אישי מלא מא׳ עד ת׳</p>
             <div class="deals-tabs">
-                <button class="deals-tab active" onclick="showDealsTab('summer',this)" id="tab-summer"><i class="fa fa-sun-o"></i> <span id="tab-summer-txt">קיץ</span></button>
-                <button class="deals-tab" onclick="showDealsTab('holidays',this)" id="tab-holidays"><i class="fa fa-star"></i> <span id="tab-holidays-txt">חגים</span></button>
+                <!-- ARCHIVED — קטגוריית קיץ הוסרה מהתצוגה. להחזרה: מחקו את שורת "COMMENT START" ואת שורת "COMMENT END" שמסביב לכפתור ולסקציה של deals-summer, והחזירו class="active"/"active-tab" לכאן ולסקציית הקיץ (והסירו אותם מ-tab-holidays / deals-holidays). -->
+                <!-- COMMENT START
+                <button class="deals-tab" onclick="showDealsTab('summer',this)" id="tab-summer"><i class="fa fa-sun-o"></i> <span id="tab-summer-txt">קיץ</span></button>
+                -->
+                <button class="deals-tab active" onclick="showDealsTab('holidays',this)" id="tab-holidays"><i class="fa fa-star"></i> <span id="tab-holidays-txt">חגים</span></button>
                 <button class="deals-tab" onclick="showDealsTab('winter',this)" id="tab-winter"><i class="fa fa-snowflake-o"></i> <span id="tab-winter-txt">חורף</span></button>
             </div>
         </div>
 
-        <section class="deals-section deals-tab-content active-tab" id="deals-summer">
+        <!-- ARCHIVED — קטגוריית קיץ (summer). כדי להחזיר, הסירו את ה-comment tags מסביב לסקציה, והחזירו active-tab לכאן. -->
+        <!--
+        <section class="deals-section deals-tab-content" id="deals-summer">
             <div class="deals-grid deals-grid-wrap">
 
                 <div class="ticket-card">
@@ -1371,9 +1376,10 @@
 
             </div>
         </section>
+        -->
 
 
-        <section class="deals-section deals-tab-content" id="deals-holidays">
+        <section class="deals-section deals-tab-content active-tab" id="deals-holidays">
             <div class="deals-grid deals-grid-wrap">
 
             <div class="ticket-card">
@@ -2165,7 +2171,6 @@
 
             document.getElementById('deal-specs-mykonos').innerHTML = t.dealSpecsMykonos;
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
-            document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
             document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
             document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
@@ -2274,7 +2279,6 @@
             var t = translations[currentLang];
             document.getElementById('deal-specs-mykonos').innerHTML = t.dealSpecsMykonos;
             document.getElementById('deal-specs-paphos').innerHTML = t.dealSpecsPaphos;
-            document.getElementById('deal-specs-ayianapa').innerHTML = t.dealSpecsAyianapa;
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
             document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
             document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
