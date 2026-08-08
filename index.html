@@ -417,6 +417,8 @@
             color: #fff; box-shadow: 0 4px 14px rgba(0,87,184,0.3);
         }
         .deals-tab:not(.active):hover { background: var(--blue-xlight); color: var(--blue); }
+        .deals-tab-bf.active { background: linear-gradient(135deg,#111 0%,#000 100%) !important; color: #F7D659 !important; box-shadow: 0 4px 14px rgba(0,0,0,0.35) !important; }
+        .deals-tab-bf:not(.active):hover { background: #1a1a1a; color: #F7D659; }
 
         .deals-section.deals-tab-content { display: none; padding: 0 20px 20px; background: transparent; }
         .deals-section.deals-tab-content.active-tab { display: block; }
@@ -577,6 +579,26 @@
         .cookie-text { font-size:0.86rem; color:rgba(255,255,255,0.75); max-width:800px; }
         .cookie-btn { background:var(--blue); color:var(--white); border:none; padding:11px 28px; border-radius:var(--radius-btn); font-weight:700; font-size:0.88rem; cursor:pointer; white-space:nowrap; transition:var(--transition); }
         .cookie-btn:hover { background:var(--blue-mid); }
+
+        /* ===== BLACK FRIDAY POPUP ===== */
+        .bf-popup-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.72); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:10000; opacity:0; visibility:hidden; transition:opacity 0.4s ease, visibility 0.4s ease; padding:20px; }
+        .bf-popup-overlay.show { opacity:1; visibility:visible; }
+        .bf-popup-card { position:relative; width:100%; max-width:420px; background:linear-gradient(160deg,#111 0%,#000 100%); border:1.5px solid rgba(255,255,255,0.12); border-radius:22px; padding:38px 32px 32px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.55); transform:scale(0.9) translateY(16px); transition:transform 0.4s cubic-bezier(.34,1.4,.64,1); }
+        .bf-popup-overlay.show .bf-popup-card { transform:scale(1) translateY(0); }
+        .bf-popup-close { position:absolute; top:14px; left:14px; background:rgba(255,255,255,0.12); border:none; color:#fff; font-size:1.15rem; cursor:pointer; line-height:1; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+        .bf-popup-close:hover { background:rgba(255,255,255,0.25); }
+        .bf-popup-badge { display:inline-block; background:linear-gradient(135deg,#F5B90C 0%,#F7D659 100%); color:#1a1400; font-weight:800; font-size:0.76rem; letter-spacing:0.04em; padding:6px 16px; border-radius:100px; margin-bottom:16px; }
+        .bf-popup-card h3 { font-weight:800; font-size:1.7rem; color:#fff; line-height:1.15; margin-bottom:10px; }
+        .bf-popup-card h3 span { color:#F7D659; }
+        .bf-popup-card p { color:rgba(255,255,255,0.68); font-size:0.94rem; margin-bottom:26px; line-height:1.5; }
+        .bf-popup-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; background:linear-gradient(135deg,#F5B90C 0%,#F7D659 100%); color:#1a1400; border:none; padding:15px; border-radius:var(--radius-btn); font-weight:800; font-size:1rem; cursor:pointer; transition:var(--transition); box-shadow:0 10px 28px rgba(245,185,12,0.3); }
+        .bf-popup-btn:hover { transform:translateY(-2px); box-shadow:0 14px 34px rgba(245,185,12,0.42); }
+        .bf-popup-dismiss { display:block; margin:16px auto 0; background:none; border:none; color:rgba(255,255,255,0.45); font-size:0.82rem; cursor:pointer; text-decoration:underline; }
+        .bf-popup-dismiss:hover { color:rgba(255,255,255,0.7); }
+        @media(max-width:480px) {
+            .bf-popup-card { padding:32px 22px 26px; }
+            .bf-popup-card h3 { font-size:1.4rem; }
+        }
 
         /* ===== FOOTER ===== */
         footer {
@@ -1330,7 +1352,8 @@
                 <!-- COMMENT START
                 <button class="deals-tab" onclick="showDealsTab('summer',this)" id="tab-summer"><i class="fa fa-sun-o"></i> <span id="tab-summer-txt">קיץ</span></button>
                 -->
-                <button class="deals-tab active" onclick="showDealsTab('holidays',this)" id="tab-holidays"><i class="fa fa-star"></i> <span id="tab-holidays-txt">חגים</span></button>
+                <button class="deals-tab deals-tab-bf active" onclick="showDealsTab('blackfriday',this)" id="tab-blackfriday"><i class="fa fa-fire"></i> <span id="tab-blackfriday-txt">בלאק פריידי</span></button>
+                <button class="deals-tab" onclick="showDealsTab('holidays',this)" id="tab-holidays"><i class="fa fa-star"></i> <span id="tab-holidays-txt">חגים</span></button>
                 <button class="deals-tab" onclick="showDealsTab('winter',this)" id="tab-winter"><i class="fa fa-snowflake-o"></i> <span id="tab-winter-txt">חורף</span></button>
             </div>
         </div>
@@ -1379,7 +1402,203 @@
         -->
 
 
-        <section class="deals-section deals-tab-content active-tab" id="deals-holidays">
+        <section class="deals-section deals-tab-content active-tab" id="deals-blackfriday">
+            <div class="deals-grid deals-grid-wrap">
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-prague-bf">בלאק פריידי 🔥</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/בלאק פריידי פראג.jpg" alt="מבצע בלאק פריידי מטורף לפראג" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 1.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 2.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 3.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 4.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 5.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 6.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 7.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 8.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 9.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 10.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי פראג 11.jpg" alt="Ambassador Zlatá Husa, פראג - תמונה 11" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-prague-bf">מבצע בלאק פריידי מטורף לפראג</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-prague-bf"><i class="fa fa-building" style="color: var(--accent-gold);"></i> Ambassador Zlatá Husa — מלון יוקרתי, לינה וארוחת בוקר</div>
+                    <div class="deal-card-specs" id="deal-specs-prague-bf"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,725</span>
+                            <span class="label" id="label-prague-bf">עבור כל החבילה ל-2 נוסעים</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-prague-bf" onclick="openLeadModal('prague-bf')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-athens-bf">בלאק פריידי 🔥</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/בלאק פריידי אתונה.jpg" alt="חופשה יוקרתית לזוג באתונה" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 1.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 2.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 3.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 4.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 5.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 6.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 7.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 8.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 9.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 10.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 11.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 11" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 12.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 12" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 13.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 13" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 14.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 14" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 15.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 15" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 16.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 16" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 17.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 17" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי אתונה 18.jpg" alt="Athenaeum Eridanus, אתונה - תמונה 18" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-athens-bf">חופשה יוקרתית לזוג באתונה</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-athens-bf"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Athenaeum Eridanus — חדר קלאסי זוגי + ארוחת בוקר</div>
+                    <div class="deal-card-specs" id="deal-specs-athens-bf"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,106</span>
+                            <span class="label" id="label-athens-bf">לזוג, הכל כלול</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-athens-bf" onclick="openLeadModal('athens-bf')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-munich-bf">בלאק פריידי 🔥</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/בלאק פריידי מינכן.jpg" alt="דיל לחופשה מושלמת במינכן" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 1.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 2.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 3.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 4.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 5.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 6.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 7.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 8.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי מינכן 9.jpg" alt="Residence Inn by Marriott, מינכן - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-munich-bf">דיל לחופשה מושלמת במינכן</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-munich-bf"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Residence Inn by Marriott, Munich City East — סטודיו זוגי נוח עם נוף לעיר</div>
+                    <div class="deal-card-specs" id="deal-specs-munich-bf"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,813.50</span>
+                            <span class="label" id="label-munich-bf">לזוג, כולל הכל</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-munich-bf" onclick="openLeadModal('munich-bf')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-warsaw-bf">בלאק פריידי 🔥</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/בלאק פריידי וורשה.jpg" alt="דיל מיוחד לסוף שבוע קניות בוורשה" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 1.jpg" alt="מלון וורשה - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 2.jpg" alt="מלון וורשה - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 3.jpg" alt="מלון וורשה - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 4.jpg" alt="מלון וורשה - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 5.jpg" alt="מלון וורשה - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 6.jpg" alt="מלון וורשה - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 7.jpg" alt="מלון וורשה - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 8.jpg" alt="מלון וורשה - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 9.jpg" alt="מלון וורשה - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 10.jpg" alt="מלון וורשה - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 11.jpg" alt="מלון וורשה - תמונה 11" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 12.jpg" alt="מלון וורשה - תמונה 12" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 13.jpg" alt="מלון וורשה - תמונה 13" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 14.jpg" alt="מלון וורשה - תמונה 14" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 15.jpg" alt="מלון וורשה - תמונה 15" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 16.jpg" alt="מלון וורשה - תמונה 16" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי וורשה 17.jpg" alt="מלון וורשה - תמונה 17" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-warsaw-bf">דיל מיוחד לסוף שבוע קניות בוורשה</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-warsaw-bf"><i class="fa fa-bed" style="color: var(--accent-gold);"></i> Classic Double Room — אירוח פרימיום</div>
+                    <div class="deal-card-specs" id="deal-specs-warsaw-bf"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,045.80</span>
+                            <span class="label" id="label-warsaw-bf">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-warsaw-bf" onclick="openLeadModal('warsaw-bf')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-london-bf">בלאק פריידי 🔥</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <button class="gallery-arrow g-arrow-right" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, 1)">&#10095;</button>
+                    <button class="gallery-arrow g-arrow-left" onclick="event.stopPropagation();event.preventDefault();scrollGallery(this, -1)">&#10094;</button>
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/בלאק פריידי לונדון.jpg" alt="סופ״ש בלאק פריידי בלונדון" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 1.jpg" alt="Holiday Inn Express, לונדון - תמונה 1" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 2.jpg" alt="Holiday Inn Express, לונדון - תמונה 2" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 3.jpg" alt="Holiday Inn Express, לונדון - תמונה 3" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 4.jpg" alt="Holiday Inn Express, לונדון - תמונה 4" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 5.jpg" alt="Holiday Inn Express, לונדון - תמונה 5" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 6.jpg" alt="Holiday Inn Express, לונדון - תמונה 6" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 7.jpg" alt="Holiday Inn Express, לונדון - תמונה 7" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 8.jpg" alt="Holiday Inn Express, לונדון - תמונה 8" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 9.jpg" alt="Holiday Inn Express, לונדון - תמונה 9" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 10.jpg" alt="Holiday Inn Express, לונדון - תמונה 10" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 11.jpg" alt="Holiday Inn Express, לונדון - תמונה 11" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 12.jpg" alt="Holiday Inn Express, לונדון - תמונה 12" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 13.jpg" alt="Holiday Inn Express, לונדון - תמונה 13" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 14.jpg" alt="Holiday Inn Express, לונדון - תמונה 14" loading="lazy" onerror="this.style.display='none'">
+                        <img class="deal-gallery-img" src="deal-images/בלאק פריידי לונדון 15.jpg" alt="Holiday Inn Express, לונדון - תמונה 15" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-london-bf">סופ״ש בלאק פריידי בלונדון</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-london-bf"><i class="fa fa-building" style="color: var(--accent-gold);"></i> Holiday Inn Express London — ארוחת בוקר כלולה</div>
+                    <div class="deal-card-specs" id="deal-specs-london-bf"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$2,450</span>
+                            <span class="label" id="label-london-bf">לזוג</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-london-bf" onclick="openLeadModal('london-bf')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+        <section class="deals-section deals-tab-content" id="deals-holidays">
             <div class="deals-grid deals-grid-wrap">
 
             <div class="ticket-card">
@@ -1509,6 +1728,147 @@
                     </div>
                 </div>
             </div>
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-tbilisi">חופשת סוכות 2026</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/סוכות טביליסי.jpg" alt="חופשה מיוחדת בטביליסי, גאורגיה" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-tbilisi">חופשה מיוחדת בטביליסי, גאורגיה</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-tbilisi"><i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון Fain Astoria — חדר סטנדרט, לינה וארוחת בוקר</div>
+                    <div class="deal-card-specs" id="deal-specs-tbilisi"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$838</span>
+                            <span class="label" id="label-tbilisi">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-tbilisi" onclick="openLeadModal('tbilisi')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-madrid">חופשת חנוכה 2026</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה מדריד.jpg" alt="חופשת חנוכה קסומה לחג המולד במדריד" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-madrid">חופשת חנוכה קסומה לחג המולד במדריד</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-madrid"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Pestana Collection Plaza Mayor — חדר Classic + ארוחת בוקר, ביטול חינם עד 4.12</div>
+                    <div class="deal-card-specs" id="deal-specs-madrid"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,385</span>
+                            <span class="label" id="label-madrid">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-madrid" onclick="openLeadModal('madrid')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-zanzibar">מבצע חנוכה</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה זנזיבר.jpg" alt="מבצע חנוכה לזנזיבר — קיוונגווה ביץ׳ ריזורט" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-zanzibar">מבצע חנוכה לזנזיבר — קיוונגווה ביץ׳ ריזורט</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-zanzibar"><i class="fa fa-star" style="color: var(--accent-gold);"></i> Kiwengwa Beach Resort — חדר סטנדרט זוגי + ארוחת בוקר (דירוג 8.8)</div>
+                    <div class="deal-card-specs" id="deal-specs-zanzibar"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">12,679 ₪</span>
+                            <span class="label" id="label-zanzibar">לזוג</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-zanzibar" onclick="openLeadModal('zanzibar')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-prague-kosher">חופשת חנוכה — מלון כשר</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה פראג כשר.jpg" alt="חופשת חנוכה במלון כשר בפראג" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-prague-kosher">חופשת חנוכה במלון כשר בפראג</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-prague-kosher"><i class="fa fa-star" style="color: var(--accent-gold);"></i> King David Prague Kosher Hotel — חדר Deluxe, חצי פנסיון</div>
+                    <div class="deal-card-specs" id="deal-specs-prague-kosher"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,467</span>
+                            <span class="label" id="label-prague-kosher">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-prague-kosher" onclick="openLeadModal('prague-kosher')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-budapest-emerald">חופשת חנוכה 2026</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה בודפשט אמרלד.jpg" alt="פוגשת הכנות לחג המולד בבודפשט" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-budapest-emerald">פוגשת הכנות לחג המולד בבודפשט</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-budapest-emerald"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Emerald Hotel — חדר Corner + ארוחת בוקר, ביטול חינם עד 3.12</div>
+                    <div class="deal-card-specs" id="deal-specs-budapest-emerald"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,242</span>
+                            <span class="label" id="label-budapest-emerald">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-budapest-emerald" onclick="openLeadModal('budapest-emerald')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-budapest-marriott">קסם חג המולד</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה בודפשט מריוט.jpg" alt="קסם חג המולד בבודפשט — מריוט" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-budapest-marriott">קסם חג המולד בבודפשט — מריוט</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-budapest-marriott"><i class="fa fa-star" style="color: var(--accent-gold);"></i> Marriott Hotel — בלב העיר, דירוג 9 מצוין</div>
+                    <div class="deal-card-specs" id="deal-specs-budapest-marriott"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,080</span>
+                            <span class="label" id="label-budapest-marriott">לאדם</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-budapest-marriott" onclick="openLeadModal('budapest-marriott')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div><div class="ticket-card">
+                <span class="deal-card-badge" id="badge-london-hanukkah">חופשת חנוכה 2026</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/חנוכה לונדון.jpg" alt="פוגשת הכנות לחג מולד בלונדון" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-london-hanukkah">פוגשת הכנות לחג מולד בלונדון</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-london-hanukkah"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> The Park City Grand Plaza Kensington — חדר Plaza Executive Double</div>
+                    <div class="deal-card-specs" id="deal-specs-london-hanukkah"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,460</span>
+                            <span class="label" id="label-london-hanukkah">לאדם בחדר זוגי</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-london-hanukkah" onclick="openLeadModal('london-hanukkah')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
         </section>
@@ -1551,6 +1911,39 @@
                     </div>
                 </div>
             </div>
+            <div class="ticket-card">
+                <span class="deal-card-badge" id="badge-berlin">מבצע מיוחד בדצמבר</span>
+                <div class="deal-gallery-wrapper tall-wrapper">
+                    <div class="deal-gallery-container">
+                        <img class="deal-gallery-img flyer-img" src="deal-images/ברלין דצמבר.jpg" alt="חופשה בלתי נשכחת בברלין" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="ticket-perforation"></div>
+                <div class="deal-card-body">
+                    <h3 id="deal-title-berlin">חופשה בלתי נשכחת בברלין</h3>
+                    <div class="deal-card-hotel" id="deal-hotel-berlin"><i class="fa fa-building" style="color: var(--accent-gold);"></i> Mercure Berlin City West — חדר סטנדרט זוגי + ארוחת בוקר</div>
+                    <div class="deal-card-specs" id="deal-specs-berlin"></div>
+                    <div class="deal-card-bottom">
+                        <div class="deal-card-price">
+                            <span class="amount">$1,927.80</span>
+                            <span class="label" id="label-berlin">מחיר לחבילה (יש לאמת: לאדם/לזוג)</span>
+                        </div>
+                        <button class="btn-deal-order" id="btn-order-berlin" onclick="openLeadModal('berlin')">לבדיקת זמינות</button>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
 
         </div>
         </section>
@@ -1738,6 +2131,17 @@
         <button class="cookie-btn" onclick="acceptCookies()" id="cookie-btn-txt">מאשר/ת</button>
     </div>
 
+    <div class="bf-popup-overlay" id="bfPopup">
+        <div class="bf-popup-card">
+            <button class="bf-popup-close" onclick="closeBfPopup()" aria-label="סגירה">×</button>
+            <span class="bf-popup-badge" id="bf-popup-badge">BLACK FRIDAY 🔥</span>
+            <h3 id="bf-popup-title">מבצעי <span>בלאק פריידי</span> נחתו!</h3>
+            <p id="bf-popup-text">הנחות ענק לזמן מוגבל על החבילות הכי מבוקשות שלנו.</p>
+            <button class="bf-popup-btn" onclick="goToDealsFromPopup()"><i class="fa fa-fire"></i> <span id="bf-popup-btn-txt">לצפייה במבצעים</span></button>
+            <button class="bf-popup-dismiss" onclick="closeBfPopup()" id="bf-popup-dismiss-txt">לא עכשיו, תודה</button>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-inner">
             <!-- Brand -->
@@ -1809,7 +2213,20 @@
             ayianapa: { he: "איה נאפה, קפריסין (קיץ זוגי) | Okeanos Beach Boutique | $2,400 לזוג", en: "Ayia Napa, Cyprus (Summer Couple) | Okeanos Beach Boutique | $2,400 per couple" },
             vegas: { he: "לאס וגאס, ארה\"ב (סוכות) | חופשת פרימיום בעיר האורות | $2,675 לאדם", en: "Las Vegas, USA (Sukkot) | Premium Vacation | $2,675 pp" },
             munich: { he: "מינכן, גרמניה (אוקטוברפסט 2026) | Holiday Inn Munich - City Centre | $2,216 לאדם", en: "Munich, Germany (Oktoberfest 2026) | Holiday Inn Munich - City Centre | $2,216 pp" },
-            prague: { he: "פראג, צ'כיה (כריסטמס 2026) | MOODs Charles Bridge | $1,184 לאדם", en: "Prague, Czech Republic (Christmas 2026) | MOODs Charles Bridge | $1,184 pp" }
+            prague: { he: "פראג, צ'כיה (כריסטמס 2026) | MOODs Charles Bridge | $1,184 לאדם", en: "Prague, Czech Republic (Christmas 2026) | MOODs Charles Bridge | $1,184 pp" },
+            'prague-bf': { he: "פראג, צ\'כיה (בלאק פריידי) | Ambassador Zlatá Husa | $1,725 לזוג", en: "Prague, Czech Republic (Black Friday) | Ambassador Zlatá Husa | $1,725 per couple" },
+            'athens-bf': { he: "אתונה, יוון (בלאק פריידי) | Athenaeum Eridanus | $1,106 לזוג", en: "Athens, Greece (Black Friday) | Athenaeum Eridanus | $1,106 per couple" },
+            'munich-bf': { he: "מינכן, גרמניה (בלאק פריידי) | Residence Inn by Marriott | $1,813.50 לזוג", en: "Munich, Germany (Black Friday) | Residence Inn by Marriott | $1,813.50 per couple" },
+            'warsaw-bf': { he: "וורשה, פולין (בלאק פריידי) | Classic Double Room | $1,045.80 לאדם", en: "Warsaw, Poland (Black Friday) | Classic Double Room | $1,045.80 pp" },
+            'london-bf': { he: "לונדון, אנגליה (בלאק פריידי) | Holiday Inn Express | $2,450 לזוג", en: "London, England (Black Friday) | Holiday Inn Express | $2,450 per couple" },
+            'tbilisi': { he: "טביליסי, גאורגיה (סוכות) | Fain Astoria | $838 לאדם", en: "Tbilisi, Georgia (Sukkot) | Fain Astoria | $838 pp" },
+            'berlin': { he: "ברלין, גרמניה (דצמבר) | Mercure Berlin City West | $1,927.80", en: "Berlin, Germany (December) | Mercure Berlin City West | $1,927.80" },
+            'madrid': { he: "מדריד, ספרד (חנוכה) | Pestana Collection Plaza Mayor | $1,385 לאדם", en: "Madrid, Spain (Hanukkah) | Pestana Collection Plaza Mayor | $1,385 pp" },
+            'zanzibar': { he: "זנזיבר (חנוכה) | Kiwengwa Beach Resort | 12,679₪ לזוג", en: "Zanzibar (Hanukkah) | Kiwengwa Beach Resort | ₪12,679 per couple" },
+            'prague-kosher': { he: "פראג, צ\'כיה (חנוכה, מלון כשר) | King David Prague Kosher | $1,467 לאדם", en: "Prague, Czech Republic (Hanukkah, Kosher Hotel) | King David Prague Kosher | $1,467 pp" },
+            'budapest-emerald': { he: "בודפשט, הונגריה (חנוכה) | Emerald Hotel | $1,242 לאדם", en: "Budapest, Hungary (Hanukkah) | Emerald Hotel | $1,242 pp" },
+            'budapest-marriott': { he: "בודפשט, הונגריה (קסם חג המולד) | Marriott Hotel | $1,080 לאדם", en: "Budapest, Hungary (Christmas Magic) | Marriott Hotel | $1,080 pp" },
+            'london-hanukkah': { he: "לונדון, אנגליה (חנוכה) | Park Grand Kensington | $1,460 לאדם", en: "London, England (Hanukkah) | Park Grand Kensington | $1,460 pp" }
         };
 
         var translations = {
@@ -1830,6 +2247,46 @@
                 dealSpecsPaphos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-users" style="color: var(--accent-gold);"></i> <strong>הרכב:</strong> משפחתי (זוג + 2 ילדים עד גיל 12)</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>בסיס אירוח:</strong> לינה וארוחת בוקר כשרה</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>חבילה כוללת:</strong> טיסות ישירות ומלון כשר פרימיום</p>',
                 btnOrderPaphos: 'לבדיקת זמינות',
                 badgeAyianapa: 'דיל זוגי קיץ 2026', dealTitleAyianapa: 'חופשת פרימיום באיה נאפה', labelPerCouple: 'עבור כל החבילה לזוג',
+                badgePragueBf: 'בלאק פריידי 🔥', dealTitlePragueBf: 'מבצע בלאק פריידי מטורף לפראג', dealHotelPragueBf: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Ambassador Zlatá Husa — מלון יוקרתי, לינה וארוחת בוקר',
+                dealSpecsPragueBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 26-30 בנובמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> הלוך-חזור, כולל כבודה</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>לינה:</strong> 4 לילות, לינה וארוחת בוקר</p>',
+                labelPragueBf: 'עבור כל החבילה ל-2 נוסעים',
+                badgeAthensBf: 'בלאק פריידי 🔥', dealTitleAthensBf: 'חופשה יוקרתית לזוג באתונה', dealHotelAthensBf: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Athenaeum Eridanus — חדר קלאסי זוגי + ארוחת בוקר',
+                dealSpecsAthensBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 26-29 בנובמבר 2026 (3 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> Sky Express, ישירות מתל אביב</p>',
+                labelAthensBf: 'לזוג, הכל כלול',
+                badgeMunichBf: 'בלאק פריידי 🔥', dealTitleMunichBf: 'דיל לחופשה מושלמת במינכן', dealHotelMunichBf: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Residence Inn by Marriott, Munich City East — סטודיו זוגי נוח עם נוף לעיר',
+                dealSpecsMunichBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 25-30 בנובמבר 2026 (5 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> טיסות ישירות עם לופטהנזה</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> ארוחת בוקר + מזוודה כלולה</p>',
+                labelMunichBf: 'לזוג, כולל הכל',
+                badgeWarsawBf: 'בלאק פריידי 🔥', dealTitleWarsawBf: 'דיל מיוחד לסוף שבוע קניות בוורשה', dealHotelWarsawBf: '<i class="fa fa-bed" style="color: var(--accent-gold);"></i> Classic Double Room — אירוח פרימיום',
+                dealSpecsWarsawBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 26-30 בנובמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל על, הלוך-חזור</p><p><i class="fa fa-shopping-bag" style="color: var(--accent-gold);"></i> <strong>קניות:</strong> Złote Tarasy, Galeria Mokotów, Nowy Świat</p>',
+                labelWarsawBf: 'לאדם בחדר זוגי',
+                badgeLondonBf: 'בלאק פריידי 🔥', dealTitleLondonBf: 'סופ״ש בלאק פריידי בלונדון', dealHotelLondonBf: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Holiday Inn Express London — ארוחת בוקר כלולה',
+                dealSpecsLondonBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> נובמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> הלוך וחזור TLV-LHR-TLV</p>',
+                labelLondonBf: 'לזוג',
+                badgeTbilisi: 'חופשת סוכות 2026', dealTitleTbilisi: 'חופשה מיוחדת בטביליסי, גאורגיה', dealHotelTbilisi: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> מלון Fain Astoria — חדר סטנדרט, לינה וארוחת בוקר',
+                dealSpecsTbilisi: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 27.09.2026 - 02.10.2026 (משוער — לאימות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל על, הלוך ושוב</p><p><i class="fa fa-bus" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> העברות משדה התעופה כלולות</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> מזוודה 20 ק"ג + תיק יד</p>',
+                labelTbilisi: 'לאדם בחדר זוגי',
+                badgeBerlin: 'מבצע מיוחד בדצמבר', dealTitleBerlin: 'חופשה בלתי נשכחת בברלין', dealHotelBerlin: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Mercure Berlin City West — חדר סטנדרט זוגי + ארוחת בוקר',
+                dealSpecsBerlin: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 3-7 בדצמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> ישראייר, TLV↔BER (כ-4:25 שעות)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> מזוודה 23 ק"ג + תיק יד 8 ק"ג</p>',
+                labelBerlin: 'מחיר לחבילה (יש לאמת: לאדם/לזוג)',
+                badgeMadrid: 'חופשת חנוכה 2026', dealTitleMadrid: 'חופשת חנוכה קסומה לחג המולד במדריד', dealHotelMadrid: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Pestana Collection Plaza Mayor — חדר Classic + ארוחת בוקר, ביטול חינם עד 4.12',
+                dealSpecsMadrid: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 6-10 בדצמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> ישראייר, הלוך 14:15-18:45 | חזור 20:00-01:55(+1)</p><p><i class="fa fa-map-marker" style="color: var(--accent-gold);"></i> <strong>מיקום:</strong> בלב פלאסה מאיור, קרוב לשוקי חג ולאטרקציות המרכזיות</p>',
+                labelMadrid: 'לאדם בחדר זוגי',
+                badgeZanzibar: 'מבצע חנוכה', dealTitleZanzibar: 'מבצע חנוכה לזנזיבר — קיוונגווה ביץ׳ ריזורט', dealHotelZanzibar: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Kiwengwa Beach Resort — חדר סטנדרט זוגי + ארוחת בוקר (דירוג 8.8)',
+                dealSpecsZanzibar: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 3-10 בדצמבר 2026 (7 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> ישראייר, ישירות TLV↔ZNZ</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> מזוודה + טרולי כלולים</p>',
+                labelZanzibar: 'לזוג',
+                badgePragueKosher: 'חופשת חנוכה — מלון כשר', dealTitlePragueKosher: 'חופשת חנוכה במלון כשר בפראג', dealHotelPragueKosher: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> King David Prague Kosher Hotel — חדר Deluxe, חצי פנסיון',
+                dealSpecsPragueKosher: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 6-10 בדצמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> Smartwings, הלוך 18:25-21:35 | חזור 12:45-17:35</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> מזוודה + טרולי כלולים</p>',
+                labelPragueKosher: 'לאדם בחדר זוגי',
+                badgeBudapestEmerald: 'חופשת חנוכה 2026', dealTitleBudapestEmerald: 'פוגשת הכנות לחג המולד בבודפשט', dealHotelBudapestEmerald: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Emerald Hotel — חדר Corner + ארוחת בוקר, ביטול חינם עד 3.12',
+                dealSpecsBudapestEmerald: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 6-10 בדצמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל על, הלוך 08:40-11:15 | חזור 12:25-16:35</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> מזוודה + טרולי כלולים</p>',
+                labelBudapestEmerald: 'לאדם בחדר זוגי',
+                badgeBudapestMarriott: 'קסם חג המולד', dealTitleBudapestMarriott: 'קסם חג המולד בבודפשט — מריוט', dealHotelBudapestMarriott: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Marriott Hotel — בלב העיר, דירוג 9 מצוין',
+                dealSpecsBudapestMarriott: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> דצמבר 2026 (בתקופת חנוכה)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל על, כולל טרולי ומזוודה</p>',
+                labelBudapestMarriott: 'לאדם',
+                badgeLondonHanukkah: 'חופשת חנוכה 2026', dealTitleLondonHanukkah: 'פוגשת הכנות לחג מולד בלונדון', dealHotelLondonHanukkah: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> The Park City Grand Plaza Kensington — חדר Plaza Executive Double',
+                dealSpecsLondonHanukkah: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 6-10 בדצמבר 2026 (4 לילות)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל על, תל אביב-לוטון | הלוך 05:30-09:05 | חזור 10:25-17:25</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כלול:</strong> מזוודה + טרולי כלולים</p>',
+                labelLondonHanukkah: 'לאדם בחדר זוגי',
+                tabBlackFriday: 'בלאק פריידי',
                 dealHotelAyianapa: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel',
                 dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>תאריכים:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>טיסות:</strong> אל-על (הלוך 16:15, חזור 21:55 ללרנקה)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>חדר:</strong> Superior Room, Sea View (נוף פנורמי לים)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>כבודה:</strong> כולל מזוודות לכל נוסע | גישה ישירה לחוף</p>',
                 btnOrderAyianapa: 'לבדיקת זמינות',
@@ -1872,6 +2329,11 @@
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> כמה זמן מראש כדאי לפנות אליכם לסגירת טיול?', faq3A: 'על מנת שנוכל להבטיח את הטיסות הטובות ביותר, המלונות המבוקשים והמחירים המשתלמים ביותר, מומלץ לפנות אלינו כ-3 עד 5 חודשים לפני מועד היציאה המתוכנן.',
                 accMenuTitle: 'תפריט נגישות', accOptText: '<i class="fa fa-text-height"></i> הגדלת גופן', accOptContrast: '<i class="fa fa-adjust"></i> ניגודיות גבוהה', accOptLinks: '<i class="fa fa-link"></i> הדגשת קישורים', accOptReset: '<i class="fa fa-refresh"></i> איפוס נגישות',
                 cookieMsg: 'אתר זה משתמש בקבצי עוגיות (Cookies) כדי להבטיח שתקבלו את החוויה הטובה ביותר באתר שלנו, לצד ניתוח תנועת גולשים ושיפור השירות. המשך הגלישה מהווה הסכמה לשימוש זה.', cookieBtnTxt: 'מאשר/ת',
+                bfPopupBadge: 'BLACK FRIDAY 🔥',
+                bfPopupTitle: 'מבצעי <span>בלאק פריידי</span> נחתו!',
+                bfPopupText: 'הנחות ענק לזמן מוגבל על החבילות הכי מבוקשות שלנו.',
+                bfPopupBtnTxt: 'לצפייה במבצעים',
+                bfPopupDismissTxt: 'לא עכשיו, תודה',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
                 swLabelDest: 'יעד נסיעה', swPlaceholder: 'בחרו יעד...', swGrpSummer: 'חבילות קיץ', swGrpHolidays: 'חבילות חגים', swGrpWinter: 'חבילות חורף', swGrpMore: 'יעדים נוספים', swLabelFrom: 'תאריך יציאה',
                 swLabelTo: 'תאריך חזרה', swLabelPax: 'נוסעים', swBtnTxt: 'חפשו עכשיו',
@@ -1899,6 +2361,46 @@
                 dealSpecsPaphos: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 27.09.2026 - 01.10.2026</p><p><i class="fa fa-users" style="color: var(--accent-gold);"></i> <strong>Guests:</strong> Family (Couple + 2 Children under 12)</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>Board Basis:</strong> Kosher Bed & Breakfast</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Package Includes:</strong> Direct Flights & Premium Kosher Hotel</p>',
                 btnOrderPaphos: 'Check Availability',
                 badgeAyianapa: 'Summer Romantic Deal', dealTitleAyianapa: 'Premium Couple Escape to Ayia Napa', labelPerCouple: 'final price per couple',
+                badgePragueBf: 'Black Friday 🔥', dealTitlePragueBf: 'Crazy Black Friday Deal to Prague', dealHotelPragueBf: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Ambassador Zlatá Husa — Upscale Hotel, Room & Breakfast',
+                dealSpecsPragueBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Nov 26-30, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Round-trip, baggage included</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Stay:</strong> 4 nights, room & breakfast</p>',
+                labelPragueBf: 'Full package for 2 travelers',
+                badgeAthensBf: 'Black Friday 🔥', dealTitleAthensBf: 'Luxury Couple Getaway to Athens', dealHotelAthensBf: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Athenaeum Eridanus — Classic Double Room + Breakfast',
+                dealSpecsAthensBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Nov 26-29, 2026 (3 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Sky Express, direct from Tel Aviv</p>',
+                labelAthensBf: 'Per couple, all included',
+                badgeMunichBf: 'Black Friday 🔥', dealTitleMunichBf: 'Perfect Munich Getaway Deal', dealHotelMunichBf: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Residence Inn by Marriott, Munich City East — Comfortable Couple Studio, City View',
+                dealSpecsMunichBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Nov 25-30, 2026 (5 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Direct flights with Lufthansa</p><p><i class="fa fa-cutlery" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Breakfast + baggage included</p>',
+                labelMunichBf: 'Per couple, all-inclusive',
+                badgeWarsawBf: 'Black Friday 🔥', dealTitleWarsawBf: 'Special Shopping Weekend Deal in Warsaw', dealHotelWarsawBf: '<i class="fa fa-bed" style="color: var(--accent-gold);"></i> Classic Double Room — Premium Accommodation',
+                dealSpecsWarsawBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Nov 26-30, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El Al, round-trip</p><p><i class="fa fa-shopping-bag" style="color: var(--accent-gold);"></i> <strong>Shopping:</strong> Złote Tarasy, Galeria Mokotów, Nowy Świat</p>',
+                labelWarsawBf: 'Per person in double room',
+                badgeLondonBf: 'Black Friday 🔥', dealTitleLondonBf: 'Black Friday Weekend in London', dealHotelLondonBf: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Holiday Inn Express London — Breakfast Included',
+                dealSpecsLondonBf: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> November 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Round-trip TLV-LHR-TLV</p>',
+                labelLondonBf: 'Per couple',
+                badgeTbilisi: 'Sukkot Vacation 2026', dealTitleTbilisi: 'Special Getaway to Tbilisi, Georgia', dealHotelTbilisi: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Fain Astoria Hotel — Standard Room, Room & Breakfast',
+                dealSpecsTbilisi: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Sep 27 - Oct 2, 2026 (estimated — to confirm)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El Al, round-trip</p><p><i class="fa fa-bus" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Airport transfers included</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> 20kg suitcase + hand bag</p>',
+                labelTbilisi: 'Per person in double room',
+                badgeBerlin: 'Special December Deal', dealTitleBerlin: 'An Unforgettable Berlin Getaway', dealHotelBerlin: '<i class="fa fa-building" style="color: var(--accent-gold);"></i> Mercure Berlin City West — Standard Double Room + Breakfast',
+                dealSpecsBerlin: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 3-7, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Israir, TLV↔BER (~4h25m)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> 23kg hold + 8kg hand</p>',
+                labelBerlin: 'Package price (to confirm: pp/couple)',
+                badgeMadrid: 'Hanukkah Vacation 2026', dealTitleMadrid: 'Magical Hanukkah & Christmas Getaway in Madrid', dealHotelMadrid: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Pestana Collection Plaza Mayor — Classic Room + Breakfast, free hotel cancellation until Dec 4',
+                dealSpecsMadrid: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 6-10, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Israir, outbound 14:15-18:45 | return 20:00-01:55(+1)</p><p><i class="fa fa-map-marker" style="color: var(--accent-gold);"></i> <strong>Location:</strong> Heart of Plaza Mayor, near holiday markets & top attractions</p>',
+                labelMadrid: 'Per person in double room',
+                badgeZanzibar: 'Hanukkah Special', dealTitleZanzibar: 'Hanukkah Special to Zanzibar — Kiwengwa Beach Resort', dealHotelZanzibar: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Kiwengwa Beach Resort — Standard Double Room + Breakfast (Rated 8.8)',
+                dealSpecsZanzibar: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 3-10, 2026 (7 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Israir, direct TLV↔ZNZ</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Checked bag + trolley included</p>',
+                labelZanzibar: 'Per couple',
+                badgePragueKosher: 'Hanukkah Vacation — Kosher Hotel', dealTitlePragueKosher: 'Hanukkah Vacation at a Kosher Hotel in Prague', dealHotelPragueKosher: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> King David Prague Kosher Hotel — Deluxe Room, Half Board',
+                dealSpecsPragueKosher: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 6-10, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> Smartwings, outbound 18:25-21:35 | return 12:45-17:35</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Checked bag + trolley included</p>',
+                labelPragueKosher: 'Per person in double room',
+                badgeBudapestEmerald: 'Hanukkah Vacation 2026', dealTitleBudapestEmerald: 'Hanukkah Meets Christmas Prep in Budapest', dealHotelBudapestEmerald: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Emerald Hotel — Corner Room + Breakfast, free hotel cancellation until Dec 3',
+                dealSpecsBudapestEmerald: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 6-10, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El Al, outbound 08:40-11:15 | return 12:25-16:35</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Checked bag + trolley included</p>',
+                labelBudapestEmerald: 'Per person in double room',
+                badgeBudapestMarriott: 'Christmas Magic', dealTitleBudapestMarriott: 'Christmas Magic in Budapest — Marriott', dealHotelBudapestMarriott: '<i class="fa fa-star" style="color: var(--accent-gold);"></i> Marriott Hotel — Heart of the City, Excellent 9 Rating',
+                dealSpecsBudapestMarriott: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> December 2026 (Hanukkah period)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El Al, includes trolley & checked bag</p>',
+                labelBudapestMarriott: 'Per person',
+                badgeLondonHanukkah: 'Hanukkah Vacation 2026', dealTitleLondonHanukkah: 'Hanukkah Meets Christmas Prep in London', dealHotelLondonHanukkah: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> The Park City Grand Plaza Kensington — Plaza Executive Double Room',
+                dealSpecsLondonHanukkah: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> Dec 6-10, 2026 (4 nights)</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El Al, Tel Aviv–Luton | outbound 05:30-09:05 | return 10:25-17:25</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Included:</strong> Checked bag + trolley included</p>',
+                labelLondonHanukkah: 'Per person in double room',
+                tabBlackFriday: 'Black Friday',
                 dealHotelAyianapa: '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> Okeanos Beach Boutique Hotel',
                 dealSpecsAyianapa: '<p><i class="fa fa-calendar" style="color: var(--accent-gold);"></i> <strong>Dates:</strong> 30.07.2026 - 03.08.2026</p><p><i class="fa fa-plane" style="color: var(--accent-gold);"></i> <strong>Flights:</strong> El-Al Flights to Larnaca (Out 16:15, Return 21:55)</p><p><i class="fa fa-bed" style="color: var(--accent-gold);"></i> <strong>Room:</strong> Superior Room, Sea View (Breathtaking Panoramic View)</p><p><i class="fa fa-briefcase" style="color: var(--accent-gold);"></i> <strong>Baggage:</strong> Luggage Included for All Passengers | Direct Beach Access</p>',
                 btnOrderAyianapa: 'Check Availability',
@@ -1941,6 +2443,11 @@
                 faq3Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> How far in advance should we contact you to book a trip?', faq3A: 'In order to guarantee the best flight routes, highly-requested boutique hotels, and optimal pricing, it is highly recommended to contact us about 3 to 5 months before your planned departure.',
                 accMenuTitle: 'Accessibility Menu', accOptText: '<i class="fa fa-text-height"></i> Enlarge Text', accOptContrast: '<i class="fa fa-adjust"></i> High Contrast', accOptLinks: '<i class="fa fa-link"></i> Highlight Links', accOptReset: '<i class="fa fa-refresh"></i> Reset Accessibility',
                 cookieMsg: 'This website uses cookies to ensure you get the best experience, analyze traffic, and improve our services. By continuing to browse, you agree to their use.', cookieBtnTxt: 'Accept',
+                bfPopupBadge: 'BLACK FRIDAY 🔥',
+                bfPopupTitle: '<span>Black Friday</span> Deals Are Here!',
+                bfPopupText: 'Huge limited-time discounts on our most popular packages.',
+                bfPopupBtnTxt: 'View Deals',
+                bfPopupDismissTxt: 'Not now, thanks',
                 footerCopy: '© 2026 AdvenHorizon Travels. All rights reserved. | Beyond Ordinary Travel',
                 swLabelDest: 'Destination', swPlaceholder: 'Choose destination...', swGrpSummer: 'Summer Packages', swGrpHolidays: 'Holiday Packages', swGrpWinter: 'Winter Packages', swGrpMore: 'More Destinations', swLabelFrom: 'Departure Date',
                 swLabelTo: 'Return Date', swLabelPax: 'Travelers', swBtnTxt: 'Search Now',
@@ -2030,6 +2537,59 @@
             setText('label-per-person', t.labelPerPerson);
             setText('label-per-family', t.labelPerFamily);
             setText('label-per-couple', t.labelPerCouple);
+            setText('badge-prague-bf', t.badgePragueBf);
+            setText('deal-title-prague-bf', t.dealTitlePragueBf);
+            setText('deal-hotel-prague-bf', t.dealHotelPragueBf, true);
+            setText('label-prague-bf', t.labelPragueBf);
+            setText('badge-athens-bf', t.badgeAthensBf);
+            setText('deal-title-athens-bf', t.dealTitleAthensBf);
+            setText('deal-hotel-athens-bf', t.dealHotelAthensBf, true);
+            setText('label-athens-bf', t.labelAthensBf);
+            setText('badge-munich-bf', t.badgeMunichBf);
+            setText('deal-title-munich-bf', t.dealTitleMunichBf);
+            setText('deal-hotel-munich-bf', t.dealHotelMunichBf, true);
+            setText('label-munich-bf', t.labelMunichBf);
+            setText('badge-warsaw-bf', t.badgeWarsawBf);
+            setText('deal-title-warsaw-bf', t.dealTitleWarsawBf);
+            setText('deal-hotel-warsaw-bf', t.dealHotelWarsawBf, true);
+            setText('label-warsaw-bf', t.labelWarsawBf);
+            setText('badge-london-bf', t.badgeLondonBf);
+            setText('deal-title-london-bf', t.dealTitleLondonBf);
+            setText('deal-hotel-london-bf', t.dealHotelLondonBf, true);
+            setText('label-london-bf', t.labelLondonBf);
+            setText('badge-tbilisi', t.badgeTbilisi);
+            setText('deal-title-tbilisi', t.dealTitleTbilisi);
+            setText('deal-hotel-tbilisi', t.dealHotelTbilisi, true);
+            setText('label-tbilisi', t.labelTbilisi);
+            setText('badge-berlin', t.badgeBerlin);
+            setText('deal-title-berlin', t.dealTitleBerlin);
+            setText('deal-hotel-berlin', t.dealHotelBerlin, true);
+            setText('label-berlin', t.labelBerlin);
+            setText('badge-madrid', t.badgeMadrid);
+            setText('deal-title-madrid', t.dealTitleMadrid);
+            setText('deal-hotel-madrid', t.dealHotelMadrid, true);
+            setText('label-madrid', t.labelMadrid);
+            setText('badge-zanzibar', t.badgeZanzibar);
+            setText('deal-title-zanzibar', t.dealTitleZanzibar);
+            setText('deal-hotel-zanzibar', t.dealHotelZanzibar, true);
+            setText('label-zanzibar', t.labelZanzibar);
+            setText('badge-prague-kosher', t.badgePragueKosher);
+            setText('deal-title-prague-kosher', t.dealTitlePragueKosher);
+            setText('deal-hotel-prague-kosher', t.dealHotelPragueKosher, true);
+            setText('label-prague-kosher', t.labelPragueKosher);
+            setText('badge-budapest-emerald', t.badgeBudapestEmerald);
+            setText('deal-title-budapest-emerald', t.dealTitleBudapestEmerald);
+            setText('deal-hotel-budapest-emerald', t.dealHotelBudapestEmerald, true);
+            setText('label-budapest-emerald', t.labelBudapestEmerald);
+            setText('badge-budapest-marriott', t.badgeBudapestMarriott);
+            setText('deal-title-budapest-marriott', t.dealTitleBudapestMarriott);
+            setText('deal-hotel-budapest-marriott', t.dealHotelBudapestMarriott, true);
+            setText('label-budapest-marriott', t.labelBudapestMarriott);
+            setText('badge-london-hanukkah', t.badgeLondonHanukkah);
+            setText('deal-title-london-hanukkah', t.dealTitleLondonHanukkah);
+            setText('deal-hotel-london-hanukkah', t.dealHotelLondonHanukkah, true);
+            setText('label-london-hanukkah', t.labelLondonHanukkah);
+            setText('tab-blackfriday-txt', t.tabBlackFriday);
             setText('label-vegas-person', t.labelVegasPerson);
 
             setText('modal-title-txt', t.modalTitleTxt);
@@ -2109,6 +2669,11 @@
             setText('acc-opt-reset', t.accOptReset, true);
             setText('cookie-msg', t.cookieMsg);
             setText('cookie-btn-txt', t.cookieBtnTxt);
+            setText('bf-popup-badge', t.bfPopupBadge);
+            setText('bf-popup-title', t.bfPopupTitle, true);
+            setText('bf-popup-text', t.bfPopupText);
+            setText('bf-popup-btn-txt', t.bfPopupBtnTxt);
+            setText('bf-popup-dismiss-txt', t.bfPopupDismissTxt);
             
             setText('faq-main-title', t.faqMainTitle);
             setText('faq-main-subtitle', t.faqMainSubtitle);
@@ -2174,6 +2739,19 @@
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
             document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
             document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
+            document.getElementById('deal-specs-prague-bf').innerHTML = t.dealSpecsPragueBf;
+            document.getElementById('deal-specs-athens-bf').innerHTML = t.dealSpecsAthensBf;
+            document.getElementById('deal-specs-munich-bf').innerHTML = t.dealSpecsMunichBf;
+            document.getElementById('deal-specs-warsaw-bf').innerHTML = t.dealSpecsWarsawBf;
+            document.getElementById('deal-specs-london-bf').innerHTML = t.dealSpecsLondonBf;
+            document.getElementById('deal-specs-tbilisi').innerHTML = t.dealSpecsTbilisi;
+            document.getElementById('deal-specs-berlin').innerHTML = t.dealSpecsBerlin;
+            document.getElementById('deal-specs-madrid').innerHTML = t.dealSpecsMadrid;
+            document.getElementById('deal-specs-zanzibar').innerHTML = t.dealSpecsZanzibar;
+            document.getElementById('deal-specs-prague-kosher').innerHTML = t.dealSpecsPragueKosher;
+            document.getElementById('deal-specs-budapest-emerald').innerHTML = t.dealSpecsBudapestEmerald;
+            document.getElementById('deal-specs-budapest-marriott').innerHTML = t.dealSpecsBudapestMarriott;
+            document.getElementById('deal-specs-london-hanukkah').innerHTML = t.dealSpecsLondonHanukkah;
         }
 
         function scrollGallery(buttonEl, screenDirection) {
@@ -2255,6 +2833,17 @@
             document.getElementById('cookieBar').classList.remove('show');
         }
 
+        function closeBfPopup() {
+            var popup = document.getElementById('bfPopup');
+            if (popup) popup.classList.remove('show');
+        }
+
+        function goToDealsFromPopup() {
+            closeBfPopup();
+            var target = document.getElementById('all-deals');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('active'); }
         function closeMobileNav() { document.getElementById('mobileNav').classList.remove('active'); }
 
@@ -2282,6 +2871,24 @@
             document.getElementById('deal-specs-vegas').innerHTML = t.dealSpecsVegas;
             document.getElementById('deal-specs-munich').innerHTML = t.dealSpecsMunich;
             document.getElementById('deal-specs-prague').innerHTML = t.dealSpecsPrague;
+            document.getElementById('deal-specs-prague-bf').innerHTML = t.dealSpecsPragueBf;
+            document.getElementById('deal-specs-athens-bf').innerHTML = t.dealSpecsAthensBf;
+            document.getElementById('deal-specs-munich-bf').innerHTML = t.dealSpecsMunichBf;
+            document.getElementById('deal-specs-warsaw-bf').innerHTML = t.dealSpecsWarsawBf;
+            document.getElementById('deal-specs-london-bf').innerHTML = t.dealSpecsLondonBf;
+            document.getElementById('deal-specs-tbilisi').innerHTML = t.dealSpecsTbilisi;
+            document.getElementById('deal-specs-berlin').innerHTML = t.dealSpecsBerlin;
+            document.getElementById('deal-specs-madrid').innerHTML = t.dealSpecsMadrid;
+            document.getElementById('deal-specs-zanzibar').innerHTML = t.dealSpecsZanzibar;
+            document.getElementById('deal-specs-prague-kosher').innerHTML = t.dealSpecsPragueKosher;
+            document.getElementById('deal-specs-budapest-emerald').innerHTML = t.dealSpecsBudapestEmerald;
+            document.getElementById('deal-specs-budapest-marriott').innerHTML = t.dealSpecsBudapestMarriott;
+            document.getElementById('deal-specs-london-hanukkah').innerHTML = t.dealSpecsLondonHanukkah;
+
+            setTimeout(function() {
+                var popup = document.getElementById('bfPopup');
+                if (popup) popup.classList.add('show');
+            }, 3500);
         });
 
         // ===== Deals tabs =====
@@ -2310,6 +2917,7 @@
             if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)){ menu.classList.remove('active'); }
             if (mobileNav && navToggle && mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !navToggle.contains(e.target)){ mobileNav.classList.remove('active'); }
             if (e.target === modal) { closeLeadModal(); }
+            if (e.target === document.getElementById('bfPopup')) { closeBfPopup(); }
         });
     </script>
     <script>
