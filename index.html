@@ -427,6 +427,15 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px,100%),1fr)); gap: 28px;
         }
 
+        /* Winter tab has fewer cards than other tabs — without this, the grid's
+           auto-fit/1fr columns stretch to fill the row, making the cards look
+           like wide rectangles instead of the compact square-ish cards used
+           everywhere else. Capping the column width keeps them consistent. */
+        #deals-winter .deals-grid-wrap {
+            grid-template-columns: repeat(auto-fit, minmax(min(360px,100%), 380px));
+            justify-content: center;
+        }
+
         .ticket-card {
             background:var(--white); border-radius:20px; overflow:hidden;
             box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
