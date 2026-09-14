@@ -2209,10 +2209,10 @@
                 <h3 id="pol4-title"><i class="fa fa-id-card" style="color: var(--accent-gold);"></i> פרטי העסק ומספר רישיון סוכן נסיעות</h3>
                 <p id="pol4-desc">AdvenHorizon Travels הינה עסק העוסק במתן שירותי תיירות ותכנון חופשות בהתאמה אישית.</p>
                 <ul class="biz-details-list">
-                    <li><span class="biz-label">שם העסק</span><span class="biz-value" dir="ltr">AdvenHorizon Travels</span></li>
-                    <li><span class="biz-label">ח.פ.</span><span class="biz-value" dir="ltr">027964527</span></li>
-                    <li><span class="biz-label">כתובת רשומה</span><span class="biz-value">הרצל, ראשון לציון</span></li>
-                    <li><span class="biz-label">מספר רישיון התאחדות משרדי הנסיעות ויועצי התיירות בישראל</span><span class="biz-value" dir="ltr">5499</span></li>
+                    <li><span class="biz-label" id="biz-label-name">שם העסק</span><span class="biz-value" dir="ltr">AdvenHorizon Travels</span></li>
+                    <li><span class="biz-label" id="biz-label-id">ח.פ.</span><span class="biz-value" dir="ltr">027964527</span></li>
+                    <li><span class="biz-label" id="biz-label-address">כתובת רשומה</span><span class="biz-value" id="biz-value-address">הרצל, ראשון לציון</span></li>
+                    <li><span class="biz-label" id="biz-label-license">מספר רישיון התאחדות משרדי הנסיעות ויועצי התיירות בישראל</span><span class="biz-value" dir="ltr">5499</span></li>
                 </ul>
             </div>
         </div>
@@ -2490,9 +2490,9 @@
             </div>
             <p class="footer-business-details">
                 <span dir="ltr">AdvenHorizon Travels</span> &nbsp;·&nbsp;
-                ח.פ. <span dir="ltr">027964527</span>
-                &nbsp;·&nbsp; מספר רישיון התאחדות משרדי הנסיעות ויועצי התיירות בישראל <span dir="ltr">5499</span>
-                &nbsp;·&nbsp; כתובת: הרצל, ראשון לציון
+                <span id="footer-biz-id-label">ח.פ.</span> <span dir="ltr">027964527</span>
+                &nbsp;·&nbsp; <span id="footer-biz-license-label">מספר רישיון התאחדות משרדי הנסיעות ויועצי התיירות בישראל</span> <span dir="ltr">5499</span>
+                &nbsp;·&nbsp; <span id="footer-biz-address-label">כתובת</span>: <span id="footer-biz-address-value">הרצל, ראשון לציון</span>
             </p>
         </div>
     </footer>
@@ -2618,6 +2618,7 @@
                 pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> כללי ביטול עסקה (חוק הגנת הצרכן)', pol1Desc: 'בהתאם לחוק הגנת הצרכן הישראלי, ניתן לבטל עסקת שירותי תיירות בתוך 14 ימים מיום עשיית העסקה, ובלבד שהביטול ייעשה לפחות 7 ימי עבודה קודם למועד מתן השירות. דמי הביטול במסגרת זו יהיו בגובה 5% מערך העסקה או 100 ש"ח (הנמוך מביניהם).',
                 pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> ביטולים ושינויים מול ספקי תיירות בחו"ל', pol2Desc: 'לאחר חלוף תקופת הזמן הקבועה בחוק הגנת הצרכן, תנאי הביטול, השינוי או השחזור של טיסות, מלונות, רכבים ואטרקציות יהיו כפופים לחלוטין למדיניות של ספקי השירות בפועל (חברות התעופה, הריזורטים וסוכני השטח). אנו ב-AdvenHorizon Travels נשקף לכם את תנאי הביטול של כל נכס תיירותי עוד במעמד ההזמנה.',
                 pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> המלצה חמה: ביטוח נסיעות וביטוח ביטול', pol3Desc: 'מאחר וחופשות פרימיום ותכנון מסלולים מורכבים כרוכים בעלויות מראש, אנו מחייבים וממליצים לכל לקוחותינו לרכוש ביטוח נסיעות מקיף לחו"ל הכולל הרחבה רפואית והרחבת כבודה, מיד עם סגירת הטיול. כמו כן, מומלץ לשקול פוליסת ביטוח ייעודית לביטול טיסה מכל סיבה שהיא.',
+                pol4Title: '<i class="fa fa-id-card" style="color: var(--accent-gold);"></i> פרטי העסק ומספר רישיון סוכן נסיעות', pol4Desc: 'AdvenHorizon Travels הינה עסק העוסק במתן שירותי תיירות ותכנון חופשות בהתאמה אישית.', bizLabelName: 'שם העסק', bizLabelId: 'ח.פ.', bizLabelAddress: 'כתובת רשומה', bizValueAddress: 'הרצל, ראשון לציון', bizLabelLicense: 'מספר רישיון התאחדות משרדי הנסיעות ויועצי התיירות בישראל', footerBizAddressLabel: 'כתובת',
                 faqMainTitle: 'שאלות נפוצות', faqMainSubtitle: 'כל מה שחשוב לדעת לפני שיוצאים לדרך',
                 faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> מה בדיוק כולל שירות החופשה שלכם?', faq1A: 'השירות הוא פתרון מלא (All-In-One). אנחנו מאפיינים יחד את החלום שלכם, בונים מסלול יומי מפורט, סוגרים עבורכם את הטיסות, המלונות והאטרקציות, ומלווים אתכם אישית לאורך כל השהות שלכם בחו"ל.',
                 faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> האם אתם אלו שמבצעים את ההזמנות בפועל?', faq2A: 'בהחלט כן. אנחנו מטפלים ומבצעים את כל ההזמנות של הטיול עבורכם מא\' ועד ת\'. אתם מקבלים מאיתנו תיק טיול מוכן עם כל השוברים, הכרטיסים והאישורים, כך שכל מה שנשאר לכם לעשות זה רק לארוז מזוודה.',
@@ -2732,6 +2733,7 @@
                 pol1Title: '<i class="fa fa-info-circle" style="color: var(--accent-gold);"></i> Standard Cancellation Rules (Consumer Protection Law)', pol1Desc: 'In accordance with the Israeli Consumer Protection Law, a tourism transaction can be canceled within 14 days from the booking date, provided that the cancellation is made at least 7 business days prior to the departure date. The cancellation fee under this framework will be 5% of the transaction value or 100 ILS (whichever is lower).',
                 pol2Title: '<i class="fa fa-plane" style="color: var(--accent-gold);"></i> Cancellations & Changes with International Providers', pol2Desc: 'After the period stipulated by local consumer law has passed, all cancellation, amendment, or rebooking conditions for flights, lodging, cars, and attractions are fully subject to the strict policies of the active providers (airlines, resorts, and ground operators). We always explicitly transparentize these details before finalized booking.',
                 pol3Title: '<i class="fa fa-shield" style="color: var(--accent-gold);"></i> Critical Recommendation: Comprehensive Travel Insurance', pol3Desc: 'Since bespoke planning and long-haul expeditions involve advance commitments, we highly mandate and advise all travelers to purchase premium international travel insurance including robust medical and baggage extensions immediately upon confirmation. A dedicated trip cancellation-for-any-reason policy is recommended.',
+                pol4Title: '<i class="fa fa-id-card" style="color: var(--accent-gold);"></i> Business Details & Travel Agent License Number', pol4Desc: 'AdvenHorizon Travels is a business engaged in providing tourism services and personalized vacation planning.', bizLabelName: 'Business Name', bizLabelId: 'Company Reg. No. (ח.פ.)', bizLabelAddress: 'Registered Address', bizValueAddress: 'Herzl St, Rishon LeZion, Israel', bizLabelLicense: 'Israel Travel Agents Association License No.', footerBizAddressLabel: 'Address',
                 faqMainTitle: 'Frequently Asked Questions', faqMainSubtitle: 'Everything you need to know before embarking on your journey',
                 faq1Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> What exactly does your vacation service include?', faq1A: 'Our service is a comprehensive All-In-One solution. We define your dream together, build a detailed day-by-day itinerary, secure all flights, hotels, and attractions for you, and provide personal support throughout your entire stay abroad.',
                 faq2Q: '<i class="fa fa-question-circle" style="color: var(--accent-gold);"></i> Are you the ones who actually process the bookings?', faq2A: 'Absolutely yes. We handle and execute every single reservation from A to Z. You receive a complete travel package with all vouchers, tickets, and confirmations, so all you have to do is pack your bags.',
@@ -2957,6 +2959,17 @@
             setText('pol2-desc', t.pol2Desc);
             setText('pol3-title', t.pol3Title, true);
             setText('pol3-desc', t.pol3Desc);
+            setText('pol4-title', t.pol4Title, true);
+            setText('pol4-desc', t.pol4Desc);
+            setText('biz-label-name', t.bizLabelName);
+            setText('biz-label-id', t.bizLabelId);
+            setText('biz-label-address', t.bizLabelAddress);
+            setText('biz-value-address', t.bizValueAddress);
+            setText('biz-label-license', t.bizLabelLicense);
+            setText('footer-biz-id-label', t.bizLabelId);
+            setText('footer-biz-license-label', t.bizLabelLicense);
+            setText('footer-biz-address-label', t.footerBizAddressLabel);
+            setText('footer-biz-address-value', t.bizValueAddress);
             
             setText('acc-menu-title', t.accMenuTitle);
             setText('acc-opt-text', t.accOptText, true);
